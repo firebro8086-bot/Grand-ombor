@@ -26,7 +26,9 @@
 
 <main class="container">
 
-    <!-- STATISTIKA -->
+    <!-- =========================
+         STATISTIKA
+    ========================== -->
 
     <section class="stats">
 
@@ -81,7 +83,9 @@
 
 
 
-    <!-- MAHSULOT QO‘SHISH -->
+    <!-- =========================
+         MAHSULOT QO‘SHISH
+    ========================== -->
 
     <section class="panel">
 
@@ -136,6 +140,7 @@
                     placeholder="0"
                     min="0"
                     step="1"
+                    inputmode="numeric"
                     required
                 >
 
@@ -154,6 +159,7 @@
                     placeholder="5"
                     min="0"
                     step="1"
+                    inputmode="numeric"
                     value="5"
                     required
                 >
@@ -175,7 +181,9 @@
 
 
 
-    <!-- OMBOR -->
+    <!-- =========================
+         OMBOR
+    ========================== -->
 
     <section class="panel">
 
@@ -207,7 +215,7 @@
 
 
 
-        <!-- UMUMIY OGOHLANTIRISH -->
+        <!-- OGOHLANTIRISH -->
 
         <div
             id="warning"
@@ -224,7 +232,7 @@
 
 
 
-        <!-- NOTIFICATION -->
+        <!-- BATAFSIL OGOHLANTIRISHLAR -->
 
         <div
             id="stockNotifications"
@@ -282,7 +290,9 @@
 
 
 
-<!-- SUPABASE -->
+<!-- =========================
+     SUPABASE
+========================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -292,9 +302,9 @@
 "use strict";
 
 
-/* =================================
+/* =========================================
    SUPABASE
-================================= */
+========================================= */
 
 const SUPABASE_URL =
     "https://szgtlkykyfacjliisigf.supabase.co";
@@ -304,21 +314,17 @@ const SUPABASE_KEY =
     "sb_publishable_yFGFSQb4K_gR-3KTqckJlQ_rF__5tfI";
 
 
-const { createClient } =
-    supabase;
-
-
 const db =
-    createClient(
+    supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
 
 
 
-/* =================================
+/* =========================================
    O‘ZGARUVCHILAR
-================================= */
+========================================= */
 
 let products = [];
 
@@ -328,9 +334,9 @@ let loadingProducts = false;
 
 
 
-/* =================================
+/* =========================================
    SAHIFA YUKLANGANDA
-================================= */
+========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -373,9 +379,37 @@ document.addEventListener(
 
 
 
-/* =================================
+/* =========================================
+   FAQAT BUTUN SON
+========================================= */
+
+function isWholeNumber(value) {
+
+    const text =
+        String(value).trim();
+
+
+    if (text === "") {
+        return false;
+    }
+
+
+    const number =
+        Number(text);
+
+
+    return (
+        Number.isInteger(number) &&
+        number >= 0
+    );
+
+}
+
+
+
+/* =========================================
    MAHSULOTLARNI YUKLASH
-================================= */
+========================================= */
 
 async function loadProducts(
     showError = true
@@ -401,9 +435,9 @@ async function loadProducts(
             .select("*")
 
             /*
-             * MUHIM:
-             * created emas,
-             * created_at ishlatiladi
+             * Supabase jadvalidagi
+             * to‘g‘ri ustun:
+             * created_at
              */
 
             .order(
@@ -461,7 +495,6 @@ async function loadProducts(
 
     }
 
-
     finally {
 
         loadingProducts = false;
@@ -472,9 +505,9 @@ async function loadProducts(
 
 
 
-/* =================================
+/* =========================================
    MAHSULOT QO‘SHISH
-================================= */
+========================================= */
 
 async function addProduct(event) {
 
@@ -543,7 +576,7 @@ async function addProduct(event) {
     ) {
 
         showMessage(
-            "Miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
+            "Miqdor faqat 0 yoki undan katta butun son bo‘lishi kerak.",
             "error"
         );
 
@@ -561,7 +594,7 @@ async function addProduct(event) {
     ) {
 
         showMessage(
-            "Minimal miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
+            "Minimal miqdor faqat 0 yoki undan katta butun son bo‘lishi kerak.",
             "error"
         );
 
@@ -577,7 +610,6 @@ async function addProduct(event) {
 
     button.textContent =
         "SAQLANMOQDA...";
-
 
 
     try {
@@ -601,7 +633,6 @@ async function addProduct(event) {
             });
 
 
-
         if (error) {
 
             console.error(
@@ -611,7 +642,7 @@ async function addProduct(event) {
 
 
             showMessage(
-                "Mahsulot qo‘shilmadi. Supabase sozlamalarini tekshiring.",
+                "Mahsulot qo‘shilmadi.",
                 "error"
             );
 
@@ -628,23 +659,18 @@ async function addProduct(event) {
         limitInput.value = "5";
 
 
-
         showMessage(
             "Mahsulot muvaffaqiyatli qo‘shildi.",
             "success"
         );
 
 
-
-        await loadProducts(
-            false
-        );
+        await loadProducts(false);
 
 
         nameInput.focus();
 
     }
-
 
     finally {
 
@@ -659,9 +685,9 @@ async function addProduct(event) {
 
 
 
-/* =================================
+/* =========================================
    MAHSULOTLARNI CHIQARISH
-================================= */
+========================================= */
 
 function renderProducts(
     searchText = ""
@@ -678,12 +704,10 @@ function renderProducts(
     }
 
 
-
     const search =
         String(searchText)
             .trim()
             .toLocaleLowerCase();
-
 
 
     const filtered =
@@ -705,9 +729,7 @@ function renderProducts(
         );
 
 
-
     tbody.innerHTML = "";
-
 
 
     if (
@@ -778,7 +800,7 @@ function renderProducts(
 
 
             if (
-                quantity <= 0
+                quantity === 0
             ) {
 
                 statusClass =
@@ -788,7 +810,6 @@ function renderProducts(
                     "TUGAGAN";
 
             }
-
 
             else if (
                 quantity <= lowLimit
@@ -808,7 +829,6 @@ function renderProducts(
                 document.createElement(
                     "tr"
                 );
-
 
 
             row.innerHTML = `
@@ -838,6 +858,7 @@ function renderProducts(
                             data-id="${escapeAttribute(
                                 product.id
                             )}"
+                            title="1 taga kamaytirish"
                         >
                             −
                         </button>
@@ -852,6 +873,8 @@ function renderProducts(
                             data-id="${escapeAttribute(
                                 product.id
                             )}"
+                            inputmode="numeric"
+                            title="Butun son kiriting"
                         >
 
 
@@ -862,6 +885,7 @@ function renderProducts(
                             data-id="${escapeAttribute(
                                 product.id
                             )}"
+                            title="1 taga oshirish"
                         >
                             +
                         </button>
@@ -883,6 +907,7 @@ function renderProducts(
                         data-id="${escapeAttribute(
                             product.id
                         )}"
+                        inputmode="numeric"
                     >
 
                 </td>
@@ -935,7 +960,6 @@ function renderProducts(
             `;
 
 
-
             tbody.appendChild(
                 row
             );
@@ -947,9 +971,9 @@ function renderProducts(
 
 
 
-/* =================================
-   JADVAL TUGMALARI
-================================= */
+/* =========================================
+   + / - / TAHRIRLASH / O‘CHIRISH
+========================================= */
 
 document.addEventListener(
     "click",
@@ -1024,9 +1048,9 @@ document.addEventListener(
 
 
 
-/* =================================
+/* =========================================
    INPUT O‘ZGARISHI
-================================= */
+========================================= */
 
 document.addEventListener(
     "change",
@@ -1071,18 +1095,315 @@ document.addEventListener(
 
 
 
-/* =================================
+/* =========================================
+   ENTER — MIQDORNI SAQLASH
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const quantityInput =
+            event.target.closest(
+                ".quantity-input"
+            );
+
+
+        if (
+            quantityInput &&
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            quantityInput.blur();
+
+            return;
+
+        }
+
+
+
+        const minimumInput =
+            event.target.closest(
+                ".minimum-input"
+            );
+
+
+        if (
+            minimumInput &&
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            minimumInput.blur();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   MIQDORNI + / - BILAN O‘ZGARTIRISH
+========================================= */
+
+async function changeQuantity(
+    id,
+    change
+) {
+
+    const product =
+        products.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    let quantity =
+        Number(product.quantity);
+
+
+    if (
+        !Number.isInteger(quantity)
+    ) {
+
+        quantity = 0;
+
+    }
+
+
+    /*
+     * +1 yoki -1
+     */
+
+    quantity =
+        quantity + change;
+
+
+    /*
+     * Manfiy son bo‘lmasin
+     */
+
+    if (
+        quantity < 0
+    ) {
+
+        quantity = 0;
+
+    }
+
+
+    /*
+     * Faqat butun son
+     */
+
+    quantity =
+        Math.floor(quantity);
+
+
+    await updateQuantity(
+        id,
+        quantity
+    );
+
+}
+
+
+
+/* =========================================
+   QO‘LDA MIQDOR KIRITISH
+========================================= */
+
+async function setQuantity(
+    id,
+    value
+) {
+
+    const text =
+        String(value).trim();
+
+
+    /*
+     * Bo‘sh qoldirilsa eski qiymatni qaytaramiz
+     */
+
+    if (
+        text === ""
+    ) {
+
+        await loadProducts(false);
+
+        return;
+
+    }
+
+
+    const quantity =
+        Number(text);
+
+
+    /*
+     * Faqat butun son
+     */
+
+    if (
+        !Number.isInteger(quantity) ||
+        quantity < 0
+    ) {
+
+        showMessage(
+            "Miqdor faqat butun son bo‘lishi kerak.",
+            "error"
+        );
+
+
+        await loadProducts(false);
+
+        return;
+
+    }
+
+
+    await updateQuantity(
+        id,
+        quantity
+    );
+
+}
+
+
+
+/* =========================================
+   MIQDORNI SUPABASEGA SAQLASH
+========================================= */
+
+async function updateQuantity(
+    id,
+    quantity
+) {
+
+    if (
+        !Number.isInteger(quantity) ||
+        quantity < 0
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+
+        .from("products")
+
+        .update({
+
+            quantity:
+                quantity
+
+        })
+
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Quantity error:",
+            error
+        );
+
+
+        showMessage(
+            "Miqdorni saqlashda xatolik.",
+            "error"
+        );
+
+
+        await loadProducts(false);
+
+        return;
+
+    }
+
+
+    const product =
+        products.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if (product) {
+
+        product.quantity =
+            quantity;
+
+    }
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    renderProducts(
+        search
+            ? search.value
+            : ""
+    );
+
+
+    updateStats();
+
+    renderStockNotifications();
+
+}
+
+
+
+/* =========================================
    MINIMAL MIQDOR
-================================= */
+========================================= */
 
 async function setLowLimit(
     id,
     value
 ) {
 
-    const lowLimit =
-        Number(value);
+    const text =
+        String(value).trim();
 
+
+    if (
+        text === ""
+    ) {
+
+        await loadProducts(false);
+
+        return;
+
+    }
+
+
+    const lowLimit =
+        Number(text);
 
 
     if (
@@ -1091,19 +1412,16 @@ async function setLowLimit(
     ) {
 
         showMessage(
-            "Minimal miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
+            "Minimal miqdor faqat butun son bo‘lishi kerak.",
             "error"
         );
 
 
-        await loadProducts(
-            false
-        );
+        await loadProducts(false);
 
         return;
 
     }
-
 
 
     const {
@@ -1125,7 +1443,6 @@ async function setLowLimit(
         );
 
 
-
     if (error) {
 
         console.error(
@@ -1140,14 +1457,11 @@ async function setLowLimit(
         );
 
 
-        await loadProducts(
-            false
-        );
+        await loadProducts(false);
 
         return;
 
     }
-
 
 
     const product =
@@ -1156,7 +1470,6 @@ async function setLowLimit(
                 String(item.id) ===
                 String(id)
         );
-
 
 
     if (product) {
@@ -1167,198 +1480,6 @@ async function setLowLimit(
     }
 
 
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        );
-
-
-    renderProducts(
-        search
-            ? search.value
-            : ""
-    );
-
-
-    updateStats();
-
-    renderStockNotifications();
-
-
-    showMessage(
-        "Minimal miqdor saqlandi.",
-        "success"
-    );
-
-}
-
-
-
-/* =================================
-   + / -
-================================= */
-
-async function changeQuantity(
-    id,
-    change
-) {
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-
-    let quantity =
-        Number(
-            product.quantity
-        ) + change;
-
-
-
-    if (
-        quantity < 0
-    ) {
-
-        quantity = 0;
-
-    }
-
-
-
-    await updateQuantity(
-        id,
-        quantity
-    );
-
-}
-
-
-
-/* =================================
-   QO‘LDA MIQDOR
-================================= */
-
-async function setQuantity(
-    id,
-    value
-) {
-
-    const quantity =
-        Number(value);
-
-
-
-    if (
-        !Number.isInteger(quantity) ||
-        quantity < 0
-    ) {
-
-        showMessage(
-            "Miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
-            "error"
-        );
-
-
-        await loadProducts(
-            false
-        );
-
-        return;
-
-    }
-
-
-
-    await updateQuantity(
-        id,
-        quantity
-    );
-
-}
-
-
-
-/* =================================
-   MIQDORNI SUPABASEGA SAQLASH
-================================= */
-
-async function updateQuantity(
-    id,
-    quantity
-) {
-
-    const {
-        error
-    } = await db
-
-        .from("products")
-
-        .update({
-
-            quantity:
-                quantity
-
-        })
-
-        .eq(
-            "id",
-            id
-        );
-
-
-
-    if (error) {
-
-        console.error(
-            "Quantity error:",
-            error
-        );
-
-
-        showMessage(
-            "Miqdorni saqlashda xatolik.",
-            "error"
-        );
-
-
-        await loadProducts(
-            false
-        );
-
-        return;
-
-    }
-
-
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-
-    if (product) {
-
-        product.quantity =
-            quantity;
-
-    }
-
-
-
     const search =
         document.getElementById(
             "searchInput"
@@ -1380,115 +1501,9 @@ async function updateQuantity(
 
 
 
-/* =================================
-   O‘CHIRISH
-================================= */
-
-async function deleteProduct(
-    id
-) {
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-
-    const confirmed =
-        confirm(
-            `"${product.name}" mahsulotini o‘chirishni xohlaysizmi?`
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-
-    const {
-        error
-    } = await db
-
-        .from("products")
-
-        .delete()
-
-        .eq(
-            "id",
-            id
-        );
-
-
-
-    if (error) {
-
-        console.error(
-            "Delete error:",
-            error
-        );
-
-
-        showMessage(
-            "Mahsulotni o‘chirishda xatolik.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-
-    products =
-        products.filter(
-            product =>
-                String(
-                    product.id
-                ) !==
-                String(id)
-        );
-
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        );
-
-
-    renderProducts(
-        search
-            ? search.value
-            : ""
-    );
-
-
-    updateStats();
-
-    renderStockNotifications();
-
-
-    showMessage(
-        "Mahsulot o‘chirildi.",
-        "success"
-    );
-
-}
-
-
-
-/* =================================
-   TAHRIRLASH
-================================= */
+/* =========================================
+   TAHRIRLASH OYNASI
+========================================= */
 
 function openEdit(
     id
@@ -1507,6 +1522,13 @@ function openEdit(
     }
 
 
+    const quantity =
+        Number(product.quantity) || 0;
+
+
+    const lowLimit =
+        Number(product.low_limit) || 0;
+
 
     const modal =
         document.createElement(
@@ -1516,7 +1538,6 @@ function openEdit(
 
     modal.className =
         "modal-overlay";
-
 
 
     modal.innerHTML = `
@@ -1559,6 +1580,7 @@ function openEdit(
                 type="text"
                 id="editName"
                 maxlength="120"
+                autocomplete="off"
                 value="${escapeAttribute(
                     product.name || ""
                 )}"
@@ -1576,9 +1598,8 @@ function openEdit(
                 id="editQuantity"
                 min="0"
                 step="1"
-                value="${Number(
-                    product.quantity
-                ) || 0}"
+                inputmode="numeric"
+                value="${quantity}"
             >
 
 
@@ -1593,9 +1614,8 @@ function openEdit(
                 id="editLimit"
                 min="0"
                 step="1"
-                value="${Number(
-                    product.low_limit
-                ) || 0}"
+                inputmode="numeric"
+                value="${lowLimit}"
             >
 
 
@@ -1613,15 +1633,19 @@ function openEdit(
     `;
 
 
-
     document.body.appendChild(
         modal
     );
 
 
 
-    const closeModal =
-        () => modal.remove();
+    /* YOPISH */
+
+    function closeModal() {
+
+        modal.remove();
+
+    }
 
 
 
@@ -1635,14 +1659,12 @@ function openEdit(
         );
 
 
-
     modal.addEventListener(
         "click",
         event => {
 
             if (
-                event.target ===
-                modal
+                event.target === modal
             ) {
 
                 closeModal();
@@ -1653,6 +1675,36 @@ function openEdit(
     );
 
 
+
+    /* ESC */
+
+    const escapeHandler =
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeModal();
+
+                document.removeEventListener(
+                    "keydown",
+                    escapeHandler
+                );
+
+            }
+
+        };
+
+
+    document.addEventListener(
+        "keydown",
+        escapeHandler
+    );
+
+
+
+    /* SAQLASH */
 
     document
         .getElementById(
@@ -1671,7 +1723,6 @@ function openEdit(
                         .trim();
 
 
-
                 const quantity =
                     Number(
                         document
@@ -1680,7 +1731,6 @@ function openEdit(
                             )
                             .value
                     );
-
 
 
                 const lowLimit =
@@ -1715,7 +1765,7 @@ function openEdit(
                 ) {
 
                     showMessage(
-                        "Miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
+                        "Miqdor faqat butun son bo‘lishi kerak.",
                         "error"
                     );
 
@@ -1733,7 +1783,7 @@ function openEdit(
                 ) {
 
                     showMessage(
-                        "Minimal miqdor 0 yoki undan katta butun son bo‘lishi kerak.",
+                        "Minimal miqdor faqat butun son bo‘lishi kerak.",
                         "error"
                     );
 
@@ -1811,12 +1861,16 @@ function openEdit(
 
 
 
+                document.removeEventListener(
+                    "keydown",
+                    escapeHandler
+                );
+
+
                 modal.remove();
 
 
-                await loadProducts(
-                    false
-                );
+                await loadProducts(false);
 
 
                 showMessage(
@@ -1829,6 +1883,11 @@ function openEdit(
 
 
 
+    /*
+     * Автоматически ставим курсор
+     * в название
+     */
+
     document
         .getElementById(
             "editName"
@@ -1839,15 +1898,115 @@ function openEdit(
 
 
 
-/* =================================
+/* =========================================
+   O‘CHIRISH
+========================================= */
+
+async function deleteProduct(
+    id
+) {
+
+    const product =
+        products.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `"${product.name}" mahsulotini o‘chirishni xohlaysizmi?`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const {
+        error
+    } = await db
+
+        .from("products")
+
+        .delete()
+
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Delete error:",
+            error
+        );
+
+
+        showMessage(
+            "Mahsulotni o‘chirishda xatolik.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    products =
+        products.filter(
+            product =>
+                String(
+                    product.id
+                ) !==
+                String(id)
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    renderProducts(
+        search
+            ? search.value
+            : ""
+    );
+
+
+    updateStats();
+
+    renderStockNotifications();
+
+
+    showMessage(
+        "Mahsulot o‘chirildi.",
+        "success"
+    );
+
+}
+
+
+
+/* =========================================
    STATISTIKA
-================================= */
+========================================= */
 
 function updateStats() {
 
     const total =
         products.length;
-
 
 
     const low =
@@ -1866,7 +2025,6 @@ function updateStats() {
                     ) || 0;
 
 
-
                 return (
                     quantity > 0 &&
                     quantity <= limit
@@ -1874,7 +2032,6 @@ function updateStats() {
 
             }
         ).length;
-
 
 
     const out =
@@ -1886,14 +2043,12 @@ function updateStats() {
         ).length;
 
 
-
     document
         .getElementById(
             "totalProducts"
         )
         .textContent =
         total;
-
 
 
     document
@@ -1904,7 +2059,6 @@ function updateStats() {
         low;
 
 
-
     document
         .getElementById(
             "outOfStock"
@@ -1913,12 +2067,10 @@ function updateStats() {
         out;
 
 
-
     const warning =
         document.getElementById(
             "warning"
         );
-
 
 
     warning.style.display =
@@ -1926,17 +2078,16 @@ function updateStats() {
             low > 0 ||
             out > 0
         )
-
-        ? "block"
-        : "none";
+            ? "block"
+            : "none";
 
 }
 
 
 
-/* =================================
-   УВЕДОМЛЕНИЯ
-================================= */
+/* =========================================
+   OGOHLANTIRISHLAR
+========================================= */
 
 function renderStockNotifications() {
 
@@ -1949,7 +2100,6 @@ function renderStockNotifications() {
     if (!container) {
         return;
     }
-
 
 
     const warnings =
@@ -1968,9 +2118,8 @@ function renderStockNotifications() {
                     ) || 0;
 
 
-
                 return (
-                    quantity <= 0 ||
+                    quantity === 0 ||
                     (
                         quantity > 0 &&
                         quantity <= limit
@@ -1979,7 +2128,6 @@ function renderStockNotifications() {
 
             }
         );
-
 
 
     if (
@@ -1992,7 +2140,6 @@ function renderStockNotifications() {
         return;
 
     }
-
 
 
     container.innerHTML = `
@@ -2021,7 +2168,7 @@ function renderStockNotifications() {
 
 
                 if (
-                    quantity <= 0
+                    quantity === 0
                 ) {
 
                     return `
@@ -2060,7 +2207,6 @@ function renderStockNotifications() {
                     `;
 
                 }
-
 
 
                 return `
@@ -2108,9 +2254,9 @@ function renderStockNotifications() {
 
 
 
-/* =================================
+/* =========================================
    XABAR
-================================= */
+========================================= */
 
 function showMessage(
     text,
@@ -2155,9 +2301,9 @@ function showMessage(
 
 
 
-/* =================================
+/* =========================================
    XAVFSIZ MATN
-================================= */
+========================================= */
 
 function escapeHtml(
     value
@@ -2193,7 +2339,6 @@ function escapeHtml(
 }
 
 
-
 function escapeAttribute(
     value
 ) {
@@ -2206,16 +2351,14 @@ function escapeAttribute(
 
 
 
-/* =================================
+/* =========================================
    AVTOMATIK YANGILANISH
-================================= */
+========================================= */
 
 setInterval(
     () => {
 
-        loadProducts(
-            false
-        );
+        loadProducts(false);
 
     },
     5000
