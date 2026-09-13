@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GRAND X — Ombor</title>
 
     <link rel="stylesheet" href="style.css">
@@ -14,11 +15,12 @@
 <body>
 
 <header class="topbar">
-    <div>
-        <h1>GRAND X</h1>
+    <div class="brand">
+        <h1>GRAND <span>X</span></h1>
         <p>OMBOR BOSHQARUV TIZIMI</p>
     </div>
 </header>
+
 
 <main class="container">
 
@@ -47,39 +49,63 @@
 
     </section>
 
-    <!-- QO'SHISH -->
+
+    <!-- YANGI MAHSULOT -->
     <section class="panel">
 
-        <div class="panel-title">
-            <h2>YANGI MAHSULOT</h2>
+        <div class="section-title">
+            <div>
+                <small>OMBOR</small>
+                <h2>YANGI MAHSULOT</h2>
+            </div>
         </div>
 
         <div class="add-form">
 
-            <input
-                type="text"
-                id="productName"
-                placeholder="Mahsulot nomi"
-                autocomplete="off"
-            >
+            <div class="field">
+                <label>MAHSULOT NOMI</label>
 
-            <input
-                type="number"
-                id="productQuantity"
-                placeholder="Miqdori"
-                min="0"
-                step="1"
-            >
+                <input
+                    id="productName"
+                    type="text"
+                    placeholder="Masalan: Coca Cola"
+                    autocomplete="off"
+                >
+            </div>
 
-            <input
-                type="number"
-                id="productLowLimit"
-                placeholder="Minimal miqdor"
-                min="0"
-                step="1"
-            >
 
-            <button class="main-btn" onclick="addProduct()">
+            <div class="field">
+                <label>MIQDORI</label>
+
+                <input
+                    id="productQuantity"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="0"
+                >
+            </div>
+
+
+            <div class="field">
+                <label>MINIMAL MIQDOR</label>
+
+                <input
+                    id="productLowLimit"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="0"
+                >
+            </div>
+
+
+            <button
+                class="main-btn"
+                id="addButton"
+                onclick="addProduct()"
+            >
+                <span>+</span>
                 QO‘SHISH
             </button>
 
@@ -89,27 +115,45 @@
 
     </section>
 
+
     <!-- QIDIRUV -->
     <section class="search-box">
 
+        <div class="search-icon">⌕</div>
+
         <input
-            type="text"
             id="searchInput"
+            type="text"
             placeholder="Mahsulot qidirish..."
             autocomplete="off"
         >
 
     </section>
 
-    <!-- OGOHLANTIRISH -->
+
+    <!-- OGOHLANTIRISHLAR -->
     <section id="stockNotifications"></section>
+
 
     <!-- MAHSULOTLAR -->
     <section class="panel table-panel">
 
-        <div class="panel-title">
-            <h2>MAHSULOTLAR</h2>
+        <div class="section-title table-title">
+
+            <div>
+                <small>BAZA</small>
+                <h2>MAHSULOTLAR</h2>
+            </div>
+
+            <div
+                id="lastUpdate"
+                class="last-update"
+            >
+                Yangilanmoqda...
+            </div>
+
         </div>
+
 
         <div class="table-wrap">
 
@@ -125,8 +169,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="productsTable">
-                </tbody>
+                <tbody id="productsTable"></tbody>
 
             </table>
 
@@ -139,12 +182,19 @@
 
 <!-- TAHRIRLASH MODALI -->
 
-<div id="editModal" class="modal-overlay">
+<div
+    id="editModal"
+    class="modal-overlay"
+>
 
     <div class="modal">
 
         <div class="modal-header">
-            <h2>MAHSULOTNI TAHRIRLASH</h2>
+
+            <div>
+                <small>MAHSULOT</small>
+                <h2>TAHRIRLASH</h2>
+            </div>
 
             <button
                 class="modal-close"
@@ -152,29 +202,43 @@
             >
                 ×
             </button>
+
         </div>
 
-        <input
-            type="text"
-            id="editName"
-            placeholder="Mahsulot nomi"
-        >
 
-        <input
-            type="number"
-            id="editQuantity"
-            placeholder="Miqdori"
-            min="0"
-            step="1"
-        >
+        <div class="modal-field">
+            <label>MAHSULOT NOMI</label>
 
-        <input
-            type="number"
-            id="editLowLimit"
-            placeholder="Minimal miqdor"
-            min="0"
-            step="1"
-        >
+            <input
+                id="editName"
+                type="text"
+            >
+        </div>
+
+
+        <div class="modal-field">
+            <label>MIQDORI</label>
+
+            <input
+                id="editQuantity"
+                type="number"
+                min="0"
+                step="1"
+            >
+        </div>
+
+
+        <div class="modal-field">
+            <label>MINIMAL MIQDOR</label>
+
+            <input
+                id="editLowLimit"
+                type="number"
+                min="0"
+                step="1"
+            >
+        </div>
+
 
         <div class="modal-buttons">
 
@@ -201,9 +265,9 @@
 
 <script>
 
-    /* =========================
+    /* =========================================
        SUPABASE
-    ========================= */
+    ========================================= */
 
     const SUPABASE_URL =
         "https://szgtlkykyfacjliisigf.supabase.co";
@@ -222,9 +286,9 @@
     let editingId = null;
 
 
-    /* =========================
-       XAVFSIZ HTML
-    ========================= */
+    /* =========================================
+       HTML XAVFSIZLIGI
+    ========================================= */
 
     function escapeHTML(value) {
 
@@ -237,66 +301,158 @@
     }
 
 
-    /* =========================
+    /* =========================================
+       XATOLIKNI CHIQARISH
+    ========================================= */
+
+    function getSupabaseError(error) {
+
+        if (!error) {
+            return "Noma'lum xatolik";
+        }
+
+        return [
+            error.message,
+            error.details,
+            error.hint,
+            error.code
+        ]
+        .filter(Boolean)
+        .join(" | ");
+    }
+
+
+    /* =========================================
+       XABAR
+    ========================================= */
+
+    function showMessage(text, type = "error") {
+
+        const box =
+            document.getElementById("message");
+
+        box.className =
+            "message " + type;
+
+        box.textContent =
+            text;
+
+        clearTimeout(
+            window.messageTimer
+        );
+
+        window.messageTimer =
+            setTimeout(() => {
+
+                box.className = "";
+                box.textContent = "";
+
+            }, 5000);
+    }
+
+
+    /* =========================================
        MAHSULOTLARNI YUKLASH
-    ========================= */
+    ========================================= */
 
     async function loadProducts() {
 
-        const { data, error } = await supabaseClient
-            .from("products")
-            .select(
-                "id, created_at, name, quantity, low_limit, image"
-            )
-            .order("created_at", {
-                ascending: false
-            });
+        const { data, error } =
+            await supabaseClient
+                .from("products")
+                .select(
+                    "id, created_at, name, quantity, low_limit"
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "SUPABASE LOAD ERROR:",
+                error
+            );
 
             showMessage(
-                "Ma'lumotlarni yuklashda xatolik.",
+                "Baza xatosi: " +
+                getSupabaseError(error),
                 "error"
             );
 
             return;
         }
 
-        products = data || [];
+
+        products =
+            Array.isArray(data)
+                ? data
+                : [];
+
 
         renderProducts();
         updateStats();
         renderStockNotifications();
+
+
+        document.getElementById(
+            "lastUpdate"
+        ).textContent =
+            "Yangilandi: " +
+            new Date().toLocaleTimeString(
+                "uz-UZ",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
     }
 
 
-    /* =========================
+    /* =========================================
        MAHSULOT QO'SHISH
-    ========================= */
+    ========================================= */
 
     async function addProduct() {
 
         const nameInput =
-            document.getElementById("productName");
+            document.getElementById(
+                "productName"
+            );
 
         const quantityInput =
-            document.getElementById("productQuantity");
+            document.getElementById(
+                "productQuantity"
+            );
 
         const lowLimitInput =
-            document.getElementById("productLowLimit");
+            document.getElementById(
+                "productLowLimit"
+            );
 
 
         const name =
             nameInput.value.trim();
 
+
         const quantity =
-            parseInt(quantityInput.value, 10);
+            Number(
+                quantityInput.value
+            );
+
 
         const lowLimit =
-            parseInt(lowLimitInput.value, 10);
+            Number(
+                lowLimitInput.value
+            );
 
+
+        /* NOM */
 
         if (!name) {
 
@@ -305,59 +461,113 @@
                 "error"
             );
 
+            nameInput.focus();
+
             return;
         }
 
 
+        /* MIQDOR */
+
         if (
-            Number.isNaN(quantity) ||
+            !Number.isInteger(quantity) ||
             quantity < 0
         ) {
 
             showMessage(
-                "Miqdorni to‘g‘ri kiriting.",
+                "Miqdor butun musbat son bo‘lishi kerak.",
                 "error"
             );
+
+            quantityInput.focus();
 
             return;
         }
 
 
+        /* MINIMAL */
+
         if (
-            Number.isNaN(lowLimit) ||
+            !Number.isInteger(lowLimit) ||
             lowLimit < 0
         ) {
 
             showMessage(
-                "Minimal miqdorni to‘g‘ri kiriting.",
+                "Minimal miqdor butun musbat son bo‘lishi kerak.",
                 "error"
             );
+
+            lowLimitInput.focus();
 
             return;
         }
 
 
-        const { error } = await supabaseClient
+        const button =
+            document.getElementById(
+                "addButton"
+            );
+
+        button.disabled = true;
+        button.classList.add("loading");
+
+
+        /*
+            MUHIM:
+            Faqat mavjud ustunlar yuboriladi.
+            id va created_at yuborilmaydi.
+            image ham yo‘q.
+        */
+
+        const insertData = {
+            name: name,
+            quantity: quantity,
+            low_limit: lowLimit
+        };
+
+
+        console.log(
+            "INSERT DATA:",
+            insertData
+        );
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
             .from("products")
-            .insert({
-                name: name,
-                quantity: quantity,
-                low_limit: lowLimit,
-                image: null
-            });
+            .insert(insertData)
+            .select(
+                "id, created_at, name, quantity, low_limit"
+            );
+
+
+        button.disabled = false;
+        button.classList.remove("loading");
 
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "SUPABASE INSERT ERROR:",
+                error
+            );
 
             showMessage(
-                "Mahsulot qo‘shilmadi.",
+                "Supabase xatosi: " +
+                getSupabaseError(error),
                 "error"
             );
 
             return;
         }
+
+
+        console.log(
+            "INSERT SUCCESS:",
+            data
+        );
 
 
         nameInput.value = "";
@@ -372,40 +582,53 @@
 
 
         await loadProducts();
+
+        nameInput.focus();
     }
 
 
-    /* =========================
-       MIQDORNI O'ZGARTIRISH
-    ========================= */
+    /* =========================================
+       MIQDORNI YANGILASH
+    ========================================= */
 
-    async function updateQuantity(id, quantity) {
+    async function updateQuantity(
+        id,
+        quantity
+    ) {
 
-        quantity = parseInt(quantity, 10);
+        const newQuantity =
+            Number(quantity);
 
 
         if (
-            Number.isNaN(quantity) ||
-            quantity < 0
+            !Number.isInteger(newQuantity) ||
+            newQuantity < 0
         ) {
+
             return;
         }
 
 
-        const { error } = await supabaseClient
+        const {
+            error
+        } = await supabaseClient
             .from("products")
             .update({
-                quantity: quantity
+                quantity: newQuantity
             })
             .eq("id", id);
 
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "QUANTITY ERROR:",
+                error
+            );
 
             showMessage(
-                "Miqdor o‘zgartirilmadi.",
+                "Miqdor o‘zgartirilmadi: " +
+                getSupabaseError(error),
                 "error"
             );
 
@@ -414,63 +637,89 @@
 
 
         const product =
-            products.find(item => item.id === id);
+            products.find(
+                item => item.id === id
+            );
+
 
         if (product) {
-            product.quantity = quantity;
+
+            product.quantity =
+                newQuantity;
         }
 
 
+        renderProducts();
         updateStats();
         renderStockNotifications();
-        renderProducts();
     }
 
 
-    /* =========================
+    /* =========================================
        + / -
-    ========================= */
+    ========================================= */
 
-    async function changeQuantity(id, amount) {
+    async function changeQuantity(
+        id,
+        amount
+    ) {
 
         const product =
-            products.find(item => item.id === id);
+            products.find(
+                item => item.id === id
+            );
 
-        if (!product) return;
+
+        if (!product) {
+            return;
+        }
 
 
-        const newQuantity =
+        const current =
+            Number(product.quantity) || 0;
+
+
+        const next =
             Math.max(
                 0,
-                Number(product.quantity) + amount
+                current + amount
             );
 
 
         await updateQuantity(
             id,
-            newQuantity
+            next
         );
     }
 
 
-    /* =========================
-       QO'LDA MIQDOR KIRITISH
-    ========================= */
+    /* =========================================
+       MIQDORNI QO'LDA O'ZGARTIRISH
+    ========================================= */
 
-    async function setQuantity(id, input) {
+    async function setQuantity(
+        id,
+        input
+    ) {
 
         const value =
-            parseInt(input.value, 10);
+            Number(input.value);
 
 
         if (
-            Number.isNaN(value) ||
+            !Number.isInteger(value) ||
             value < 0
         ) {
 
-            input.value = 0;
+            const product =
+                products.find(
+                    item => item.id === id
+                );
 
-            await updateQuantity(id, 0);
+            input.value =
+                product
+                    ? product.quantity
+                    : 0;
 
             return;
         }
@@ -483,28 +732,41 @@
     }
 
 
-    /* =========================
+    /* =========================================
        MINIMAL MIQDOR
-    ========================= */
+    ========================================= */
 
-    async function setLowLimit(id, input) {
+    async function setLowLimit(
+        id,
+        input
+    ) {
 
         const value =
-            parseInt(input.value, 10);
+            Number(input.value);
 
 
         if (
-            Number.isNaN(value) ||
+            !Number.isInteger(value) ||
             value < 0
         ) {
 
-            input.value = 0;
+            const product =
+                products.find(
+                    item => item.id === id
+                );
+
+            input.value =
+                product
+                    ? product.low_limit
+                    : 0;
 
             return;
         }
 
 
-        const { error } = await supabaseClient
+        const {
+            error
+        } = await supabaseClient
             .from("products")
             .update({
                 low_limit: value
@@ -514,10 +776,14 @@
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "LOW LIMIT ERROR:",
+                error
+            );
 
             showMessage(
-                "Minimal miqdor o‘zgartirilmadi.",
+                "Minimal miqdor o‘zgartirilmadi: " +
+                getSupabaseError(error),
                 "error"
             );
 
@@ -526,81 +792,117 @@
 
 
         const product =
-            products.find(item => item.id === id);
+            products.find(
+                item => item.id === id
+            );
+
 
         if (product) {
-            product.low_limit = value;
+
+            product.low_limit =
+                value;
         }
 
 
+        renderProducts();
         updateStats();
         renderStockNotifications();
-        renderProducts();
     }
 
 
-    /* =========================
-       TAHRIRLASH
-    ========================= */
+    /* =========================================
+       TAHRIRLASHNI OCHISH
+    ========================================= */
 
     function openEdit(id) {
 
         const product =
-            products.find(item => item.id === id);
+            products.find(
+                item => item.id === id
+            );
 
-        if (!product) return;
+
+        if (!product) {
+            return;
+        }
 
 
         editingId = id;
 
 
-        document.getElementById("editName").value =
-            product.name;
-
-        document.getElementById("editQuantity").value =
-            product.quantity;
-
-        document.getElementById("editLowLimit").value =
-            product.low_limit;
+        document.getElementById(
+            "editName"
+        ).value =
+            product.name ?? "";
 
 
-        document
-            .getElementById("editModal")
-            .classList.add("active");
+        document.getElementById(
+            "editQuantity"
+        ).value =
+            Number(product.quantity) || 0;
+
+
+        document.getElementById(
+            "editLowLimit"
+        ).value =
+            Number(product.low_limit) || 0;
+
+
+        document.getElementById(
+            "editModal"
+        ).classList.add("active");
+
+
+        document.getElementById(
+            "editName"
+        ).focus();
     }
 
+
+    /* =========================================
+       TAHRIRLASHNI YOPISH
+    ========================================= */
 
     function closeEdit() {
 
         editingId = null;
 
-        document
-            .getElementById("editModal")
-            .classList.remove("active");
+        document.getElementById(
+            "editModal"
+        ).classList.remove("active");
     }
 
 
+    /* =========================================
+       TAHRIRLASHNI SAQLASH
+    ========================================= */
+
     async function saveEdit() {
 
-        if (!editingId) return;
+        if (!editingId) {
+            return;
+        }
 
 
         const name =
-            document
-                .getElementById("editName")
-                .value
-                .trim();
+            document.getElementById(
+                "editName"
+            ).value.trim();
+
 
         const quantity =
-            parseInt(
-                document.getElementById("editQuantity").value,
-                10
+            Number(
+                document.getElementById(
+                    "editQuantity"
+                ).value
             );
 
+
         const lowLimit =
-            parseInt(
-                document.getElementById("editLowLimit").value,
-                10
+            Number(
+                document.getElementById(
+                    "editLowLimit"
+                ).value
             );
 
 
@@ -616,7 +918,7 @@
 
 
         if (
-            Number.isNaN(quantity) ||
+            !Number.isInteger(quantity) ||
             quantity < 0
         ) {
 
@@ -630,7 +932,7 @@
 
 
         if (
-            Number.isNaN(lowLimit) ||
+            !Number.isInteger(lowLimit) ||
             lowLimit < 0
         ) {
 
@@ -643,22 +945,37 @@
         }
 
 
-        const { error } = await supabaseClient
+        const updateData = {
+            name: name,
+            quantity: quantity,
+            low_limit: lowLimit
+        };
+
+
+        console.log(
+            "UPDATE DATA:",
+            updateData
+        );
+
+
+        const {
+            error
+        } = await supabaseClient
             .from("products")
-            .update({
-                name: name,
-                quantity: quantity,
-                low_limit: lowLimit
-            })
+            .update(updateData)
             .eq("id", editingId);
 
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "UPDATE ERROR:",
+                error
+            );
 
             showMessage(
-                "Mahsulot tahrirlanmadi.",
+                "Saqlashda xatolik: " +
+                getSupabaseError(error),
                 "error"
             );
 
@@ -667,6 +984,7 @@
 
 
         closeEdit();
+
 
         showMessage(
             "Mahsulot yangilandi.",
@@ -678,17 +996,21 @@
     }
 
 
-    /* =========================
+    /* =========================================
        O'CHIRISH
-    ========================= */
+    ========================================= */
 
     async function deleteProduct(id) {
 
         const product =
-            products.find(item => item.id === id);
+            products.find(
+                item => item.id === id
+            );
 
 
-        if (!product) return;
+        if (!product) {
+            return;
+        }
 
 
         const confirmed =
@@ -697,10 +1019,14 @@
             );
 
 
-        if (!confirmed) return;
+        if (!confirmed) {
+            return;
+        }
 
 
-        const { error } = await supabaseClient
+        const {
+            error
+        } = await supabaseClient
             .from("products")
             .delete()
             .eq("id", id);
@@ -708,10 +1034,14 @@
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                "DELETE ERROR:",
+                error
+            );
 
             showMessage(
-                "Mahsulot o‘chirilmadi.",
+                "Mahsulot o‘chirilmadi: " +
+                getSupabaseError(error),
                 "error"
             );
 
@@ -729,14 +1059,15 @@
     }
 
 
-    /* =========================
+    /* =========================================
        STATUS
-    ========================= */
+    ========================================= */
 
     function getStatus(product) {
 
         const quantity =
             Number(product.quantity) || 0;
+
 
         const lowLimit =
             Number(product.low_limit) || 0;
@@ -751,7 +1082,9 @@
         }
 
 
-        if (quantity <= lowLimit) {
+        if (
+            quantity <= lowLimit
+        ) {
 
             return {
                 text: "KAM QOLDI",
@@ -767,27 +1100,32 @@
     }
 
 
-    /* =========================
+    /* =========================================
        TABLE
-    ========================= */
+    ========================================= */
 
     function renderProducts() {
 
         const table =
-            document.getElementById("productsTable");
+            document.getElementById(
+                "productsTable"
+            );
 
 
         const search =
-            document
-                .getElementById("searchInput")
-                .value
-                .toLowerCase()
-                .trim();
+            document.getElementById(
+                "searchInput"
+            ).value
+            .toLowerCase()
+            .trim();
 
 
         const filtered =
-            products.filter(product =>
-                String(product.name)
+            products.filter(
+                product =>
+                    String(
+                        product.name ?? ""
+                    )
                     .toLowerCase()
                     .includes(search)
             );
@@ -797,8 +1135,15 @@
 
             table.innerHTML = `
                 <tr>
-                    <td colspan="5" class="empty">
-                        Mahsulot topilmadi
+                    <td
+                        colspan="5"
+                        class="empty"
+                    >
+                        ${
+                            search
+                                ? "Mahsulot topilmadi"
+                                : "Hozircha mahsulot yo‘q"
+                        }
                     </td>
                 </tr>
             `;
@@ -814,12 +1159,28 @@
                     getStatus(product);
 
 
+                const quantity =
+                    Number(
+                        product.quantity
+                    ) || 0;
+
+
+                const lowLimit =
+                    Number(
+                        product.low_limit
+                    ) || 0;
+
+
                 return `
+
                     <tr>
 
                         <td class="product-name">
-                            ${escapeHTML(product.name)}
+                            ${escapeHTML(
+                                product.name
+                            )}
                         </td>
+
 
                         <td>
 
@@ -828,22 +1189,26 @@
                                 <button
                                     class="qty-btn"
                                     onclick="changeQuantity('${product.id}', -1)"
+                                    title="Kamaytirish"
                                 >
                                     −
                                 </button>
+
 
                                 <input
                                     class="quantity-input"
                                     type="number"
                                     min="0"
                                     step="1"
-                                    value="${Number(product.quantity) || 0}"
+                                    value="${quantity}"
                                     onchange="setQuantity('${product.id}', this)"
                                 >
+
 
                                 <button
                                     class="qty-btn"
                                     onclick="changeQuantity('${product.id}', 1)"
+                                    title="Ko‘paytirish"
                                 >
                                     +
                                 </button>
@@ -852,6 +1217,7 @@
 
                         </td>
 
+
                         <td>
 
                             <input
@@ -859,19 +1225,23 @@
                                 type="number"
                                 min="0"
                                 step="1"
-                                value="${Number(product.low_limit) || 0}"
+                                value="${lowLimit}"
                                 onchange="setLowLimit('${product.id}', this)"
                             >
 
                         </td>
 
+
                         <td>
 
-                            <span class="status ${status.className}">
+                            <span
+                                class="status ${status.className}"
+                            >
                                 ${status.text}
                             </span>
 
                         </td>
+
 
                         <td>
 
@@ -883,6 +1253,7 @@
                                 >
                                     TAHRIRLASH
                                 </button>
+
 
                                 <button
                                     class="delete-btn"
@@ -896,15 +1267,16 @@
                         </td>
 
                     </tr>
+
                 `;
 
             }).join("");
     }
 
 
-    /* =========================
+    /* =========================================
        STATISTIKA
-    ========================= */
+    ========================================= */
 
     function updateStats() {
 
@@ -915,29 +1287,46 @@
         const totalQuantity =
             products.reduce(
                 (sum, product) =>
-                    sum + (Number(product.quantity) || 0),
+                    sum +
+                    (
+                        Number(
+                            product.quantity
+                        ) || 0
+                    ),
                 0
             );
 
 
         const lowProducts =
-            products.filter(product => {
+            products.filter(
+                product => {
 
-                const quantity =
-                    Number(product.quantity) || 0;
+                    const quantity =
+                        Number(
+                            product.quantity
+                        ) || 0;
 
-                const lowLimit =
-                    Number(product.low_limit) || 0;
 
-                return quantity > 0 &&
-                       quantity <= lowLimit;
+                    const lowLimit =
+                        Number(
+                            product.low_limit
+                        ) || 0;
 
-            }).length;
+
+                    return (
+                        quantity > 0 &&
+                        quantity <= lowLimit
+                    );
+                }
+            ).length;
 
 
         const outProducts =
-            products.filter(product =>
-                Number(product.quantity) === 0
+            products.filter(
+                product =>
+                    Number(
+                        product.quantity
+                    ) === 0
             ).length;
 
 
@@ -966,9 +1355,9 @@
     }
 
 
-    /* =========================
-       OGOHLANTIRISHLAR
-    ========================= */
+    /* =========================================
+       OGOHLANTIRISH
+    ========================================= */
 
     function renderStockNotifications() {
 
@@ -979,19 +1368,30 @@
 
 
         const warnings =
-            products.filter(product => {
+            products.filter(
+                product => {
 
-                const quantity =
-                    Number(product.quantity) || 0;
+                    const quantity =
+                        Number(
+                            product.quantity
+                        ) || 0;
 
-                const lowLimit =
-                    Number(product.low_limit) || 0;
 
-                return quantity === 0 ||
-                       (quantity > 0 &&
-                        quantity <= lowLimit);
+                    const lowLimit =
+                        Number(
+                            product.low_limit
+                        ) || 0;
 
-            });
+
+                    return (
+                        quantity === 0 ||
+                        (
+                            quantity > 0 &&
+                            quantity <= lowLimit
+                        )
+                    );
+                }
+            );
 
 
         if (warnings.length === 0) {
@@ -1010,13 +1410,19 @@
                     OGOHLANTIRISH
                 </div>
 
+
                 ${warnings.map(product => {
 
                     const quantity =
-                        Number(product.quantity) || 0;
+                        Number(
+                            product.quantity
+                        ) || 0;
+
 
                     const lowLimit =
-                        Number(product.low_limit) || 0;
+                        Number(
+                            product.low_limit
+                        ) || 0;
 
 
                     const isOut =
@@ -1025,17 +1431,32 @@
 
                     return `
 
-                        <div class="notification ${isOut ? "notification-out" : "notification-low"}">
+                        <div
+                            class="
+                                notification
+                                ${
+                                    isOut
+                                        ? "notification-out"
+                                        : "notification-low"
+                                }
+                            "
+                        >
 
                             <strong>
-                                ${escapeHTML(product.name)}
+                                ${escapeHTML(
+                                    product.name
+                                )}
                             </strong>
 
+
                             <span>
-                                ${isOut
-                                    ? "Mahsulot tugagan"
-                                    : `Miqdor: ${quantity} / Minimal: ${lowLimit}`
+
+                                ${
+                                    isOut
+                                        ? "Mahsulot tugagan"
+                                        : `Miqdor: ${quantity} / Minimal: ${lowLimit}`
                                 }
+
                             </span>
 
                         </div>
@@ -1045,85 +1466,69 @@
                 }).join("")}
 
             </div>
+
         `;
     }
 
 
-    /* =========================
-       XABAR
-    ========================= */
-
-    function showMessage(text, type) {
-
-        const message =
-            document.getElementById("message");
-
-
-        message.className =
-            `message ${type}`;
-
-
-        message.textContent =
-            text;
-
-
-        clearTimeout(
-            window.messageTimer
-        );
-
-
-        window.messageTimer =
-            setTimeout(() => {
-
-                message.textContent = "";
-                message.className = "";
-
-            }, 3000);
-    }
-
-
-    /* =========================
-       QIDIRUV
-    ========================= */
+    /* =========================================
+       SEARCH
+    ========================================= */
 
     document
-        .getElementById("searchInput")
+        .getElementById(
+            "searchInput"
+        )
         .addEventListener(
             "input",
             renderProducts
         );
 
 
-    /* =========================
-       ENTER
-    ========================= */
+    /* =========================================
+       ENTER — QO'SHISH
+    ========================================= */
 
-    document
-        .getElementById("productName")
-        .addEventListener(
-            "keydown",
-            event => {
+    [
+        "productName",
+        "productQuantity",
+        "productLowLimit"
+    ]
+    .forEach(id => {
 
-                if (event.key === "Enter") {
-                    addProduct();
+        document
+            .getElementById(id)
+            .addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+                        addProduct();
+                    }
+
                 }
+            );
 
-            }
-        );
+    });
 
 
-    /* =========================
+    /* =========================================
        MODAL
-    ========================= */
+    ========================================= */
 
     document
-        .getElementById("editModal")
+        .getElementById(
+            "editModal"
+        )
         .addEventListener(
             "click",
             event => {
 
                 if (
-                    event.target.id === "editModal"
+                    event.target.id ===
+                    "editModal"
                 ) {
                     closeEdit();
                 }
@@ -1146,9 +1551,9 @@
     );
 
 
-    /* =========================
+    /* =========================================
        AUTO REFRESH
-    ========================= */
+    ========================================= */
 
     setInterval(
         loadProducts,
@@ -1156,9 +1561,9 @@
     );
 
 
-    /* =========================
+    /* =========================================
        START
-    ========================= */
+    ========================================= */
 
     loadProducts();
 
