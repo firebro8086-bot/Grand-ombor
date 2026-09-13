@@ -1849,7 +1849,61 @@ td strong {
     .modal {
 
         padding:
-            21px;
+            21px;/* =========================
+   КНОПКИ TAHRIRLASH / O‘CHIRISH
+========================= */
+
+.actions {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.actions .action-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 38px;
+    padding: 9px 13px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.actions .edit-btn {
+    border-color: rgba(255,255,255,0.25);
+}
+
+.actions .edit-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.actions .delete-btn {
+    border-color: #ff3030;
+    color: #ff4b4b;
+}
+
+.actions .delete-btn:hover {
+    background: #ff3030;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.actions .action-btn:active {
+    transform: scale(0.96);
+}
 
     }
 
