@@ -454,393 +454,16 @@ let products = [];
 
 
 /* ================================
-   OLD STOCK LIST
-================================ */
-
-const OLD_STOCK_LIST = [
-
-    ["1.5/1.5 130 tq", "Satin gold", 90],
-    ["P 2/1", "Grey", 40],
-    ["P 2/1", "Satim gold", 40],
-    ["P 2/1", "Gold", 80],
-    ["1.5/1", "Bronza", 80],
-    ["Temir gold", "—", 150],
-
-    ["612", "Nikil", 50],
-    ["612", "Tilla", 340],
-    ["612", "Qora", 270],
-
-    ["002", "nikil", 17],
-    ["002", "qora", 18],
-    ["002", "Tilla", 16],
-
-    ["003", "gold", 15],
-    ["003", "Nikil", 11],
-    ["003", "Qora", 17],
-
-    ["19li", "bronza", 80],
-    ["19li", "Sss", 30],
-    ["19li", "Tilla", 40],
-
-    ["818", "—", 480],
-
-    ["digano", "—", 20],
-    ["atlas", "—", 18],
-    ["simeko", "—", 10],
-
-    ["digao", "tilla", 16],
-    ["digao", "qora", 10],
-
-    ["7050", "—", 100],
-
-    ["stoyka nikkel", "kichkian", 40],
-    ["sotyka nikkel mat", "kotta", 20],
-    ["stoyka nikkel may", "kichkian", 50],
-
-    ["ofis daochchi", "—", 10],
-
-    ["profil 6li oyna", "nikkel", 18],
-    ["profil 6li oyna", "tilla", 8],
-
-    ["19 turba", "bronza", 12],
-
-    ["oq reels", "razujnoy", 10],
-
-    ["010", "—", 45],
-    ["020", "—", 21],
-    ["030", "tilla", 15],
-    ["040", "qora", 9],
-
-    ["chukcha", "—", 39],
-
-    ["010", "qora", 20],
-    ["020", "qora", 14],
-    ["050", "tilla", 20],
-
-    ["gulshan", "—", 3],
-
-    ["19 turba derjal", "nikkel", 290],
-
-    ["1058", "—", 21],
-
-    ["1.15 turba", "saydinitl", 24],
-
-    ["filyans saydunitl", "nikkel", 58],
-
-    ["razujnoy temr derjatl", "nikkel", 82],
-
-    ["razujnoy regerovka", "saydunitl", 99],
-
-    ["135 petla 1004", "nikkel", 79],
-
-    ["1.15 turba", "filyans", 26],
-
-    ["1.15", "derhatl", 19],
-
-    ["70ta", "tilla mat", 70],
-    ["70ta", "gree raz temr", 70],
-
-    ["sentr zamok", "qroa", 7],
-
-    ["1058", "qora", 8],
-    ["10003", "qora", 8],
-    ["1088", "qora", 10],
-
-    ["1003", "bronza", 21],
-    ["1193", "gold", 30],
-    ["1005", "bronza", 24],
-    ["1002", "b gold", 17],
-    ["1040", "A gold", 14],
-
-    ["F", "—", 29],
-    ["A", "—", 0],
-
-    ["Magnit 90", "—", 75],
-
-    ["oyna devor magnir", "oddi", 3],
-    ["oyna devor magnir", "qorasi", 7],
-    ["oyna devor magnir", "tilla", 34],
-
-    ["2ta taraf magnir", "—", 18],
-
-    ["f", "tilla", 87],
-
-    ["padushka", "tilla", 23],
-
-    ["magnit 90", "tilla", 4],
-    ["magnit 135", "tilla", 55],
-
-    ["A", "qora", 21],
-    ["f", "qora", 38],
-
-    ["magnir 90", "qora", 43],
-    ["magnit 135", "qora", 28],
-
-    ["h", "oddi", 112],
-    ["h", "qora", 0],
-    ["h", "tilla", 0],
-
-    ["1005", "—", 21],
-    ["1002", "tilla mat", 7],
-
-    ["digao", "gulshan virz", 6],
-
-    ["20.40", "—", 8],
-
-    ["818", "qora", 4],
-
-    ["noshka c5118", "qora", 5],
-
-    ["A855", "nikkel", 30],
-
-    ["A841", "—", 20],
-    ["A841", "qora", 20],
-
-    ["kazorok", "386", 63],
-    ["kazorok", "387", 12],
-    ["kazorok", "388", 17],
-    ["kazorok", "furt", 22],
-
-    ["karizok kcuhkina", "furt", 7],
-    ["karizok kcuhkina", "ozi", 4],
-
-    ["003", "tilla mat", 2],
-    ["003", "gre", 1],
-    ["003", "qora", 1],
-
-    ["mini", "tilla ruchkq", 74],
-    ["muni", "qora rucka", 65],
-
-    ["612", "qora rela", 17],
-    ["612", "tilla", 6],
-    ["612", "mokri", 5],
-    ["612", "tilla mat", 0],
-    ["612", "nikel", 11],
-
-    ["17.37", "grey", 4],
-    ["17.37", "tilla mat", 7],
-
-    ["1.20ruchka regerovka", "qora", 12],
-
-    ["40tuchka prinoy", "oddi nukkel", 11],
-
-    ["612 menaxizm ger", "—", 10],
-    ["612 menaxizm ger", "qora", 12],
-
-    ["95mexnizm", "nikkel", 13],
-    ["95mexnizm", "qora", 16],
-    ["95mexnizm", "tilla", 14],
-
-    ["20.30 taxta", "torburche", 3],
-
-    ["alumin zakom", "—", 9],
-
-    ["Ofis davochik", "—", 15],
-
-    ["20.30 taxta", "nikkel torburcje", 0],
-
-    ["612 nikkel", "Pauk 4 tali", 2],
-    ["612 nikkel", "Pauk 2 tali", 4]
-
-];
-
-
-
-/* ================================
-   MINIMUM STOCK
-================================ */
-
-function getOldStockMinimum(quantity) {
-
-    quantity = Number(quantity);
-
-
-    if (quantity >= 15 && quantity <= 40) {
-        return 10;
-    }
-
-
-    if (quantity >= 41 && quantity <= 100) {
-        return 30;
-    }
-
-
-    if (quantity >= 101) {
-        return 50;
-    }
-
-
-    /*
-       0–14 dona uchun
-       eski ro‘yxatdagi standart qiymat
-    */
-
-    return 5;
-
-}
-
-
-
-/* ================================
-   IMPORT OLD STOCK
-================================ */
-
-async function importOldStockIfEmpty() {
-
-    const {
-        count,
-        error: countError
-    } = await db
-
-        .from("products")
-
-        .select(
-            "id",
-            {
-                count: "exact",
-                head: true
-            }
-        );
-
-
-    if (countError) {
-
-        console.error(
-            "Import tekshiruvida xatolik:",
-            countError
-        );
-
-        return;
-
-    }
-
-
-    /*
-       MUHIM:
-
-       Agar Supabase ichida allaqachon
-       ma'lumot bo‘lsa, hech narsaga tegmaymiz.
-    */
-
-    if (Number(count) > 0) {
-
-        return;
-
-    }
-
-
-    const rows =
-        OLD_STOCK_LIST.map(
-            item => {
-
-                const model = item[0];
-                const color = item[1];
-                const quantity = Number(item[2]);
-
-
-                /*
-                   Rang "—" bo‘lsa,
-                   faqat model yoziladi.
-
-                   Boshqa ranglarda:
-                   MODEL — RANG
-
-                   Shunday qilib har bir rang
-                   alohida mahsulot bo‘ladi.
-                */
-
-                const name =
-                    color === "—"
-                        ? model
-                        : `${model} — ${color}`;
-
-
-                return {
-
-                    name: name,
-
-                    quantity: quantity,
-
-                    low_limit:
-                        getOldStockMinimum(
-                            quantity
-                        ),
-
-                    image: null
-
-                };
-
-            }
-        );
-
-
-    if (!rows.length) {
-        return;
-    }
-
-
-    showMessage(
-        "Eski ombor ma’lumotlari yuklanmoqda...",
-        "success"
-    );
-
-
-    const {
-        error
-    } = await db
-
-        .from("products")
-
-        .insert(rows);
-
-
-    if (error) {
-
-        console.error(
-            "Eski ro‘yxatni yuklashda xatolik:",
-            error
-        );
-
-
-        showMessage(
-            "Eski ma’lumotlarni yuklashda xatolik: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showMessage(
-        "Eski ombor ma’lumotlari muvaffaqiyatli yuklandi.",
-        "success"
-    );
-
-}
-
-
-
-/* ================================
    HELPERS
 ================================ */
 
-function numberValue(
-    value,
-    fallback = 0
-) {
+function numberValue(value, fallback = 0) {
 
-    const number =
-        Number(value);
-
+    const number = Number(value);
 
     if (!Number.isFinite(number)) {
-
         return fallback;
-
     }
-
 
     return Math.max(
         0,
@@ -855,30 +478,15 @@ function escapeHTML(value) {
 
     return String(value ?? "")
 
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
+        .replaceAll("&", "&amp;")
 
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
+        .replaceAll("<", "&lt;")
 
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
+        .replaceAll(">", "&gt;")
 
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
+        .replaceAll('"', "&quot;")
 
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -888,8 +496,7 @@ function normalizeProduct(product) {
 
     return {
 
-        id:
-            product.id,
+        id: product.id,
 
         name:
             String(
@@ -918,9 +525,7 @@ function normalizeProduct(product) {
 
 function getStatus(product) {
 
-    if (
-        product.quantity === 0
-    ) {
+    if (product.quantity === 0) {
 
         return `
             <span class="status out">
@@ -1003,9 +608,7 @@ async function loadProducts(
 
     products =
         (data || [])
-            .map(
-                normalizeProduct
-            );
+            .map(normalizeProduct);
 
 
     renderProducts();
@@ -1173,9 +776,7 @@ async function updateQuantity(
 ) {
 
     quantity =
-        numberValue(
-            quantity
-        );
+        numberValue(quantity);
 
 
     const {
@@ -1444,42 +1045,34 @@ function openEdit(id) {
 
     document.getElementById(
         "editId"
-    ).value =
-        product.id;
+    ).value = product.id;
 
 
     document.getElementById(
         "editName"
-    ).value =
-        product.name;
+    ).value = product.name;
 
 
     document.getElementById(
         "editQuantity"
-    ).value =
-        product.quantity;
+    ).value = product.quantity;
 
 
     document.getElementById(
         "editLowLimit"
-    ).value =
-        product.lowLimit;
+    ).value = product.lowLimit;
 
 
     document.getElementById(
         "editModal"
-    ).classList.add(
-        "show"
-    );
+    ).classList.add("show");
 
 
     setTimeout(
         () => {
-
             document.getElementById(
                 "editName"
             ).focus();
-
         },
         80
     );
@@ -1492,9 +1085,7 @@ function closeEdit() {
 
     document.getElementById(
         "editModal"
-    ).classList.remove(
-        "show"
-    );
+    ).classList.remove("show");
 
 }
 
@@ -1545,12 +1136,8 @@ async function saveEdit() {
 
 
     if (
-        !/^\d+$/.test(
-            quantityValue
-        ) ||
-        !/^\d+$/.test(
-            lowLimitValue
-        )
+        !/^\d+$/.test(quantityValue) ||
+        !/^\d+$/.test(lowLimitValue)
     ) {
 
         showMessage(
@@ -1564,15 +1151,11 @@ async function saveEdit() {
 
 
     const quantity =
-        Number(
-            quantityValue
-        );
+        Number(quantityValue);
 
 
     const lowLimit =
-        Number(
-            lowLimitValue
-        );
+        Number(lowLimitValue);
 
 
     const {
@@ -1631,9 +1214,7 @@ async function saveEdit() {
    DELETE
 ================================ */
 
-async function deleteProduct(
-    id
-) {
+async function deleteProduct(id) {
 
     const product =
         products.find(
@@ -1728,9 +1309,7 @@ function renderProducts() {
         );
 
 
-    if (
-        filtered.length === 0
-    ) {
+    if (filtered.length === 0) {
 
         table.innerHTML = `
 
@@ -1869,60 +1448,52 @@ function renderProducts() {
             .querySelectorAll(
                 ".quantity-input"
             )
-            .forEach(
-                input => {
+            .forEach(input => {
 
-                    const row =
-                        input.closest(
-                            "tr"
-                        );
+                const row =
+                    input.closest("tr");
 
 
-                    const index =
-                        [
-                            ...table.querySelectorAll(
-                                "tr"
-                            )
-                        ]
-                        .indexOf(
-                            row
-                        );
+                const index =
+                    [
+                        ...table.querySelectorAll("tr")
+                    ]
+                    .indexOf(row);
 
 
-                    const product =
-                        filtered[index];
+                const product =
+                    filtered[index];
 
 
-                    input.addEventListener(
-                        "change",
-                        () =>
-                            setQuantity(
-                                product.id,
-                                input
-                            )
-                    );
+                input.addEventListener(
+                    "change",
+                    () =>
+                        setQuantity(
+                            product.id,
+                            input
+                        )
+                );
 
 
-                    input.addEventListener(
-                        "keydown",
-                        event => {
+                input.addEventListener(
+                    "keydown",
+                    event => {
 
-                            if (
-                                event.key ===
-                                "Enter"
-                            ) {
+                        if (
+                            event.key ===
+                            "Enter"
+                        ) {
 
-                                event.preventDefault();
+                            event.preventDefault();
 
-                                input.blur();
-
-                            }
+                            input.blur();
 
                         }
-                    );
 
-                }
-            );
+                    }
+                );
+
+            });
 
 
 
@@ -1930,60 +1501,52 @@ function renderProducts() {
             .querySelectorAll(
                 ".minimum-input"
             )
-            .forEach(
-                input => {
+            .forEach(input => {
 
-                    const row =
-                        input.closest(
-                            "tr"
-                        );
+                const row =
+                    input.closest("tr");
 
 
-                    const index =
-                        [
-                            ...table.querySelectorAll(
-                                "tr"
-                            )
-                        ]
-                        .indexOf(
-                            row
-                        );
+                const index =
+                    [
+                        ...table.querySelectorAll("tr")
+                    ]
+                    .indexOf(row);
 
 
-                    const product =
-                        filtered[index];
+                const product =
+                    filtered[index];
 
 
-                    input.addEventListener(
-                        "change",
-                        () =>
-                            setLowLimit(
-                                product.id,
-                                input
-                            )
-                    );
+                input.addEventListener(
+                    "change",
+                    () =>
+                        setLowLimit(
+                            product.id,
+                            input
+                        )
+                );
 
 
-                    input.addEventListener(
-                        "keydown",
-                        event => {
+                input.addEventListener(
+                    "keydown",
+                    event => {
 
-                            if (
-                                event.key ===
-                                "Enter"
-                            ) {
+                        if (
+                            event.key ===
+                            "Enter"
+                        ) {
 
-                                event.preventDefault();
+                            event.preventDefault();
 
-                                input.blur();
-
-                            }
+                            input.blur();
 
                         }
-                    );
 
-                }
-            );
+                    }
+                );
+
+            });
 
     }
 
@@ -2355,27 +1918,7 @@ document.addEventListener(
    START
 ================================ */
 
-async function startApp() {
-
-    /*
-       Сначала проверяем таблицу.
-
-       Если она пустая —
-       загружаем твой старый список.
-
-       Если там уже есть данные —
-       ничего не удаляем и не заменяем.
-    */
-
-    await importOldStockIfEmpty();
-
-    await loadProducts();
-
-}
-
-
-startApp();
-
+loadProducts();
 
 
 /* AUTO REFRESH */
