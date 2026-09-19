@@ -2021,3 +2021,180 @@ tbody tr:hover {
     border-color: #a00000;
     color: #ff3030;
 }
+/* =========================
+   GRAND X — ЯРЧЕ И СОЧНЕЕ
+========================= */
+
+/* Карточки статистики */
+.stat-card {
+    border-color: #666 !important;
+    background:
+        linear-gradient(145deg, #292929, #0b0b0b) !important;
+    box-shadow:
+        0 7px 0 #030303,
+        0 14px 28px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+
+.stat-card strong {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,.12);
+}
+
+.warning-stat {
+    border-color: #c59e00 !important;
+}
+
+.danger-stat {
+    border-color: #d00000 !important;
+}
+
+.danger-stat strong {
+    color: #ff3030;
+}
+
+
+/* Главные панели */
+.panel {
+    border-color: #555 !important;
+    background:
+        linear-gradient(145deg, #242424, #080808) !important;
+    box-shadow:
+        0 8px 0 #030303,
+        0 16px 35px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+
+/* Таблица */
+.table-wrapper {
+    border: 1px solid #555;
+    background: #050505;
+}
+
+th {
+    color: #fff !important;
+    border-bottom: 2px solid #e00000 !important;
+}
+
+td {
+    border-bottom-color: #333 !important;
+}
+
+tbody tr:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,0,0,.13),
+            rgba(255,255,255,.035),
+            rgba(255,0,0,.05)
+        ) !important;
+}
+
+
+/* Названия товаров */
+.product-name {
+    color: #fff !important;
+}
+
+
+/* Категории */
+.category-badge {
+    color: #fff !important;
+    border-color: #777 !important;
+    background:
+        linear-gradient(145deg, #242424, #080808) !important;
+}
+
+
+/* Поля количества */
+.quantity-input,
+.minimum-input {
+    border-color: #666 !important;
+    background:
+        linear-gradient(145deg, #1c1c1c, #050505) !important;
+    color: #fff !important;
+}
+
+
+/* Кнопки + / −
+   Старое свечение сохраняется */
+.quantity-button {
+    border-color: #666 !important;
+    background:
+        linear-gradient(145deg, #303030, #090909) !important;
+    color: #fff !important;
+}
+
+.quantity-button:hover {
+    border-color: #e00000 !important;
+    color: #ff3030 !important;
+    background:
+        linear-gradient(145deg, #3b1111, #090909) !important;
+}
+
+
+/* Редактирование */
+.edit-action {
+    border-color: #777 !important;
+    background:
+        linear-gradient(145deg, #292929, #0b0b0b) !important;
+    color: #fff !important;
+}
+
+
+/* Удаление */
+.delete-action {
+    border-color: #a00000 !important;
+    background:
+        linear-gradient(145deg, #300909, #0d0000) !important;
+    color: #ff4444 !important;
+}
+
+.delete-action:hover {
+    border-color: #ff2222 !important;
+    background:
+        linear-gradient(145deg, #4a0b0b, #100000) !important;
+}
+
+
+/* Категории */
+.category-button {
+    border-color: #666 !important;
+    background:
+        linear-gradient(145deg, #303030, #0b0b0b) !important;
+    color: #eee !important;
+}
+
+.category-button:hover {
+    border-color: #aaa !important;
+    color: #fff !important;
+}
+
+.category-button.active {
+    border-color: #ff1717 !important;
+    background:
+        linear-gradient(180deg, #ef1717, #a00000) !important;
+    color: #fff !important;
+}
+
+
+/* Красная линия сверху таблицы */
+.table-wrapper::before {
+    content: "";
+    display: block;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #050505,
+            #b00000,
+            #ff1111,
+            #b00000,
+            #050505
+        );
+
+    box-shadow:
+        0 0 9px rgba(255,0,0,.35);
+}
