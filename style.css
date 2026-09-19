@@ -2629,3 +2629,38 @@ tbody tr:hover {
     box-shadow:
         0 0 9px rgba(255,0,0,.35);
 }
+/* YETARLI — ЯРКИЙ ЗЕЛЁНЫЙ */
+.status-good {
+    color: #00ff55 !important;
+    border-color: #00ff55 !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #063d18,
+            #001a09
+        ) !important;
+
+    box-shadow:
+        0 0 8px rgba(0,255,80,.45),
+        inset 0 0 8px rgba(0,255,80,.12) !important;
+
+    text-shadow:
+        0 0 8px rgba(0,255,80,.7);
+}
+
+.status-good:hover {
+    color: #ffffff !important;
+    border-color: #00ff66 !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087a2c,
+            #022b0e
+        ) !important;
+
+    box-shadow:
+        0 0 15px rgba(0,255,80,.7),
+        inset 0 0 10px rgba(255,255,255,.12) !important;
+}
