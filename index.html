@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GRAND X — Ombor</title>
+```
+<title>GRAND X — Ombor</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <!-- SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+```
+
 </head>
 
 <body>
@@ -20,283 +24,283 @@
 
 <header class="header">
 
-    <div class="header-left">
+```
+<div class="header-left">
 
-        <div class="logo">
-            GRAND <span>X</span>
-        </div>
+    <div class="logo">
+        GRAND <span>X</span>
+    </div>
 
-        <div class="header-subtitle">
-            OMBOR BOSHQARUV TIZIMI
+    <div class="header-subtitle">
+        OMBOR BOSHQARUV TIZIMI
+    </div>
+
+</div>
+```
+
+</header>
+
+<main class="container">
+
+```
+<!-- =========================
+     STATISTIKA
+========================= -->
+
+<section class="stats">
+
+    <div class="stat-card">
+        <span class="stat-title">MAHSULOTLAR</span>
+        <strong id="productCount">0</strong>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-title">JAMI MIQDOR</span>
+        <strong id="totalStock">0</strong>
+    </div>
+
+    <div class="stat-card warning-stat">
+        <span class="stat-title">KAM QOLGAN</span>
+        <strong id="lowStock">0</strong>
+    </div>
+
+    <div class="stat-card danger-stat">
+        <span class="stat-title">TUGAGAN</span>
+        <strong id="outStock">0</strong>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     XABAR
+========================= -->
+
+<div id="message" class="message"></div>
+
+
+<!-- =========================
+     MAHSULOT QO‘SHISH
+========================= -->
+
+<section class="panel">
+
+    <div class="panel-title">
+
+        <div>
+            <h2>Yangi mahsulot</h2>
+            <p>Omborga yangi mahsulot qo‘shish</p>
         </div>
 
     </div>
 
-</header>
 
+    <div class="form-grid">
 
-<main class="container">
+        <div class="field">
 
+            <label>Mahsulot nomi</label>
 
-    <!-- =========================
-         STATISTIKA
-    ========================= -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-            <span class="stat-title">MAHSULOTLAR</span>
-            <strong id="productCount">0</strong>
-        </div>
-
-        <div class="stat-card">
-            <span class="stat-title">JAMI MIQDOR</span>
-            <strong id="totalStock">0</strong>
-        </div>
-
-        <div class="stat-card warning-stat">
-            <span class="stat-title">KAM QOLGAN</span>
-            <strong id="lowStock">0</strong>
-        </div>
-
-        <div class="stat-card danger-stat">
-            <span class="stat-title">TUGAGAN</span>
-            <strong id="outStock">0</strong>
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         XABAR
-    ========================= -->
-
-    <div id="message" class="message"></div>
-
-
-    <!-- =========================
-         MAHSULOT QO‘SHISH
-    ========================= -->
-
-    <section class="panel">
-
-        <div class="panel-title">
-
-            <div>
-                <h2>Yangi mahsulot</h2>
-                <p>Omborga yangi mahsulot qo‘shish</p>
-            </div>
+            <input
+                id="productName"
+                type="text"
+                placeholder="Masalan: 1088"
+            >
 
         </div>
 
 
-        <div class="form-grid">
+        <div class="field">
 
-            <div class="field">
+            <label>Kategoriya</label>
 
-                <label>Mahsulot nomi</label>
-
-                <input
-                    id="productName"
-                    type="text"
-                    placeholder="Masalan: 1088"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Kategoriya</label>
-
-                <select id="productCategory">
-                    <option value="">Kategoriyasiz</option>
-                </select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Miqdor</label>
-
-                <input
-                    id="productQuantity"
-                    type="number"
-                    min="0"
-                    value="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Minimal miqdor</label>
-
-                <input
-                    id="lowLimit"
-                    type="number"
-                    min="0"
-                    value="5"
-                >
-
-            </div>
-
+            <select id="productCategory">
+                <option value="">Kategoriyasiz</option>
+            </select>
 
         </div>
 
+
+        <div class="field">
+
+            <label>Miqdor</label>
+
+            <input
+                id="productQuantity"
+                type="number"
+                min="0"
+                value="0"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>Minimal miqdor</label>
+
+            <input
+                id="lowLimit"
+                type="number"
+                min="0"
+                value="5"
+            >
+
+        </div>
+
+    </div>
+
+
+    <button
+        id="addBtn"
+        class="main-button"
+        onclick="addProduct()"
+    >
+        + MAHSULOT QO‘SHISH
+    </button>
+
+</section>
+
+
+
+<!-- =========================
+     KATEGORIYALAR
+========================= -->
+
+<section class="panel">
+
+    <div class="panel-title">
+
+        <div>
+            <h2>Kategoriyalar</h2>
+            <p>Mahsulotlarni kategoriya bo‘yicha ko‘rish</p>
+        </div>
+
+    </div>
+
+
+    <div
+        id="categoryButtons"
+        class="category-buttons"
+    ></div>
+
+
+    <div class="category-add">
+
+        <input
+            id="newCategory"
+            type="text"
+            placeholder="Yangi kategoriya nomi"
+        >
 
         <button
-            id="addBtn"
-            class="main-button"
-            onclick="addProduct()"
+            onclick="addCategory()"
+            class="secondary-button"
         >
-            + MAHSULOT QO‘SHISH
+            + KATEGORIYA QO‘SHISH
         </button>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- =========================
-         KATEGORIYALAR
-    ========================= -->
+<!-- =========================
+     QIDIRUV
+========================= -->
 
-    <section class="panel">
+<section class="panel">
 
-        <div class="panel-title">
+    <div class="search-box">
 
-            <div>
-                <h2>Kategoriyalar</h2>
-                <p>Mahsulotlarni kategoriya bo‘yicha ko‘rish</p>
-            </div>
+        <span class="search-icon">⌕</span>
 
+        <input
+            id="search"
+            type="text"
+            placeholder="Mahsulot qidirish..."
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAHSULOTLAR
+========================= -->
+
+<section class="panel">
+
+    <div class="panel-title products-title">
+
+        <div>
+            <h2>Mahsulotlar</h2>
+            <p>Ombordagi barcha mahsulotlar</p>
         </div>
-
 
         <div
-            id="categoryButtons"
-            class="category-buttons"
-        ></div>
-
-
-        <div class="category-add">
-
-            <input
-                id="newCategory"
-                type="text"
-                placeholder="Yangi kategoriya nomi"
-            >
-
-            <button
-                onclick="addCategory()"
-                class="secondary-button"
-            >
-                + KATEGORIYA QO‘SHISH
-            </button>
-
+            id="selectedCategoryTitle"
+            class="selected-category-title"
+        >
+            BARCHASI
         </div>
 
-    </section>
+    </div>
 
 
+    <div class="table-wrapper">
 
-    <!-- =========================
-         QIDIRUV
-    ========================= -->
+        <table>
 
-    <section class="panel">
+            <thead>
 
-        <div class="search-box">
+                <tr>
+                    <th>MAHSULOT</th>
+                    <th>KATEGORIYA</th>
+                    <th>MIQDOR</th>
+                    <th>MINIMAL</th>
+                    <th>HOLAT</th>
+                    <th>AMALLAR</th>
+                </tr>
 
-            <span class="search-icon">⌕</span>
+            </thead>
 
-            <input
-                id="search"
-                type="text"
-                placeholder="Mahsulot qidirish..."
-            >
+            <tbody id="productsTable"></tbody>
 
-        </div>
+        </table>
 
-    </section>
+    </div>
 
-
-
-    <!-- =========================
-         MAHSULOTLAR
-    ========================= -->
-
-    <section class="panel">
-
-        <div class="panel-title products-title">
-
-            <div>
-                <h2>Mahsulotlar</h2>
-                <p>Ombordagi barcha mahsulotlar</p>
-            </div>
-
-            <div
-                id="selectedCategoryTitle"
-                class="selected-category-title"
-            >
-                BARCHASI
-            </div>
-
-        </div>
-
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>MAHSULOT</th>
-                        <th>KATEGORIYA</th>
-                        <th>MIQDOR</th>
-                        <th>MINIMAL</th>
-                        <th>HOLAT</th>
-                        <th>AMALLAR</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="productsTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
+</section>
+```
 
 </main>
-
-
 
 <!-- =========================
      FLOATING NOTIFICATION BUTTON
 ========================= -->
 
 <button
-    id="notificationButton"
-    class="notification-float"
-    onclick="openNotifications()"
-    title="Bildirishnomalar"
+id="notificationButton"
+class="notification-float"
+onclick="openNotifications()"
+title="Bildirishnomalar"
+
 >
 
-    <span class="bell-icon">🔔</span>
+```
+<span class="bell-icon">🔔</span>
 
-    <span
-        id="notificationIndicator"
-        class="notification-indicator"
-    ></span>
+<span
+    id="notificationIndicator"
+    class="notification-indicator"
+></span>
+```
 
 </button>
-
-
 
 <!-- =========================
      NOTIFICATION MODAL
@@ -307,36 +311,36 @@
     class="modal-overlay"
 >
 
-    <div class="modal notification-modal">
+```
+<div class="modal notification-modal">
 
-        <button
-            class="modal-close"
-            onclick="closeNotifications()"
-        >
-            ×
-        </button>
+    <button
+        class="modal-close"
+        onclick="closeNotifications()"
+    >
+        ×
+    </button>
 
 
-        <div class="panel-title">
+    <div class="panel-title">
 
-            <div>
-                <h2>Bildirishnomalar</h2>
-                <p>Ombordagi muhim holatlar</p>
-            </div>
-
+        <div>
+            <h2>Bildirishnomalar</h2>
+            <p>Ombordagi muhim holatlar</p>
         </div>
-
-
-        <div
-            id="notifications"
-            class="notifications"
-        ></div>
 
     </div>
 
+
+    <div
+        id="notifications"
+        class="notifications"
+    ></div>
+
 </div>
+```
 
-
+</div>
 
 <!-- =========================
      EDIT MODAL
@@ -347,39 +351,66 @@
     class="modal-overlay"
 >
 
-    <div class="modal">
+```
+<div class="modal">
 
-        <button
-            class="modal-close"
-            onclick="closeEdit()"
-        >
-            ×
-        </button>
+    <button
+        class="modal-close"
+        onclick="closeEdit()"
+    >
+        ×
+    </button>
 
 
-        <div class="panel-title">
+    <div class="panel-title">
 
-            <div>
-                <h2>Mahsulotni tahrirlash</h2>
-                <p>Mahsulot ma’lumotlarini o‘zgartirish</p>
-            </div>
-
+        <div>
+            <h2>Mahsulotni tahrirlash</h2>
+            <p>Mahsulot ma’lumotlarini o‘zgartirish</p>
         </div>
 
+    </div>
+
+
+    <input
+        id="editId"
+        type="hidden"
+    >
+
+
+    <div class="field">
+
+        <label>Mahsulot nomi</label>
 
         <input
-            id="editId"
-            type="hidden"
+            id="editName"
+            type="text"
         >
 
+    </div>
+
+
+    <div class="field">
+
+        <label>Kategoriya</label>
+
+        <select id="editCategory">
+            <option value="">Kategoriyasiz</option>
+        </select>
+
+    </div>
+
+
+    <div class="edit-grid">
 
         <div class="field">
 
-            <label>Mahsulot nomi</label>
+            <label>Miqdor</label>
 
             <input
-                id="editName"
-                type="text"
+                id="editQuantity"
+                type="number"
+                min="0"
             >
 
         </div>
@@ -387,68 +418,41 @@
 
         <div class="field">
 
-            <label>Kategoriya</label>
+            <label>Minimal miqdor</label>
 
-            <select id="editCategory">
-                <option value="">Kategoriyasiz</option>
-            </select>
-
-        </div>
-
-
-        <div class="edit-grid">
-
-            <div class="field">
-
-                <label>Miqdor</label>
-
-                <input
-                    id="editQuantity"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Minimal miqdor</label>
-
-                <input
-                    id="editLowLimit"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeEdit()"
+            <input
+                id="editLowLimit"
+                type="number"
+                min="0"
             >
-                BEKOR QILISH
-            </button>
-
-            <button
-                class="main-button"
-                onclick="saveEdit()"
-            >
-                SAQLASH
-            </button>
 
         </div>
 
     </div>
 
+
+    <div class="modal-actions">
+
+        <button
+            class="secondary-button"
+            onclick="closeEdit()"
+        >
+            BEKOR QILISH
+        </button>
+
+        <button
+            class="main-button"
+            onclick="saveEdit()"
+        >
+            SAQLASH
+        </button>
+
+    </div>
+
 </div>
+```
 
-
+</div>
 
 <script>
 
@@ -519,6 +523,59 @@ function escapeHTML(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
+}
+
+
+
+/* =========================
+   CATEGORY NORMALIZE
+========================= */
+
+function normalizeCategory(value) {
+
+    return String(value || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+
+/* =========================
+   CATEGORY DISPLAY
+========================= */
+
+function getCategoryLabel(value) {
+
+    const normalized =
+        normalizeCategory(value);
+
+    const labels = {
+
+        "rezinka": "REZINKALAR",
+        "rezinkalar": "REZINKALAR",
+
+        "mexanizm": "MEXANIZM",
+        "mexanizmlar": "MEXANIZM",
+
+        "profil": "PROFIL",
+        "profillar": "PROFIL",
+
+        "rels": "RELS",
+        "relslar": "RELS",
+
+        "petla": "PETLA",
+        "petlalar": "PETLA"
+
+    };
+
+
+    return labels[normalized] ||
+        (value
+            ? String(value).toUpperCase()
+            : "KATEGORIYASIZ");
+
 }
 
 
@@ -554,7 +611,7 @@ function normalizeProduct(product) {
 
 
 /* =========================
-   CATEGORY
+   LOAD CATEGORIES
 ========================= */
 
 async function loadCategories() {
@@ -629,19 +686,41 @@ function renderCategoryButtons() {
     categories.forEach(category => {
 
         const active =
-            selectedCategory === category.name
+            selectedCategory !== "all" &&
+            normalizeCategory(
+                selectedCategory
+            ) ===
+            normalizeCategory(
+                category.name
+            )
                 ? "active"
                 : "";
 
 
         html += `
 
-            <button
-                class="category-button ${active}"
-                onclick="selectCategory(${JSON.stringify(category.name)})"
-            >
-                ${escapeHTML(category.name)}
-            </button>
+            <div class="category-item">
+
+                <button
+                    class="category-button ${active}"
+                    onclick="selectCategory(${JSON.stringify(category.name)})"
+                >
+                    ${escapeHTML(
+                        getCategoryLabel(
+                            category.name
+                        )
+                    )}
+                </button>
+
+                <button
+                    class="category-delete"
+                    onclick="deleteCategory(${category.id}, ${JSON.stringify(category.name)})"
+                    title="Kategoriyani o‘chirish"
+                >
+                    ×
+                </button>
+
+            </div>
 
         `;
 
@@ -690,7 +769,11 @@ function renderCategorySelects() {
         html += `
 
             <option value="${escapeHTML(category.name)}">
-                ${escapeHTML(category.name)}
+                ${escapeHTML(
+                    getCategoryLabel(
+                        category.name
+                    )
+                )}
             </option>
 
         `;
@@ -706,11 +789,20 @@ function renderCategorySelects() {
     if (
         categories.some(
             category =>
-                category.name === currentAdd
+                normalizeCategory(category.name) ===
+                normalizeCategory(currentAdd)
         )
     ) {
 
-        addSelect.value = currentAdd;
+        const realCategory =
+            categories.find(
+                category =>
+                    normalizeCategory(category.name) ===
+                    normalizeCategory(currentAdd)
+            );
+
+        addSelect.value =
+            realCategory.name;
 
     }
 
@@ -718,11 +810,20 @@ function renderCategorySelects() {
     if (
         categories.some(
             category =>
-                category.name === currentEdit
+                normalizeCategory(category.name) ===
+                normalizeCategory(currentEdit)
         )
     ) {
 
-        editSelect.value = currentEdit;
+        const realCategory =
+            categories.find(
+                category =>
+                    normalizeCategory(category.name) ===
+                    normalizeCategory(currentEdit)
+            );
+
+        editSelect.value =
+            realCategory.name;
 
     }
 
@@ -761,8 +862,8 @@ async function addCategory() {
     const exists =
         categories.some(
             category =>
-                category.name.toLowerCase() ===
-                name.toLowerCase()
+                normalizeCategory(category.name) ===
+                normalizeCategory(name)
         );
 
 
@@ -807,6 +908,116 @@ async function addCategory() {
 
     showMessage(
         "Kategoriya qo‘shildi.",
+        "success"
+    );
+
+}
+
+
+
+/* =========================
+   DELETE CATEGORY
+========================= */
+
+async function deleteCategory(
+    id,
+    categoryName
+) {
+
+    const confirmed =
+        confirm(
+            `"${getCategoryLabel(categoryName)}" kategoriyasini o‘chirishni xohlaysizmi?\n\nBu kategoriya ichidagi mahsulotlar o‘chirilmaydi. Ular "Kategoriyasiz" bo‘ladi.`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    /*
+       Avval mahsulotlardan kategoriyani olib tashlaymiz.
+       Mahsulotlarning o‘zi saqlanib qoladi.
+    */
+
+    const {
+        error: productError
+    } = await db
+        .from("products")
+        .update({
+            category: null
+        })
+        .eq("category", categoryName);
+
+
+    if (productError) {
+
+        console.error(
+            "Products category reset error:",
+            productError
+        );
+
+        showMessage(
+            "Kategoriya o‘chirishda xatolik.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Keyin kategoriyaning o‘zini o‘chiramiz.
+    */
+
+    const {
+        error: categoryError
+    } = await db
+        .from("categories")
+        .delete()
+        .eq("id", id);
+
+
+    if (categoryError) {
+
+        console.error(
+            "Category delete error:",
+            categoryError
+        );
+
+        showMessage(
+            "Kategoriyani o‘chirishda xatolik.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Agar aynan tanlangan kategoriya o‘chirilgan bo‘lsa,
+       BARCHASI ga qaytamiz.
+    */
+
+    if (
+        normalizeCategory(selectedCategory) ===
+        normalizeCategory(categoryName)
+    ) {
+
+        selectedCategory = "all";
+
+    }
+
+
+    await loadCategories();
+
+    await loadProducts();
+
+
+    showMessage(
+        "Kategoriya o‘chirildi.",
         "success"
     );
 
@@ -1454,8 +1665,12 @@ function renderProducts() {
 
             const matchesCategory =
                 selectedCategory === "all" ||
-                product.category ===
-                    selectedCategory;
+                normalizeCategory(
+                    product.category
+                ) ===
+                normalizeCategory(
+                    selectedCategory
+                );
 
 
             return (
@@ -1471,7 +1686,9 @@ function renderProducts() {
     ).textContent =
         selectedCategory === "all"
             ? "BARCHASI"
-            : selectedCategory;
+            : getCategoryLabel(
+                selectedCategory
+            );
 
 
     if (filtered.length === 0) {
@@ -1510,7 +1727,9 @@ function renderProducts() {
 
                 const category =
                     product.category
-                        ? product.category
+                        ? getCategoryLabel(
+                            product.category
+                        )
                         : "Kategoriyasiz";
 
 
