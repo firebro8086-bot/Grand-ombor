@@ -2664,3 +2664,42 @@ tbody tr:hover {
         0 0 15px rgba(0,255,80,.7),
         inset 0 0 10px rgba(255,255,255,.12) !important;
 }
+/* YETARLI — МАКСИМАЛЬНО ЯРКИЙ */
+.status-good {
+    color: #ffffff !important;
+
+    border: 1px solid #00ff44 !important;
+
+    background: linear-gradient(
+        135deg,
+        #00ff55,
+        #00d936,
+        #00a82b
+    ) !important;
+
+    box-shadow:
+        0 0 6px #00ff44,
+        0 0 14px rgba(0,255,68,.8),
+        0 0 25px rgba(0,255,68,.45),
+        inset 0 1px 0 rgba(255,255,255,.55) !important;
+
+    text-shadow:
+        0 1px 2px rgba(0,60,15,.8) !important;
+
+    font-weight: 800 !important;
+}
+
+.status-good:hover {
+    background: linear-gradient(
+        135deg,
+        #39ff6a,
+        #00ff44,
+        #00c932
+    ) !important;
+
+    box-shadow:
+        0 0 10px #00ff44,
+        0 0 22px #00ff44,
+        0 0 38px rgba(0,255,68,.65),
+        inset 0 1px 0 rgba(255,255,255,.7) !important;
+}
