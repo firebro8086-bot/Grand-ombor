@@ -1856,4 +1856,168 @@ tbody tr:hover {
 
     }
 
+}/* =========================
+   GRAND X — БЕЛО-ЧЁРНО-КРАСНЫЕ РАМКИ
+========================= */
+
+/* Главные карточки статистики */
+.stat-card {
+    border: 1px solid #444;
+    background:
+        linear-gradient(145deg, #202020, #0b0b0b);
+}
+
+/* Красный акцент на важных карточках */
+.stat-card.warning-stat {
+    border-color: #8b7200;
+}
+
+.stat-card.danger-stat {
+    border-color: #8b0000;
+}
+
+
+/* Все основные панели */
+.panel {
+    border: 1px solid #3a3a3a;
+    background:
+        linear-gradient(145deg, #1e1e1e, #0b0b0b);
+}
+
+
+/* Заголовки панелей */
+.panel-title h2 {
+    color: #ffffff;
+}
+
+
+/* Таблица */
+.table-wrapper {
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #080808;
+}
+
+
+/* Шапка таблицы */
+thead {
+    background: #000000;
+}
+
+th {
+    color: #ffffff;
+    border-bottom: 2px solid #d00000;
+}
+
+
+/* Строки */
+td {
+    border-bottom: 1px solid #292929;
+}
+
+
+/* При наведении */
+tbody tr:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+}
+
+
+/* Названия товаров */
+.product-name {
+    color: #ffffff;
+}
+
+
+/* Категория */
+.category-badge {
+    color: #ffffff;
+    border: 1px solid #555;
+    background: #111111;
+}
+
+
+/* Поля количества */
+.quantity-input,
+.minimum-input {
+    border: 1px solid #555;
+    background: #050505;
+    color: #ffffff;
+}
+
+
+/* Кнопки + и - */
+.quantity-button {
+    border: 1px solid #555;
+    background:
+        linear-gradient(145deg, #252525, #090909);
+    color: #ffffff;
+}
+
+.quantity-button:hover {
+    border-color: #d00000;
+    color: #ff2020;
+}
+
+
+/* Кнопка редактирования */
+.edit-action {
+    border: 1px solid #777;
+    background: #111111;
+    color: #ffffff;
+}
+
+.edit-action:hover {
+    border-color: #ffffff;
+}
+
+
+/* Кнопка удаления */
+.delete-action {
+    border: 1px solid #a00000;
+    background: #180000;
+    color: #ff3030;
+}
+
+.delete-action:hover {
+    border-color: #ff0000;
+    background: #300000;
+}
+
+
+/* Красная линия над таблицей */
+.table-wrapper::before {
+    content: "";
+    display: block;
+    height: 2px;
+    background:
+        linear-gradient(
+            90deg,
+            #000000,
+            #ff0000,
+            #ffffff,
+            #ff0000,
+            #000000
+        );
+}
+
+
+/* Статусные рамки */
+.status-ok {
+    border-color: #555;
+    color: #ffffff;
+}
+
+.status-low {
+    border-color: #a88700;
+    color: #ffd400;
+}
+
+.status-out {
+    border-color: #a00000;
+    color: #ff3030;
 }
