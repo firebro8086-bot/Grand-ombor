@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>GRAND X — Ombor</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <header class="header">
+
     <div class="logo">
         GRAND <span>X</span>
     </div>
@@ -19,97 +32,155 @@
     <div class="header-text">
         OMBOR BOSHQARUV TIZIMI
     </div>
+
 </header>
+
 
 
 <main class="container">
 
+
     <!-- STATISTIKA -->
+
     <section class="stats">
 
         <div class="stat-card">
-            <div class="stat-title">MAHSULOTLAR</div>
-            <div class="stat-number" id="productCount">0</div>
+
+            <div class="stat-title">
+                MAHSULOTLAR
+            </div>
+
+            <div
+                class="stat-number"
+                id="productCount"
+            >
+                0
+            </div>
+
         </div>
+
 
         <div class="stat-card">
-            <div class="stat-title">JAMI MIQDOR</div>
-            <div class="stat-number" id="totalStock">0</div>
+
+            <div class="stat-title">
+                JAMI MIQDOR
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalStock"
+            >
+                0
+            </div>
+
         </div>
+
 
         <div class="stat-card danger-card">
-            <div class="stat-title">KAM QOLGAN</div>
-            <div class="stat-number" id="lowStock">0</div>
+
+            <div class="stat-title">
+                KAM QOLGAN
+            </div>
+
+            <div
+                class="stat-number"
+                id="lowStock"
+            >
+                0
+            </div>
+
         </div>
 
+
         <div class="stat-card out-card">
-            <div class="stat-title">TUGAGAN</div>
-            <div class="stat-number" id="outStock">0</div>
+
+            <div class="stat-title">
+                TUGAGAN
+            </div>
+
+            <div
+                class="stat-number"
+                id="outStock"
+            >
+                0
+            </div>
+
         </div>
 
     </section>
 
 
+
     <!-- XABAR -->
-    <div id="message" class="message"></div>
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
 
 
     <!-- MAHSULOT QO‘SHISH -->
+
     <section class="panel">
 
         <div class="panel-title">
-            <h2>Mahsulot qo‘shish</h2>
-            <p>Yangi mahsulotni omborga qo‘shing</p>
+
+            <h2>
+                Mahsulot qo‘shish
+            </h2>
+
+            <p>
+                Yangi mahsulotni omborga qo‘shing
+            </p>
+
         </div>
+
 
         <div class="form">
 
+
             <div class="form-group">
-                <label>Mahsulot nomi</label>
+
+                <label>
+                    Mahsulot nomi
+                </label>
 
                 <input
                     id="productName"
                     type="text"
                     placeholder="Masalan: 1088"
                 >
+
             </div>
 
 
-            <div class="form-group">
-                <label>Kategoriya</label>
 
-                <select id="productCategory">
+            <div class="form-group">
+
+                <label>
+                    Kategoriya
+                </label>
+
+                <select
+                    id="productCategory"
+                >
 
                     <option value="">
                         Kategoriyani tanlang
                     </option>
 
-                    <option value="Rezinkalar">
-                        Rezinkalar
-                    </option>
-
-                    <option value="Mexanizm">
-                        Mexanizm
-                    </option>
-
-                    <option value="Profil">
-                        Profil
-                    </option>
-
-                    <option value="Rel's">
-                        Rel's
-                    </option>
-
-                    <option value="Petla">
-                        Petla
-                    </option>
-
                 </select>
+
             </div>
 
 
+
             <div class="form-group">
-                <label>Miqdori</label>
+
+                <label>
+                    Miqdori
+                </label>
 
                 <input
                     id="productQuantity"
@@ -118,11 +189,16 @@
                     step="1"
                     placeholder="100"
                 >
+
             </div>
 
 
+
             <div class="form-group">
-                <label>Minimal miqdor</label>
+
+                <label>
+                    Minimal miqdor
+                </label>
 
                 <input
                     id="lowLimit"
@@ -131,7 +207,9 @@
                     step="1"
                     value="5"
                 >
+
             </div>
+
 
 
             <button
@@ -142,17 +220,83 @@
                 + MAHSULOT QO‘SHISH
             </button>
 
+
         </div>
 
     </section>
 
 
-    <!-- QIDIRISH -->
+
+    <!-- KATEGORIYALAR -->
+
     <section class="panel">
 
         <div class="panel-title">
-            <h2>Qidirish</h2>
-            <p>Mahsulot yoki kategoriya orqali qidiring</p>
+
+            <h2>
+                Kategoriyalar
+            </h2>
+
+            <p>
+                Mahsulot kategoriyasini tanlang
+            </p>
+
+        </div>
+
+
+        <div
+            class="category-buttons"
+            id="categoryButtons"
+        ></div>
+
+
+        <div
+            style="
+                display:flex;
+                gap:10px;
+                margin-top:14px;
+                flex-wrap:wrap;
+            "
+        >
+
+            <input
+                id="newCategory"
+                type="text"
+                placeholder="Yangi kategoriya nomi..."
+                style="
+                    max-width:350px;
+                "
+            >
+
+
+            <button
+                class="primary-btn"
+                type="button"
+                onclick="addCategory()"
+            >
+                + KATEGORIYA QO‘SHISH
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- QIDIRISH -->
+
+    <section class="panel">
+
+        <div class="panel-title">
+
+            <h2>
+                Qidirish
+            </h2>
+
+            <p>
+                Mahsulot nomi orqali qidiring
+            </p>
+
         </div>
 
 
@@ -169,98 +313,42 @@
     </section>
 
 
-    <!-- KATEGORIYALAR -->
-    <section class="panel">
-
-        <div class="panel-title">
-            <h2>Kategoriyalar</h2>
-            <p>Kerakli kategoriyani tanlang</p>
-        </div>
-
-
-        <div class="category-buttons">
-
-            <button
-                class="category-btn active"
-                data-category="all"
-                onclick="selectCategory('all')"
-            >
-                BARCHASI
-            </button>
-
-
-            <button
-                class="category-btn"
-                data-category="Rezinkalar"
-                onclick="selectCategory('Rezinkalar')"
-            >
-                REZINKALAR
-            </button>
-
-
-            <button
-                class="category-btn"
-                data-category="Mexanizm"
-                onclick="selectCategory('Mexanizm')"
-            >
-                MEXANIZM
-            </button>
-
-
-            <button
-                class="category-btn"
-                data-category="Profil"
-                onclick="selectCategory('Profil')"
-            >
-                PROFIL
-            </button>
-
-
-            <button
-                class="category-btn"
-                data-category="Rel's"
-                onclick="selectCategory('Rel's')"
-            >
-                REL'S
-            </button>
-
-
-            <button
-                class="category-btn"
-                data-category="Petla"
-                onclick="selectCategory('Petla')"
-            >
-                PETLA
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- OGOHLANTIRISH -->
-    <section id="warning" class="warning"></section>
-
 
     <!-- BILDIRISHNOMALAR -->
+
     <section class="panel">
 
         <div class="panel-title">
-            <h2>Bildirishnomalar</h2>
-            <p>Ombordagi muhim holatlar</p>
+
+            <h2>
+                Bildirishnomalar
+            </h2>
+
+            <p>
+                Ombordagi muhim holatlar
+            </p>
+
         </div>
 
-        <div id="notifications" class="notifications"></div>
+
+        <div
+            id="notifications"
+            class="notifications"
+        ></div>
 
     </section>
+
 
 
     <!-- MAHSULOTLAR -->
+
     <section class="panel table-panel">
 
         <div class="panel-title">
 
-            <h2>Mahsulotlar</h2>
+            <h2>
+                Mahsulotlar
+            </h2>
 
             <p>
                 Mahsulotlarni boshqaring
@@ -277,24 +365,38 @@
 
                     <tr>
 
-                        <th>MAHSULOT</th>
+                        <th>
+                            MAHSULOT
+                        </th>
 
-                        <th>KATEGORIYA</th>
+                        <th>
+                            KATEGORIYA
+                        </th>
 
-                        <th>MIQDOR</th>
+                        <th>
+                            MIQDOR
+                        </th>
 
-                        <th>MINIMAL</th>
+                        <th>
+                            MINIMAL
+                        </th>
 
-                        <th>HOLAT</th>
+                        <th>
+                            HOLAT
+                        </th>
 
-                        <th>AMALLAR</th>
+                        <th>
+                            AMALLAR
+                        </th>
 
                     </tr>
 
                 </thead>
 
 
-                <tbody id="productTable"></tbody>
+                <tbody
+                    id="productTable"
+                ></tbody>
 
             </table>
 
@@ -302,13 +404,20 @@
 
     </section>
 
+
 </main>
 
 
-<!-- TAHRIRLASH MODALI -->
-<div id="editModal" class="modal-overlay">
+
+<!-- TAHRIRLASH -->
+
+<div
+    id="editModal"
+    class="modal-overlay"
+>
 
     <div class="modal">
+
 
         <button
             class="modal-close"
@@ -320,7 +429,9 @@
 
         <div class="panel-title">
 
-            <h2>Mahsulotni tahrirlash</h2>
+            <h2>
+                Mahsulotni tahrirlash
+            </h2>
 
             <p>
                 Ma’lumotlarni o‘zgartiring
@@ -335,9 +446,12 @@
         >
 
 
+
         <div class="form-group">
 
-            <label>Mahsulot nomi</label>
+            <label>
+                Mahsulot nomi
+            </label>
 
             <input
                 id="editName"
@@ -347,40 +461,32 @@
         </div>
 
 
-        <div class="form-group">
 
-            <label>Kategoriya</label>
+        <div
+            class="form-group"
+            style="margin-top:14px;"
+        >
 
-            <select id="editCategory">
+            <label>
+                Kategoriya
+            </label>
 
-                <option value="Rezinkalar">
-                    Rezinkalar
-                </option>
-
-                <option value="Mexanizm">
-                    Mexanizm
-                </option>
-
-                <option value="Profil">
-                    Profil
-                </option>
-
-                <option value="Rel's">
-                    Rel's
-                </option>
-
-                <option value="Petla">
-                    Petla
-                </option>
-
-            </select>
+            <select
+                id="editCategory"
+            ></select>
 
         </div>
 
 
-        <div class="form-group">
 
-            <label>Miqdori</label>
+        <div
+            class="form-group"
+            style="margin-top:14px;"
+        >
+
+            <label>
+                Miqdori
+            </label>
 
             <input
                 id="editQuantity"
@@ -392,9 +498,15 @@
         </div>
 
 
-        <div class="form-group">
 
-            <label>Minimal miqdor</label>
+        <div
+            class="form-group"
+            style="margin-top:14px;"
+        >
+
+            <label>
+                Minimal miqdor
+            </label>
 
             <input
                 id="editLowLimit"
@@ -404,6 +516,7 @@
             >
 
         </div>
+
 
 
         <div class="modal-actions">
@@ -425,19 +538,28 @@
 
         </div>
 
+
     </div>
 
 </div>
 
 
-<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 
 <script>
 
+
+/* =================================
+   SUPABASE
+================================= */
+
+
 const SUPABASE_URL =
     "https://szgtlkykyfacjliisigf.supabase.co";
+
 
 const SUPABASE_KEY =
     "sb_publishable_yFGFSQb4K_gR-3KTqckJlQ_rF__5tfI";
@@ -450,81 +572,472 @@ const db =
     );
 
 
+
+/* =================================
+   DATA
+================================= */
+
+
 let products = [];
+
+let categories = [];
 
 let selectedCategory = "all";
 
 
-const categories = [
-    "Rezinkalar",
-    "Mexanizm",
-    "Profil",
-    "Rel's",
-    "Petla"
-];
+
+/* =================================
+   HELPERS
+================================= */
 
 
-function numberValue(value, fallback = 0) {
+function numberValue(
+    value,
+    fallback = 0
+) {
 
-    const number = Number(value);
+    const number =
+        Number(value);
 
-    if (!Number.isFinite(number)) {
+
+    if (
+        !Number.isFinite(number)
+    ) {
         return fallback;
     }
+
 
     return Math.max(
         0,
         Math.floor(number)
     );
+
 }
+
 
 
 function escapeHTML(value) {
 
-    return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
 }
 
 
-function normalizeProduct(product) {
+
+/* =================================
+   PRODUCTS
+================================= */
+
+
+function normalizeProduct(
+    product
+) {
 
     return {
 
         id: product.id,
 
-        name: String(
-            product.name ?? ""
-        ),
+        name:
+            String(
+                product.name ?? ""
+            ),
 
-        category: String(
-            product.category ?? ""
-        ),
+        category:
+            String(
+                product.category ?? ""
+            ),
 
-        quantity: numberValue(
-            product.quantity
-        ),
+        quantity:
+            numberValue(
+                product.quantity
+            ),
 
-        lowLimit: numberValue(
-            product.low_limit
-        )
+        lowLimit:
+            numberValue(
+                product.low_limit
+            )
 
     };
 
 }
 
 
-function getStatus(product) {
 
-    if (product.quantity === 0) {
+/* =================================
+   LOAD CATEGORIES
+================================= */
+
+
+async function loadCategories() {
+
+    const {
+        data,
+        error
+    } = await db
+        .from("categories")
+        .select(
+            "id, name, created_at"
+        )
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "Kategoriyalarni yuklashda xatolik: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    categories =
+        (data || [])
+        .map(
+            item =>
+                String(
+                    item.name
+                )
+        );
+
+
+    renderCategoryButtons();
+
+    renderCategorySelects();
+
+}
+
+
+
+/* =================================
+   CATEGORY BUTTONS
+================================= */
+
+
+function renderCategoryButtons() {
+
+    const box =
+        document.getElementById(
+            "categoryButtons"
+        );
+
+
+    let html = `
+
+        <button
+            class="category-btn ${
+                selectedCategory === "all"
+                ? "active"
+                : ""
+            }"
+            data-category="all"
+            onclick="selectCategory('all')"
+        >
+            BARCHASI
+        </button>
+
+    `;
+
+
+    categories.forEach(
+        category => {
+
+            const safe =
+                encodeURIComponent(
+                    category
+                );
+
+
+            html += `
+
+                <button
+                    class="category-btn ${
+                        selectedCategory === category
+                        ? "active"
+                        : ""
+                    }"
+                    data-category="${escapeHTML(category)}"
+                    onclick="selectCategory(
+                        decodeURIComponent('${safe}')
+                    )"
+                >
+                    ${escapeHTML(category)}
+                </button>
+
+            `;
+
+        }
+    );
+
+
+    box.innerHTML =
+        html;
+
+}
+
+
+
+/* =================================
+   CATEGORY SELECTS
+================================= */
+
+
+function renderCategorySelects() {
+
+    const addSelect =
+        document.getElementById(
+            "productCategory"
+        );
+
+
+    const editSelect =
+        document.getElementById(
+            "editCategory"
+        );
+
+
+    const currentAdd =
+        addSelect.value;
+
+
+    const currentEdit =
+        editSelect.value;
+
+
+    let options = `
+
+        <option value="">
+            Kategoriyani tanlang
+        </option>
+
+    `;
+
+
+    categories.forEach(
+        category => {
+
+            options += `
+
+                <option
+                    value="${escapeHTML(category)}"
+                >
+                    ${escapeHTML(category)}
+                </option>
+
+            `;
+
+        }
+    );
+
+
+    addSelect.innerHTML =
+        options;
+
+
+    editSelect.innerHTML =
+        options;
+
+
+    if (
+        categories.includes(
+            currentAdd
+        )
+    ) {
+
+        addSelect.value =
+            currentAdd;
+
+    }
+
+
+    if (
+        categories.includes(
+            currentEdit
+        )
+    ) {
+
+        editSelect.value =
+            currentEdit;
+
+    }
+
+}
+
+
+
+/* =================================
+   ADD CATEGORY
+================================= */
+
+
+async function addCategory() {
+
+    const input =
+        document.getElementById(
+            "newCategory"
+        );
+
+
+    const name =
+        input.value.trim();
+
+
+    if (!name) {
+
+        showMessage(
+            "Kategoriya nomini kiriting!",
+            "error"
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    if (
+        categories.some(
+            category =>
+                category.toLowerCase() ===
+                name.toLowerCase()
+        )
+    ) {
+
+        showMessage(
+            "Bu kategoriya allaqachon mavjud.",
+            "error"
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("categories")
+        .insert({
+
+            name: name
+
+        });
+
+
+    if (error) {
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "Kategoriya qo‘shishda xatolik: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    input.value = "";
+
+
+    showMessage(
+        "Kategoriya qo‘shildi.",
+        "success"
+    );
+
+
+    await loadCategories();
+
+
+    selectCategory(
+        name
+    );
+
+}
+
+
+
+/* =================================
+   SELECT CATEGORY
+================================= */
+
+
+function selectCategory(
+    category
+) {
+
+    selectedCategory =
+        category;
+
+
+    renderCategoryButtons();
+
+    renderProducts();
+
+}
+
+
+
+/* =================================
+   STATUS
+================================= */
+
+
+function getStatus(
+    product
+) {
+
+    if (
+        product.quantity === 0
+    ) {
 
         return `
+
             <span class="status out">
                 TUGAGAN
             </span>
+
         `;
 
     }
@@ -536,21 +1049,31 @@ function getStatus(product) {
     ) {
 
         return `
+
             <span class="status low">
                 KAM QOLDI
             </span>
+
         `;
 
     }
 
 
     return `
+
         <span class="status ok">
             YETARLI
         </span>
+
     `;
 
 }
+
+
+
+/* =================================
+   LOAD PRODUCTS
+================================= */
 
 
 async function loadProducts(
@@ -575,7 +1098,10 @@ async function loadProducts(
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         if (showError) {
 
@@ -594,12 +1120,20 @@ async function loadProducts(
 
     products =
         (data || [])
-        .map(normalizeProduct);
+        .map(
+            normalizeProduct
+        );
 
 
     renderProducts();
 
 }
+
+
+
+/* =================================
+   ADD PRODUCT
+================================= */
 
 
 async function addProduct() {
@@ -712,7 +1246,8 @@ async function addProduct() {
         );
 
 
-    button.disabled = true;
+    button.disabled =
+        true;
 
 
     const {
@@ -734,12 +1269,15 @@ async function addProduct() {
         });
 
 
-    button.disabled = false;
+    button.disabled =
+        false;
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         showMessage(
             "Qo‘shishda xatolik: " +
@@ -767,9 +1305,17 @@ async function addProduct() {
     );
 
 
-    await loadProducts(false);
+    await loadProducts(
+        false
+    );
 
 }
+
+
+
+/* =================================
+   QUANTITY
+================================= */
 
 
 async function updateQuantity(
@@ -778,7 +1324,9 @@ async function updateQuantity(
 ) {
 
     quantity =
-        numberValue(quantity);
+        numberValue(
+            quantity
+        );
 
 
     const {
@@ -786,14 +1334,22 @@ async function updateQuantity(
     } = await db
         .from("products")
         .update({
-            quantity: quantity
+
+            quantity:
+                quantity
+
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         showMessage(
             "Miqdorni saqlashda xatolik: " +
@@ -809,6 +1365,7 @@ async function updateQuantity(
     return true;
 
 }
+
 
 
 async function changeQuantity(
@@ -830,7 +1387,8 @@ async function changeQuantity(
     const newQuantity =
         Math.max(
             0,
-            product.quantity + amount
+            product.quantity +
+            amount
         );
 
 
@@ -855,6 +1413,12 @@ async function changeQuantity(
 }
 
 
+
+/* =================================
+   SET QUANTITY
+================================= */
+
+
 async function setQuantity(
     id,
     input
@@ -874,7 +1438,9 @@ async function setQuantity(
             "error"
         );
 
-        await loadProducts(false);
+        await loadProducts(
+            false
+        );
 
         return;
 
@@ -922,6 +1488,12 @@ async function setQuantity(
 }
 
 
+
+/* =================================
+   LOW LIMIT
+================================= */
+
+
 async function setLowLimit(
     id,
     input
@@ -941,7 +1513,9 @@ async function setLowLimit(
             "error"
         );
 
-        await loadProducts(false);
+        await loadProducts(
+            false
+        );
 
         return;
 
@@ -957,14 +1531,22 @@ async function setLowLimit(
     } = await db
         .from("products")
         .update({
-            low_limit: lowLimit
+
+            low_limit:
+                lowLimit
+
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         showMessage(
             "Minimal miqdorni saqlashda xatolik: " +
@@ -1002,32 +1584,15 @@ async function setLowLimit(
 }
 
 
-function selectCategory(category) {
 
-    selectedCategory =
-        category;
-
-
-    document
-        .querySelectorAll(
-            ".category-btn"
-        )
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.category === category
-            );
-
-        });
+/* =================================
+   EDIT
+================================= */
 
 
-    renderProducts();
-
-}
-
-
-function openEdit(id) {
+function openEdit(
+    id
+) {
 
     const product =
         products.find(
@@ -1042,22 +1607,20 @@ function openEdit(id) {
 
     document.getElementById(
         "editId"
-    ).value = product.id;
+    ).value =
+        product.id;
 
 
     document.getElementById(
         "editName"
-    ).value = product.name;
+    ).value =
+        product.name;
 
 
     document.getElementById(
         "editCategory"
     ).value =
-        categories.includes(
-            product.category
-        )
-        ? product.category
-        : "";
+        product.category;
 
 
     document.getElementById(
@@ -1074,18 +1637,24 @@ function openEdit(id) {
 
     document.getElementById(
         "editModal"
-    ).classList.add("show");
+    ).classList.add(
+        "show"
+    );
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        document.getElementById(
-            "editName"
-        ).focus();
+            document.getElementById(
+                "editName"
+            ).focus();
 
-    }, 80);
+        },
+        80
+    );
 
 }
+
 
 
 function closeEdit() {
@@ -1094,9 +1663,17 @@ function closeEdit() {
         .getElementById(
             "editModal"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 }
+
+
+
+/* =================================
+   SAVE EDIT
+================================= */
 
 
 async function saveEdit() {
@@ -1158,8 +1735,12 @@ async function saveEdit() {
 
 
     if (
-        !/^\d+$/.test(quantityValue) ||
-        !/^\d+$/.test(lowLimitValue)
+        !/^\d+$/.test(
+            quantityValue
+        ) ||
+        !/^\d+$/.test(
+            lowLimitValue
+        )
     ) {
 
         showMessage(
@@ -1173,11 +1754,15 @@ async function saveEdit() {
 
 
     const quantity =
-        Number(quantityValue);
+        Number(
+            quantityValue
+        );
 
 
     const lowLimit =
-        Number(lowLimitValue);
+        Number(
+            lowLimitValue
+        );
 
 
     const {
@@ -1186,21 +1771,30 @@ async function saveEdit() {
         .from("products")
         .update({
 
-            name: name,
+            name:
+                name,
 
-            category: category,
+            category:
+                category,
 
-            quantity: quantity,
+            quantity:
+                quantity,
 
-            low_limit: lowLimit
+            low_limit:
+                lowLimit
 
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         showMessage(
             "Tahrirlashda xatolik: " +
@@ -1222,12 +1816,22 @@ async function saveEdit() {
     );
 
 
-    await loadProducts(false);
+    await loadProducts(
+        false
+    );
 
 }
 
 
-async function deleteProduct(id) {
+
+/* =================================
+   DELETE
+================================= */
+
+
+async function deleteProduct(
+    id
+) {
 
     const product =
         products.find(
@@ -1256,12 +1860,17 @@ async function deleteProduct(id) {
     } = await db
         .from("products")
         .delete()
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         showMessage(
             "O‘chirishda xatolik: " +
@@ -1280,9 +1889,17 @@ async function deleteProduct(id) {
     );
 
 
-    await loadProducts(false);
+    await loadProducts(
+        false
+    );
 
 }
+
+
+
+/* =================================
+   RENDER PRODUCTS
+================================= */
 
 
 function renderProducts() {
@@ -1303,29 +1920,36 @@ function renderProducts() {
 
 
     const filtered =
-        products.filter(product => {
+        products.filter(
+            product => {
 
-            const matchesSearch =
-                product.name
-                    .toLowerCase()
-                    .includes(search);
-
-
-            const matchesCategory =
-                selectedCategory === "all" ||
-                product.category ===
-                selectedCategory;
+                const matchesSearch =
+                    product.name
+                        .toLowerCase()
+                        .includes(
+                            search
+                        );
 
 
-            return (
-                matchesSearch &&
-                matchesCategory
-            );
+                const matchesCategory =
+                    selectedCategory ===
+                    "all" ||
+                    product.category ===
+                    selectedCategory;
 
-        });
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            }
+        );
 
 
-    if (filtered.length === 0) {
+    if (
+        filtered.length === 0
+    ) {
 
         table.innerHTML = `
 
@@ -1344,16 +1968,23 @@ function renderProducts() {
 
     } else {
 
+
         table.innerHTML =
             filtered
-            .map(product => `
+            .map(
+                product => `
 
                 <tr>
 
-                    <td class="product-name-cell">
+
+                    <td
+                        class="product-name-cell"
+                    >
 
                         <strong>
-                            ${escapeHTML(product.name)}
+                            ${escapeHTML(
+                                product.name
+                            )}
                         </strong>
 
                     </td>
@@ -1361,12 +1992,17 @@ function renderProducts() {
 
                     <td>
 
-                        <span class="category-badge">
+                        <span
+                            class="category-badge"
+                        >
 
-                            ${escapeHTML(
-                                product.category ||
-                                "Kategoriyasiz"
-                            )}
+                            ${
+                                product.category
+                                ? escapeHTML(
+                                    product.category
+                                )
+                                : "Kategoriyasiz"
+                            }
 
                         </span>
 
@@ -1376,7 +2012,10 @@ function renderProducts() {
                     <td>
 
                         <input
-                            class="table-input quantity-input"
+                            class="
+                                table-input
+                                quantity-input
+                            "
                             type="number"
                             min="0"
                             step="1"
@@ -1389,7 +2028,10 @@ function renderProducts() {
                     <td>
 
                         <input
-                            class="table-input minimum-input"
+                            class="
+                                table-input
+                                minimum-input
+                            "
                             type="number"
                             min="0"
                             step="1"
@@ -1400,155 +2042,223 @@ function renderProducts() {
 
 
                     <td>
-                        ${getStatus(product)}
+
+                        ${getStatus(
+                            product
+                        )}
+
                     </td>
 
 
                     <td>
 
-                        <div class="actions">
+                        <div
+                            class="actions"
+                        >
+
 
                             <button
-                                class="action-btn square-btn"
+                                class="
+                                    action-btn
+                                    square-btn
+                                "
                                 title="1 taga kamaytirish"
-                                onclick="changeQuantity(${product.id}, -1)"
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        -1
+                                    )
+                                "
                             >
                                 −
                             </button>
 
 
                             <button
-                                class="action-btn square-btn"
+                                class="
+                                    action-btn
+                                    square-btn
+                                "
                                 title="1 taga oshirish"
-                                onclick="changeQuantity(${product.id}, 1)"
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        1
+                                    )
+                                "
                             >
                                 +
                             </button>
 
 
                             <button
-                                class="action-btn edit-btn"
-                                onclick="openEdit(${product.id})"
+                                class="
+                                    action-btn
+                                    edit-btn
+                                "
+                                onclick="
+                                    openEdit(
+                                        ${product.id}
+                                    )
+                                "
                             >
                                 TAHRIRLASH
                             </button>
 
 
                             <button
-                                class="action-btn delete-btn"
-                                onclick="deleteProduct(${product.id})"
+                                class="
+                                    action-btn
+                                    delete-btn
+                                "
+                                onclick="
+                                    deleteProduct(
+                                        ${product.id}
+                                    )
+                                "
                             >
                                 O‘CHIRISH
                             </button>
+
 
                         </div>
 
                     </td>
 
+
                 </tr>
 
-            `)
+            `
+            )
             .join("");
 
+
+        /* MIQDOR */
 
         table
             .querySelectorAll(
                 ".quantity-input"
             )
-            .forEach(input => {
+            .forEach(
+                input => {
 
-                const row =
-                    input.closest("tr");
-
-
-                const index =
-                    [
-                        ...table.querySelectorAll("tr")
-                    ].indexOf(row);
+                    const row =
+                        input.closest(
+                            "tr"
+                        );
 
 
-                const product =
-                    filtered[index];
+                    const index =
+                        [
+                            ...table
+                                .querySelectorAll(
+                                    "tr"
+                                )
+                        ].indexOf(
+                            row
+                        );
 
 
-                input.addEventListener(
-                    "change",
-                    () =>
-                        setQuantity(
-                            product.id,
-                            input
-                        )
-                );
+                    const product =
+                        filtered[
+                            index
+                        ];
 
 
-                input.addEventListener(
-                    "keydown",
-                    event => {
+                    input.addEventListener(
+                        "change",
+                        () =>
+                            setQuantity(
+                                product.id,
+                                input
+                            )
+                    );
 
-                        if (
-                            event.key === "Enter"
-                        ) {
 
-                            event.preventDefault();
+                    input.addEventListener(
+                        "keydown",
+                        event => {
 
-                            input.blur();
+                            if (
+                                event.key ===
+                                "Enter"
+                            ) {
+
+                                event.preventDefault();
+
+                                input.blur();
+
+                            }
 
                         }
+                    );
 
-                    }
-                );
+                }
+            );
 
-            });
 
+        /* MINIMAL */
 
         table
             .querySelectorAll(
                 ".minimum-input"
             )
-            .forEach(input => {
+            .forEach(
+                input => {
 
-                const row =
-                    input.closest("tr");
-
-
-                const index =
-                    [
-                        ...table.querySelectorAll("tr")
-                    ].indexOf(row);
+                    const row =
+                        input.closest(
+                            "tr"
+                        );
 
 
-                const product =
-                    filtered[index];
+                    const index =
+                        [
+                            ...table
+                                .querySelectorAll(
+                                    "tr"
+                                )
+                        ].indexOf(
+                            row
+                        );
 
 
-                input.addEventListener(
-                    "change",
-                    () =>
-                        setLowLimit(
-                            product.id,
-                            input
-                        )
-                );
+                    const product =
+                        filtered[
+                            index
+                        ];
 
 
-                input.addEventListener(
-                    "keydown",
-                    event => {
+                    input.addEventListener(
+                        "change",
+                        () =>
+                            setLowLimit(
+                                product.id,
+                                input
+                            )
+                    );
 
-                        if (
-                            event.key === "Enter"
-                        ) {
 
-                            event.preventDefault();
+                    input.addEventListener(
+                        "keydown",
+                        event => {
 
-                            input.blur();
+                            if (
+                                event.key ===
+                                "Enter"
+                            ) {
+
+                                event.preventDefault();
+
+                                input.blur();
+
+                            }
 
                         }
+                    );
 
-                    }
-                );
-
-            });
+                }
+            );
 
     }
 
@@ -1558,6 +2268,12 @@ function renderProducts() {
     renderStockNotifications();
 
 }
+
+
+
+/* =================================
+   STATISTICS
+================================= */
 
 
 function updateStats() {
@@ -1570,8 +2286,12 @@ function updateStats() {
 
     const total =
         products.reduce(
-            (sum, product) =>
-                sum + product.quantity,
+            (
+                sum,
+                product
+            ) =>
+                sum +
+                product.quantity,
             0
         );
 
@@ -1585,16 +2305,18 @@ function updateStats() {
     const low =
         products.filter(
             product =>
-                product.quantity > 0 &&
+                product.quantity >
+                    0 &&
                 product.quantity <=
-                product.lowLimit
+                    product.lowLimit
         ).length;
 
 
     const out =
         products.filter(
             product =>
-                product.quantity === 0
+                product.quantity ===
+                0
         ).length;
 
 
@@ -1610,6 +2332,12 @@ function updateStats() {
         out;
 
 }
+
+
+
+/* =================================
+   NOTIFICATIONS
+================================= */
 
 
 function renderStockNotifications() {
@@ -1635,7 +2363,12 @@ function renderStockNotifications() {
 
         box.innerHTML = `
 
-            <div class="notification empty-notification">
+            <div
+                class="
+                    notification
+                    empty-notification
+                "
+            >
 
                 Hozircha muhim bildirishnoma yo‘q.
 
@@ -1650,76 +2383,103 @@ function renderStockNotifications() {
 
     box.innerHTML =
         important
-        .map(product => {
+        .map(
+            product => {
 
-            const out =
-                product.quantity === 0;
-
-
-            return `
-
-                <div
-                    class="
-                        notification
-                        ${
-                            out
-                            ? "notification-out"
-                            : "notification-low"
-                        }
-                    "
-                >
-
-                    <div class="notification-icon">
-                        !
-                    </div>
+                const out =
+                    product.quantity ===
+                    0;
 
 
-                    <div class="notification-text">
+                return `
 
-                        <strong>
-                            ${escapeHTML(
-                                product.name
-                            )}
-                        </strong>
-
-
-                        <span>
-
+                    <div
+                        class="
+                            notification
                             ${
                                 out
-
-                                ? "Mahsulot tugagan — 0 dona."
-
-                                : `
-                                    Faqat
-                                    ${product.quantity}
-                                    dona qoldi.
-                                    Minimal miqdor:
-                                    ${product.lowLimit}
-                                    dona.
-                                `
+                                ? "notification-out"
+                                : "notification-low"
                             }
+                        "
+                    >
 
-                        </span>
+
+                        <div
+                            class="
+                                notification-icon
+                            "
+                        >
+                            !
+                        </div>
+
+
+                        <div
+                            class="
+                                notification-text
+                            "
+                        >
+
+                            <strong>
+
+                                ${escapeHTML(
+                                    product.name
+                                )}
+
+                            </strong>
+
+
+                            <span>
+
+                                ${
+                                    out
+
+                                    ? "Mahsulot tugagan — 0 dona."
+
+                                    : `
+                                        Faqat
+                                        ${product.quantity}
+                                        dona qoldi.
+                                        Minimal miqdor:
+                                        ${product.lowLimit}
+                                        dona.
+                                    `
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="
+                                notification-edit
+                            "
+                            onclick="
+                                openEdit(
+                                    ${product.id}
+                                )
+                            "
+                        >
+                            KO‘RISH
+                        </button>
+
 
                     </div>
 
+                `;
 
-                    <button
-                        class="notification-edit"
-                        onclick="openEdit(${product.id})"
-                    >
-                        KO‘RISH
-                    </button>
-
-                </div>
-
-            `;
-
-        })
+            }
+        )
         .join("");
 
 }
+
+
+
+/* =================================
+   MESSAGE
+================================= */
 
 
 function showMessage(
@@ -1738,7 +2498,8 @@ function showMessage(
 
 
     message.className =
-        "message " + type;
+        "message " +
+        type;
 
 
     clearTimeout(
@@ -1747,35 +2508,55 @@ function showMessage(
 
 
     showMessage.timer =
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            message.className =
-                "message";
+                message.className =
+                    "message";
 
-            message.textContent =
-                "";
+                message.textContent =
+                    "";
 
-        }, 3500);
+            },
+            3500
+        );
 
 }
 
 
+
+/* =================================
+   SEARCH
+================================= */
+
+
 document
-    .getElementById("search")
+    .getElementById(
+        "search"
+    )
     .addEventListener(
         "input",
         renderProducts
     );
 
 
+
+/* =================================
+   ENTER NAVIGATION
+================================= */
+
+
 document
-    .getElementById("productName")
+    .getElementById(
+        "productName"
+    )
     .addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ) {
 
                 document
@@ -1791,13 +2572,16 @@ document
 
 
 document
-    .getElementById("productCategory")
+    .getElementById(
+        "productCategory"
+    )
     .addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ) {
 
                 document
@@ -1813,13 +2597,16 @@ document
 
 
 document
-    .getElementById("productQuantity")
+    .getElementById(
+        "productQuantity"
+    )
     .addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ) {
 
                 document
@@ -1835,13 +2622,16 @@ document
 
 
 document
-    .getElementById("lowLimit")
+    .getElementById(
+        "lowLimit"
+    )
     .addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ) {
 
                 addProduct();
@@ -1852,8 +2642,16 @@ document
     );
 
 
+
+/* =================================
+   MODAL
+================================= */
+
+
 document
-    .getElementById("editModal")
+    .getElementById(
+        "editModal"
+    )
     .addEventListener(
         "click",
         event => {
@@ -1876,7 +2674,8 @@ document.addEventListener(
     event => {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closeEdit();
@@ -1887,15 +2686,76 @@ document.addEventListener(
 );
 
 
-loadProducts();
+
+/* =================================
+   NEW CATEGORY ENTER
+================================= */
+
+
+document
+    .getElementById(
+        "newCategory"
+    )
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                addCategory();
+
+            }
+
+        }
+    );
+
+
+
+/* =================================
+   START
+================================= */
+
+
+async function startApp() {
+
+    await loadCategories();
+
+    await loadProducts();
+
+}
+
+
+startApp();
+
+
+
+/* =================================
+   AUTO UPDATE
+================================= */
 
 
 setInterval(
-    () => loadProducts(false),
+    async () => {
+
+        await loadCategories();
+
+        await loadProducts(
+            false
+        );
+
+    },
     5000
 );
 
+
 </script>
 
+
 </body>
+
 </html>
