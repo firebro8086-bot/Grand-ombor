@@ -2197,4 +2197,258 @@ tbody tr:hover {
 
     box-shadow:
         0 0 9px rgba(255,0,0,.35);
+}/* =========================================
+   GRAND X — БЛЕСТЯЩИЕ ТАБЛИЦЫ
+========================================= */
+
+/* Сама таблица */
+.table-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            #020202 0%,
+            #171717 20%,
+            #050505 38%,
+            #2a2a2a 50%,
+            #050505 62%,
+            #171717 80%,
+            #020202 100%
+        ) !important;
+
+    background-size: 250% 100%;
+
+    animation: tableShine 6s ease-in-out infinite;
+
+    border: 1px solid #111 !important;
+
+    box-shadow:
+        0 0 0 1px #000,
+        0 10px 30px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(255,0,0,.15) !important;
+}
+
+
+/* Перелив серого */
+@keyframes tableShine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* Шапка таблицы */
+thead {
+    background:
+        linear-gradient(
+            110deg,
+            #030303,
+            #222,
+            #050505,
+            #303030,
+            #050505,
+            #222,
+            #030303
+        ) !important;
+
+    background-size: 250% 100%;
+    animation: headerShine 5s linear infinite;
+}
+
+@keyframes headerShine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* Заголовки */
+th {
+    color: #fff !important;
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,.25);
+
+    border-bottom: none !important;
+
+    position: relative;
+}
+
+
+/* Нижняя рамка каждой строки */
+tbody tr {
+    position: relative;
+}
+
+
+/* Чёрный → красный → белый перелив снизу */
+tbody tr::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #000 0%,
+            #000 18%,
+            #700000 32%,
+            #ff0000 43%,
+            #ffffff 50%,
+            #ff0000 57%,
+            #700000 68%,
+            #000 82%,
+            #000 100%
+        );
+
+    background-size: 220% 100%;
+
+    animation: borderShine 4s linear infinite;
+
+    opacity: .9;
+}
+
+
+@keyframes borderShine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 220% 50%;
+    }
+}
+
+
+/* Убираем старую серую линию */
+td {
+    border-bottom-color: transparent !important;
+}
+
+
+/* Сама строка — блестящий чёрный металл */
+tbody tr {
+    background:
+        linear-gradient(
+            105deg,
+            #050505,
+            #111,
+            #050505,
+            #1d1d1d,
+            #070707
+        );
+
+    background-size: 220% 100%;
+
+    animation: rowMetal 8s ease-in-out infinite;
+}
+
+
+@keyframes rowMetal {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* Наведение — яркий металлический блеск */
+tbody tr:hover {
+    background:
+        linear-gradient(
+            105deg,
+            #080808,
+            #303030,
+            #0b0b0b,
+            #3a3a3a,
+            #080808
+        ) !important;
+
+    background-size: 250% 100%;
+    animation: rowHoverShine 2s linear infinite;
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.06),
+        0 0 12px rgba(255,0,0,.12);
+}
+
+
+@keyframes rowHoverShine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 250% 50%;
+    }
+}
+
+
+/* Внутренний блеск таблицы */
+.table-wrapper::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -60%;
+
+    width: 35%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.16),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    animation: glassSweep 5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes glassSweep {
+    0% {
+        left: -60%;
+    }
+
+    55% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
 }
