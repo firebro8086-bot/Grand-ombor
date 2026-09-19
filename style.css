@@ -2703,3 +2703,24 @@ tbody tr:hover {
         0 0 38px rgba(0,255,68,.65),
         inset 0 1px 0 rgba(255,255,255,.7) !important;
 }
+/* ЯРКИЙ YETARLI */
+td:has(.status-good),
+.status-good {
+    color: #00ff00 !important;
+    background: #00ff00 !important;
+    border: 2px solid #00ff00 !important;
+
+    font-weight: 900 !important;
+
+    text-shadow:
+        0 0 3px #000 !important;
+
+    box-shadow:
+        0 0 10px #00ff00,
+        0 0 20px rgba(0,255,0,.8) !important;
+}
+
+/* Если статус сделан обычным текстом */
+td {
+    --yetarli-green: #00ff00;
+}
