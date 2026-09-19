@@ -2723,4 +2723,87 @@ td:has(.status-good),
 /* Если статус сделан обычным текстом */
 td {
     --yetarli-green: #00ff00;
+}/* =================================
+   MOBILE — КНОПКИ ТОВАРОВ
+================================= */
+
+@media (max-width: 700px) {
+
+    /* Колонка количества */
+    .quantity-controls {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        flex-wrap: nowrap !important;
+        min-width: 125px !important;
+    }
+
+    /* Минус / плюс */
+    .quantity-button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Поле количества */
+    .quantity-input {
+        display: block !important;
+        width: 55px !important;
+        min-width: 55px !important;
+        height: 34px !important;
+
+        flex-shrink: 0 !important;
+    }
+
+    /* Колонка действий */
+    .actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+
+        min-width: 150px !important;
+        white-space: nowrap !important;
+    }
+
+    /* TAHRIRLASH и O'CHIRISH */
+    .edit-action,
+    .delete-action {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        min-width: 65px !important;
+        min-height: 34px !important;
+
+        padding: 7px 10px !important;
+
+        flex-shrink: 0 !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Чтобы таблица не обрезала последние колонки */
+    .table-wrapper {
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    table {
+        min-width: 900px !important;
+    }
 }
