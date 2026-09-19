@@ -12,7 +12,6 @@
 <body>
 
 <header class="header">
-
     <div class="logo">
         GRAND <span>X</span>
     </div>
@@ -20,131 +19,97 @@
     <div class="header-text">
         OMBOR BOSHQARUV TIZIMI
     </div>
-
 </header>
 
 
 <main class="container">
 
-
     <!-- STATISTIKA -->
-
     <section class="stats">
 
         <div class="stat-card">
-            <div class="stat-title">
-                MAHSULOTLAR
-            </div>
-
-            <div
-                class="stat-number"
-                id="productCount"
-            >
-                0
-            </div>
+            <div class="stat-title">MAHSULOTLAR</div>
+            <div class="stat-number" id="productCount">0</div>
         </div>
-
 
         <div class="stat-card">
-
-            <div class="stat-title">
-                JAMI MIQDOR
-            </div>
-
-            <div
-                class="stat-number"
-                id="totalStock"
-            >
-                0
-            </div>
-
+            <div class="stat-title">JAMI MIQDOR</div>
+            <div class="stat-number" id="totalStock">0</div>
         </div>
-
 
         <div class="stat-card danger-card">
-
-            <div class="stat-title">
-                KAM QOLGAN
-            </div>
-
-            <div
-                class="stat-number"
-                id="lowStock"
-            >
-                0
-            </div>
-
+            <div class="stat-title">KAM QOLGAN</div>
+            <div class="stat-number" id="lowStock">0</div>
         </div>
 
-
         <div class="stat-card out-card">
-
-            <div class="stat-title">
-                TUGAGAN
-            </div>
-
-            <div
-                class="stat-number"
-                id="outStock"
-            >
-                0
-            </div>
-
+            <div class="stat-title">TUGAGAN</div>
+            <div class="stat-number" id="outStock">0</div>
         </div>
 
     </section>
 
 
-
-    <!-- MESSAGE -->
-
-    <div
-        id="message"
-        class="message"
-    ></div>
+    <!-- XABAR -->
+    <div id="message" class="message"></div>
 
 
-
-    <!-- ADD PRODUCT -->
-
+    <!-- MAHSULOT QO‘SHISH -->
     <section class="panel">
 
         <div class="panel-title">
-
-            <h2>
-                Mahsulot qo‘shish
-            </h2>
-
-            <p>
-                Yangi mahsulotni omborga qo‘shing
-            </p>
-
+            <h2>Mahsulot qo‘shish</h2>
+            <p>Yangi mahsulotni omborga qo‘shing</p>
         </div>
-
 
         <div class="form">
 
-
             <div class="form-group">
-
-                <label>
-                    Mahsulot nomi
-                </label>
+                <label>Mahsulot nomi</label>
 
                 <input
                     id="productName"
                     type="text"
-                    placeholder="Masalan: Telefon g‘ilofi"
+                    placeholder="Masalan: 1088"
                 >
-
             </div>
 
 
             <div class="form-group">
+                <label>Kategoriya</label>
 
-                <label>
-                    Miqdori
-                </label>
+                <select id="productCategory">
+
+                    <option value="">
+                        Kategoriyani tanlang
+                    </option>
+
+                    <option value="Rezinkalar">
+                        Rezinkalar
+                    </option>
+
+                    <option value="Mexanizm">
+                        Mexanizm
+                    </option>
+
+                    <option value="Profil">
+                        Profil
+                    </option>
+
+                    <option value="Rel's">
+                        Rel's
+                    </option>
+
+                    <option value="Petla">
+                        Petla
+                    </option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Miqdori</label>
 
                 <input
                     id="productQuantity"
@@ -153,15 +118,11 @@
                     step="1"
                     placeholder="100"
                 >
-
             </div>
 
 
             <div class="form-group">
-
-                <label>
-                    Minimal miqdor
-                </label>
+                <label>Minimal miqdor</label>
 
                 <input
                     id="lowLimit"
@@ -170,7 +131,6 @@
                     step="1"
                     value="5"
                 >
-
             </div>
 
 
@@ -182,27 +142,17 @@
                 + MAHSULOT QO‘SHISH
             </button>
 
-
         </div>
 
     </section>
 
 
-
-    <!-- SEARCH -->
-
+    <!-- QIDIRISH -->
     <section class="panel">
 
         <div class="panel-title">
-
-            <h2>
-                Qidirish
-            </h2>
-
-            <p>
-                Mahsulot nomi orqali qidiring
-            </p>
-
+            <h2>Qidirish</h2>
+            <p>Mahsulot yoki kategoriya orqali qidiring</p>
         </div>
 
 
@@ -219,51 +169,98 @@
     </section>
 
 
-
-    <!-- WARNING -->
-
-    <section
-        id="warning"
-        class="warning"
-    ></section>
-
-
-
-    <!-- NOTIFICATIONS -->
-
+    <!-- KATEGORIYALAR -->
     <section class="panel">
 
         <div class="panel-title">
-
-            <h2>
-                Bildirishnomalar
-            </h2>
-
-            <p>
-                Ombordagi muhim holatlar
-            </p>
-
+            <h2>Kategoriyalar</h2>
+            <p>Kerakli kategoriyani tanlang</p>
         </div>
 
 
-        <div
-            id="notifications"
-            class="notifications"
-        ></div>
+        <div class="category-buttons">
+
+            <button
+                class="category-btn active"
+                data-category="all"
+                onclick="selectCategory('all')"
+            >
+                BARCHASI
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Rezinkalar"
+                onclick="selectCategory('Rezinkalar')"
+            >
+                REZINKALAR
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Mexanizm"
+                onclick="selectCategory('Mexanizm')"
+            >
+                MEXANIZM
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Profil"
+                onclick="selectCategory('Profil')"
+            >
+                PROFIL
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Rel's"
+                onclick="selectCategory('Rel's')"
+            >
+                REL'S
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-category="Petla"
+                onclick="selectCategory('Petla')"
+            >
+                PETLA
+            </button>
+
+        </div>
 
     </section>
 
 
+    <!-- OGOHLANTIRISH -->
+    <section id="warning" class="warning"></section>
 
-    <!-- PRODUCTS -->
 
+    <!-- BILDIRISHNOMALAR -->
+    <section class="panel">
+
+        <div class="panel-title">
+            <h2>Bildirishnomalar</h2>
+            <p>Ombordagi muhim holatlar</p>
+        </div>
+
+        <div id="notifications" class="notifications"></div>
+
+    </section>
+
+
+    <!-- MAHSULOTLAR -->
     <section class="panel table-panel">
 
         <div class="panel-title">
 
-            <h2>
-                Mahsulotlar
-            </h2>
+            <h2>Mahsulotlar</h2>
 
             <p>
                 Mahsulotlarni boshqaring
@@ -280,34 +277,24 @@
 
                     <tr>
 
-                        <th>
-                            MAHSULOT
-                        </th>
+                        <th>MAHSULOT</th>
 
-                        <th>
-                            MIQDOR
-                        </th>
+                        <th>KATEGORIYA</th>
 
-                        <th>
-                            MINIMAL
-                        </th>
+                        <th>MIQDOR</th>
 
-                        <th>
-                            HOLAT
-                        </th>
+                        <th>MINIMAL</th>
 
-                        <th>
-                            AMALLAR
-                        </th>
+                        <th>HOLAT</th>
+
+                        <th>AMALLAR</th>
 
                     </tr>
 
                 </thead>
 
 
-                <tbody
-                    id="productTable"
-                ></tbody>
+                <tbody id="productTable"></tbody>
 
             </table>
 
@@ -315,20 +302,13 @@
 
     </section>
 
-
 </main>
 
 
-
-<!-- EDIT MODAL -->
-
-<div
-    id="editModal"
-    class="modal-overlay"
->
+<!-- TAHRIRLASH MODALI -->
+<div id="editModal" class="modal-overlay">
 
     <div class="modal">
-
 
         <button
             class="modal-close"
@@ -340,9 +320,7 @@
 
         <div class="panel-title">
 
-            <h2>
-                Mahsulotni tahrirlash
-            </h2>
+            <h2>Mahsulotni tahrirlash</h2>
 
             <p>
                 Ma’lumotlarni o‘zgartiring
@@ -359,9 +337,7 @@
 
         <div class="form-group">
 
-            <label>
-                Mahsulot nomi
-            </label>
+            <label>Mahsulot nomi</label>
 
             <input
                 id="editName"
@@ -373,9 +349,38 @@
 
         <div class="form-group">
 
-            <label>
-                Miqdori
-            </label>
+            <label>Kategoriya</label>
+
+            <select id="editCategory">
+
+                <option value="Rezinkalar">
+                    Rezinkalar
+                </option>
+
+                <option value="Mexanizm">
+                    Mexanizm
+                </option>
+
+                <option value="Profil">
+                    Profil
+                </option>
+
+                <option value="Rel's">
+                    Rel's
+                </option>
+
+                <option value="Petla">
+                    Petla
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Miqdori</label>
 
             <input
                 id="editQuantity"
@@ -389,9 +394,7 @@
 
         <div class="form-group">
 
-            <label>
-                Minimal miqdor
-            </label>
+            <label>Minimal miqdor</label>
 
             <input
                 id="editLowLimit"
@@ -427,9 +430,7 @@
 </div>
 
 
-
 <!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
@@ -451,11 +452,17 @@ const db =
 
 let products = [];
 
+let selectedCategory = "all";
 
 
-/* ================================
-   HELPERS
-================================ */
+const categories = [
+    "Rezinkalar",
+    "Mexanizm",
+    "Profil",
+    "Rel's",
+    "Petla"
+];
+
 
 function numberValue(value, fallback = 0) {
 
@@ -469,27 +476,18 @@ function numberValue(value, fallback = 0) {
         0,
         Math.floor(number)
     );
-
 }
-
 
 
 function escapeHTML(value) {
 
     return String(value ?? "")
-
         .replaceAll("&", "&amp;")
-
         .replaceAll("<", "&lt;")
-
         .replaceAll(">", "&gt;")
-
         .replaceAll('"', "&quot;")
-
         .replaceAll("'", "&#039;");
-
 }
-
 
 
 function normalizeProduct(product) {
@@ -498,30 +496,26 @@ function normalizeProduct(product) {
 
         id: product.id,
 
-        name:
-            String(
-                product.name ?? ""
-            ),
+        name: String(
+            product.name ?? ""
+        ),
 
-        quantity:
-            numberValue(
-                product.quantity
-            ),
+        category: String(
+            product.category ?? ""
+        ),
 
-        lowLimit:
-            numberValue(
-                product.low_limit
-            )
+        quantity: numberValue(
+            product.quantity
+        ),
+
+        lowLimit: numberValue(
+            product.low_limit
+        )
 
     };
 
 }
 
-
-
-/* ================================
-   STATUS
-================================ */
 
 function getStatus(product) {
 
@@ -559,11 +553,6 @@ function getStatus(product) {
 }
 
 
-
-/* ================================
-   LOAD
-================================ */
-
 async function loadProducts(
     showError = true
 ) {
@@ -572,13 +561,10 @@ async function loadProducts(
         data,
         error
     } = await db
-
         .from("products")
-
         .select(
-            "id, created_at, name, quantity, low_limit, image"
+            "id, created_at, name, quantity, low_limit, image, category"
         )
-
         .order(
             "created_at",
             {
@@ -608,7 +594,7 @@ async function loadProducts(
 
     products =
         (data || [])
-            .map(normalizeProduct);
+        .map(normalizeProduct);
 
 
     renderProducts();
@@ -616,16 +602,17 @@ async function loadProducts(
 }
 
 
-
-/* ================================
-   ADD PRODUCT
-================================ */
-
 async function addProduct() {
 
     const nameInput =
         document.getElementById(
             "productName"
+        );
+
+
+    const categoryInput =
+        document.getElementById(
+            "productCategory"
         );
 
 
@@ -643,6 +630,10 @@ async function addProduct() {
 
     const name =
         nameInput.value.trim();
+
+
+    const category =
+        categoryInput.value;
 
 
     const quantity =
@@ -667,6 +658,20 @@ async function addProduct() {
         );
 
         nameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        showMessage(
+            "Kategoriyani tanlang!",
+            "error"
+        );
+
+        categoryInput.focus();
 
         return;
 
@@ -713,12 +718,12 @@ async function addProduct() {
     const {
         error
     } = await db
-
         .from("products")
-
         .insert({
 
             name: name,
+
+            category: category,
 
             quantity: quantity,
 
@@ -749,6 +754,8 @@ async function addProduct() {
 
     nameInput.value = "";
 
+    categoryInput.value = "";
+
     quantityInput.value = "";
 
     lowLimitInput.value = "5";
@@ -765,11 +772,6 @@ async function addProduct() {
 }
 
 
-
-/* ================================
-   QUANTITY
-================================ */
-
 async function updateQuantity(
     id,
     quantity
@@ -782,17 +784,11 @@ async function updateQuantity(
     const {
         error
     } = await db
-
         .from("products")
-
         .update({
             quantity: quantity
         })
-
-        .eq(
-            "id",
-            id
-        );
+        .eq("id", id);
 
 
     if (error) {
@@ -814,9 +810,6 @@ async function updateQuantity(
 
 }
 
-
-
-/* + / - */
 
 async function changeQuantity(
     id,
@@ -861,11 +854,6 @@ async function changeQuantity(
 
 }
 
-
-
-/* ================================
-   SET QUANTITY
-================================ */
 
 async function setQuantity(
     id,
@@ -934,11 +922,6 @@ async function setQuantity(
 }
 
 
-
-/* ================================
-   MIN LIMIT
-================================ */
-
 async function setLowLimit(
     id,
     input
@@ -972,17 +955,11 @@ async function setLowLimit(
     const {
         error
     } = await db
-
         .from("products")
-
         .update({
             low_limit: lowLimit
         })
-
-        .eq(
-            "id",
-            id
-        );
+        .eq("id", id);
 
 
     if (error) {
@@ -1025,10 +1002,30 @@ async function setLowLimit(
 }
 
 
+function selectCategory(category) {
 
-/* ================================
-   EDIT
-================================ */
+    selectedCategory =
+        category;
+
+
+    document
+        .querySelectorAll(
+            ".category-btn"
+        )
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.category === category
+            );
+
+        });
+
+
+    renderProducts();
+
+}
+
 
 function openEdit(id) {
 
@@ -1054,13 +1051,25 @@ function openEdit(id) {
 
 
     document.getElementById(
+        "editCategory"
+    ).value =
+        categories.includes(
+            product.category
+        )
+        ? product.category
+        : "";
+
+
+    document.getElementById(
         "editQuantity"
-    ).value = product.quantity;
+    ).value =
+        product.quantity;
 
 
     document.getElementById(
         "editLowLimit"
-    ).value = product.lowLimit;
+    ).value =
+        product.lowLimit;
 
 
     document.getElementById(
@@ -1068,32 +1077,27 @@ function openEdit(id) {
     ).classList.add("show");
 
 
-    setTimeout(
-        () => {
-            document.getElementById(
-                "editName"
-            ).focus();
-        },
-        80
-    );
+    setTimeout(() => {
+
+        document.getElementById(
+            "editName"
+        ).focus();
+
+    }, 80);
 
 }
-
 
 
 function closeEdit() {
 
-    document.getElementById(
-        "editModal"
-    ).classList.remove("show");
+    document
+        .getElementById(
+            "editModal"
+        )
+        .classList.remove("show");
 
 }
 
-
-
-/* ================================
-   SAVE EDIT
-================================ */
 
 async function saveEdit() {
 
@@ -1109,6 +1113,12 @@ async function saveEdit() {
         document.getElementById(
             "editName"
         ).value.trim();
+
+
+    const category =
+        document.getElementById(
+            "editCategory"
+        ).value;
 
 
     const quantityValue =
@@ -1127,6 +1137,18 @@ async function saveEdit() {
 
         showMessage(
             "Mahsulot nomini kiriting!",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        showMessage(
+            "Kategoriyani tanlang!",
             "error"
         );
 
@@ -1161,23 +1183,19 @@ async function saveEdit() {
     const {
         error
     } = await db
-
         .from("products")
-
         .update({
 
             name: name,
+
+            category: category,
 
             quantity: quantity,
 
             low_limit: lowLimit
 
         })
-
-        .eq(
-            "id",
-            id
-        );
+        .eq("id", id);
 
 
     if (error) {
@@ -1209,11 +1227,6 @@ async function saveEdit() {
 }
 
 
-
-/* ================================
-   DELETE
-================================ */
-
 async function deleteProduct(id) {
 
     const product =
@@ -1241,15 +1254,9 @@ async function deleteProduct(id) {
     const {
         error
     } = await db
-
         .from("products")
-
         .delete()
-
-        .eq(
-            "id",
-            id
-        );
+        .eq("id", id);
 
 
     if (error) {
@@ -1278,11 +1285,6 @@ async function deleteProduct(id) {
 }
 
 
-
-/* ================================
-   RENDER
-================================ */
-
 function renderProducts() {
 
     const table =
@@ -1301,12 +1303,26 @@ function renderProducts() {
 
 
     const filtered =
-        products.filter(
-            product =>
+        products.filter(product => {
+
+            const matchesSearch =
                 product.name
                     .toLowerCase()
-                    .includes(search)
-        );
+                    .includes(search);
+
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                product.category ===
+                selectedCategory;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+
+        });
 
 
     if (filtered.length === 0) {
@@ -1316,7 +1332,7 @@ function renderProducts() {
             <tr>
 
                 <td
-                    colspan="5"
+                    colspan="6"
                     class="empty"
                 >
                     Mahsulot topilmadi
@@ -1326,24 +1342,33 @@ function renderProducts() {
 
         `;
 
-    }
-
-    else {
+    } else {
 
         table.innerHTML =
             filtered
-                .map(
-                    product => `
+            .map(product => `
 
                 <tr>
 
                     <td class="product-name-cell">
 
                         <strong>
-                            ${escapeHTML(
-                                product.name
-                            )}
+                            ${escapeHTML(product.name)}
                         </strong>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="category-badge">
+
+                            ${escapeHTML(
+                                product.category ||
+                                "Kategoriyasiz"
+                            )}
+
+                        </span>
 
                     </td>
 
@@ -1375,11 +1400,7 @@ function renderProducts() {
 
 
                     <td>
-
-                        ${getStatus(
-                            product
-                        )}
-
+                        ${getStatus(product)}
                     </td>
 
 
@@ -1387,14 +1408,10 @@ function renderProducts() {
 
                         <div class="actions">
 
-
                             <button
                                 class="action-btn square-btn"
                                 title="1 taga kamaytirish"
-                                onclick="changeQuantity(
-                                    ${product.id},
-                                    -1
-                                )"
+                                onclick="changeQuantity(${product.id}, -1)"
                             >
                                 −
                             </button>
@@ -1403,10 +1420,7 @@ function renderProducts() {
                             <button
                                 class="action-btn square-btn"
                                 title="1 taga oshirish"
-                                onclick="changeQuantity(
-                                    ${product.id},
-                                    1
-                                )"
+                                onclick="changeQuantity(${product.id}, 1)"
                             >
                                 +
                             </button>
@@ -1414,9 +1428,7 @@ function renderProducts() {
 
                             <button
                                 class="action-btn edit-btn"
-                                onclick="openEdit(
-                                    ${product.id}
-                                )"
+                                onclick="openEdit(${product.id})"
                             >
                                 TAHRIRLASH
                             </button>
@@ -1424,13 +1436,10 @@ function renderProducts() {
 
                             <button
                                 class="action-btn delete-btn"
-                                onclick="deleteProduct(
-                                    ${product.id}
-                                )"
+                                onclick="deleteProduct(${product.id})"
                             >
                                 O‘CHIRISH
                             </button>
-
 
                         </div>
 
@@ -1438,10 +1447,8 @@ function renderProducts() {
 
                 </tr>
 
-            `
-                )
-                .join("");
-
+            `)
+            .join("");
 
 
         table
@@ -1457,8 +1464,7 @@ function renderProducts() {
                 const index =
                     [
                         ...table.querySelectorAll("tr")
-                    ]
-                    .indexOf(row);
+                    ].indexOf(row);
 
 
                 const product =
@@ -1480,8 +1486,7 @@ function renderProducts() {
                     event => {
 
                         if (
-                            event.key ===
-                            "Enter"
+                            event.key === "Enter"
                         ) {
 
                             event.preventDefault();
@@ -1494,7 +1499,6 @@ function renderProducts() {
                 );
 
             });
-
 
 
         table
@@ -1510,8 +1514,7 @@ function renderProducts() {
                 const index =
                     [
                         ...table.querySelectorAll("tr")
-                    ]
-                    .indexOf(row);
+                    ].indexOf(row);
 
 
                 const product =
@@ -1533,8 +1536,7 @@ function renderProducts() {
                     event => {
 
                         if (
-                            event.key ===
-                            "Enter"
+                            event.key === "Enter"
                         ) {
 
                             event.preventDefault();
@@ -1558,11 +1560,6 @@ function renderProducts() {
 }
 
 
-
-/* ================================
-   STATS
-================================ */
-
 function updateStats() {
 
     document.getElementById(
@@ -1573,12 +1570,8 @@ function updateStats() {
 
     const total =
         products.reduce(
-            (
-                sum,
-                product
-            ) =>
-                sum +
-                product.quantity,
+            (sum, product) =>
+                sum + product.quantity,
             0
         );
 
@@ -1619,11 +1612,6 @@ function updateStats() {
 }
 
 
-
-/* ================================
-   NOTIFICATIONS
-================================ */
-
 function renderStockNotifications() {
 
     const box =
@@ -1662,94 +1650,77 @@ function renderStockNotifications() {
 
     box.innerHTML =
         important
-            .map(
-                product => {
+        .map(product => {
 
-                    const out =
-                        product.quantity === 0;
-
-
-                    return `
-
-                        <div
-                            class="
-                                notification
-                                ${
-                                    out
-                                        ? "notification-out"
-                                        : "notification-low"
-                                }
-                            "
-                        >
-
-                            <div
-                                class="notification-icon"
-                            >
-                                !
-                            </div>
+            const out =
+                product.quantity === 0;
 
 
-                            <div
-                                class="notification-text"
-                            >
+            return `
 
-                                <strong>
-                                    ${escapeHTML(
-                                        product.name
-                                    )}
-                                </strong>
+                <div
+                    class="
+                        notification
+                        ${
+                            out
+                            ? "notification-out"
+                            : "notification-low"
+                        }
+                    "
+                >
 
-
-                                <span>
-
-                                    ${
-                                        out
-
-                                        ?
-
-                                        "Mahsulot tugagan — 0 dona."
-
-                                        :
-
-                                        `Faqat
-                                        ${product.quantity}
-                                        dona qoldi.
-                                        Minimal miqdor:
-                                        ${product.lowLimit}
-                                        dona.`
-
-                                    }
-
-                                </span>
-
-                            </div>
+                    <div class="notification-icon">
+                        !
+                    </div>
 
 
-                            <button
-                                class="notification-edit"
-                                onclick="openEdit(
-                                    ${product.id}
-                                )"
-                            >
-                                KO‘RISH
-                            </button>
+                    <div class="notification-text">
+
+                        <strong>
+                            ${escapeHTML(
+                                product.name
+                            )}
+                        </strong>
 
 
-                        </div>
+                        <span>
 
-                    `;
+                            ${
+                                out
 
-                }
-            )
-            .join("");
+                                ? "Mahsulot tugagan — 0 dona."
+
+                                : `
+                                    Faqat
+                                    ${product.quantity}
+                                    dona qoldi.
+                                    Minimal miqdor:
+                                    ${product.lowLimit}
+                                    dona.
+                                `
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="notification-edit"
+                        onclick="openEdit(${product.id})"
+                    >
+                        KO‘RISH
+                    </button>
+
+                </div>
+
+            `;
+
+        })
+        .join("");
 
 }
 
-
-
-/* ================================
-   MESSAGE
-================================ */
 
 function showMessage(
     text,
@@ -1767,8 +1738,7 @@ function showMessage(
 
 
     message.className =
-        "message " +
-        type;
+        "message " + type;
 
 
     clearTimeout(
@@ -1777,27 +1747,18 @@ function showMessage(
 
 
     showMessage.timer =
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                message.className =
-                    "message";
+            message.className =
+                "message";
 
+            message.textContent =
+                "";
 
-                message.textContent =
-                    "";
-
-            },
-            3500
-        );
+        }, 3500);
 
 }
 
-
-
-/* ================================
-   EVENTS
-================================ */
 
 document
     .getElementById("search")
@@ -1807,7 +1768,6 @@ document
     );
 
 
-
 document
     .getElementById("productName")
     .addEventListener(
@@ -1815,8 +1775,29 @@ document
         event => {
 
             if (
-                event.key ===
-                "Enter"
+                event.key === "Enter"
+            ) {
+
+                document
+                    .getElementById(
+                        "productCategory"
+                    )
+                    .focus();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("productCategory")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
             ) {
 
                 document
@@ -1831,7 +1812,6 @@ document
     );
 
 
-
 document
     .getElementById("productQuantity")
     .addEventListener(
@@ -1839,8 +1819,7 @@ document
         event => {
 
             if (
-                event.key ===
-                "Enter"
+                event.key === "Enter"
             ) {
 
                 document
@@ -1855,7 +1834,6 @@ document
     );
 
 
-
 document
     .getElementById("lowLimit")
     .addEventListener(
@@ -1863,8 +1841,7 @@ document
         event => {
 
             if (
-                event.key ===
-                "Enter"
+                event.key === "Enter"
             ) {
 
                 addProduct();
@@ -1873,7 +1850,6 @@ document
 
         }
     );
-
 
 
 document
@@ -1895,14 +1871,12 @@ document
     );
 
 
-
 document.addEventListener(
     "keydown",
     event => {
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeEdit();
@@ -1913,15 +1887,8 @@ document.addEventListener(
 );
 
 
-
-/* ================================
-   START
-================================ */
-
 loadProducts();
 
-
-/* AUTO REFRESH */
 
 setInterval(
     () => loadProducts(false),
