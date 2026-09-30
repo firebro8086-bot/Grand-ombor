@@ -1475,7 +1475,291 @@ tbody tr:last-child td {
 
     .category-button,
     .category-delete,
-    .quantity-button,
+    .quantity-button,/* =========================================================
+   LONG PRESS / PRODUCT DRAG
+========================================================= */
+
+.product-row {
+    position: relative;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.product-row.drag-ready {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.product-row.dragging {
+    opacity: 0.45;
+    transform: scale(0.995);
+    outline: 2px solid #8e2020;
+    outline-offset: -2px;
+    cursor: grabbing;
+}
+
+.product-row.dragging td {
+    cursor: grabbing;
+}
+
+
+/* =========================================================
+   CATEGORY DROP
+========================================================= */
+
+.category-item {
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .18s ease,
+        background .18s ease;
+}
+
+.category-item.category-drop-active {
+    border-color: #c92727 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(201, 39, 39, .18),
+        0 0 25px rgba(201, 39, 39, .12);
+
+    transform: translateY(-2px);
+}
+
+.category-item.category-drop-active
+.category-button {
+    background: #651616;
+    color: #fff;
+}
+
+
+/* =========================================================
+   DRAG HINT
+========================================================= */
+
+.drag-hint {
+    position: fixed;
+
+    z-index: 99999;
+
+    display: none;
+
+    pointer-events: none;
+
+    padding: 10px 14px;
+
+    color: #fff;
+
+    background: #111;
+
+    border: 1px solid #555;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .45);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    white-space: nowrap;
+
+    transform: translateZ(0);
+}
+
+.drag-hint.show {
+    display: block;
+}
+
+
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.category-item {
+    display: flex;
+    align-items: stretch;
+
+    overflow: hidden;
+
+    background: #0c0c0c;
+
+    border: 2px solid #3a3a3a;
+
+    border-radius: 13px;
+}
+
+.category-button {
+    min-height: 52px;
+
+    padding: 0 20px;
+
+    color: #aaa;
+
+    background: #111;
+
+    border: 0;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background .18s ease,
+        color .18s ease;
+}
+
+.category-button:hover {
+    color: #fff;
+    background: #1c1c1c;
+}
+
+.category-button.active {
+    color: #fff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #941f1f,
+            #671414
+        );
+}
+
+
+/* =========================================================
+   DELETE CATEGORY
+========================================================= */
+
+.category-delete {
+    width: 48px;
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    color: #777;
+
+    background: #101010;
+
+    border: 0;
+    border-left: 2px solid #333;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        color .18s ease,
+        background .18s ease,
+        border-color .18s ease;
+}
+
+.category-delete:hover {
+    color: #fff;
+
+    background: #701919;
+
+    border-left-color: #8c2929;
+}
+
+
+/* =========================================================
+   ADD CATEGORY
+========================================================= */
+
+.category-add {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+.category-add input {
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 0 16px;
+
+    color: #fff;
+
+    background: #0a0a0a;
+
+    border: 2px solid #343434;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition:
+        border-color .18s ease,
+        background .18s ease;
+}
+
+.category-add input:focus {
+    border-color: #666;
+
+    background: #0e0e0e;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .category-add {
+        grid-template-columns: 1fr;
+    }
+
+    .category-add button {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .category-button {
+        min-height: 48px;
+        padding: 0 14px;
+    }
+
+    .category-delete {
+        width: 43px;
+        min-height: 48px;
+    }
+
+    .drag-hint {
+        display: none !important;
+    }
+
+}
     .action-button {
         -webkit-tap-highlight-color: transparent;
     }
