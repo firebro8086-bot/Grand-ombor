@@ -1,375 +1,474 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>GRAND X — Ombor</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 
 <body>
 
-<header class="header">
-    <div class="header-left">
-        <div class="logo">
-            GRAND <span>X</span>
+
+<div class="container">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo">
+
+                <div class="logo-mark">
+                    GX
+                </div>
+
+                <div class="logo-text">
+
+                    <h1>GRAND X</h1>
+
+                    <p>
+                        OMBOR BOSHQARUV TIZIMI
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="header-subtitle">
-            OMBOR BOSHQARUV TIZIMI
-        </div>
-    </div>
-</header>
+    </header>
 
 
-<main class="container">
-
-    <!-- STATISTIKA -->
+    <!-- =====================================================
+         STATS
+         ===================================================== -->
 
     <section class="stats">
 
         <div class="stat-card">
-            <span class="stat-title">MAHSULOTLAR</span>
-            <strong id="productCount">0</strong>
+
+            <div class="stat-title">
+                MAHSULOTLAR
+            </div>
+
+            <div
+                class="stat-value"
+                id="statProducts"
+            >
+                0
+            </div>
+
         </div>
+
 
         <div class="stat-card">
-            <span class="stat-title">JAMI MIQDOR</span>
-            <strong id="totalStock">0</strong>
+
+            <div class="stat-title">
+                JAMI MIQDOR
+            </div>
+
+            <div
+                class="stat-value"
+                id="statQuantity"
+            >
+                0
+            </div>
+
         </div>
 
-        <div class="stat-card warning-stat">
-            <span class="stat-title">KAM QOLGAN</span>
-            <strong id="lowStock">0</strong>
+
+        <div class="stat-card low">
+
+            <div class="stat-title">
+                KAM QOLGAN
+            </div>
+
+            <div
+                class="stat-value"
+                id="statLow"
+            >
+                0
+            </div>
+
         </div>
 
-        <div class="stat-card danger-stat">
-            <span class="stat-title">TUGAGAN</span>
-            <strong id="outStock">0</strong>
+
+        <div class="stat-card empty">
+
+            <div class="stat-title">
+                TUGAGAN
+            </div>
+
+            <div
+                class="stat-value"
+                id="statEmpty"
+            >
+                0
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- XABAR -->
-
-    <div id="message" class="message"></div>
-
-
-    <!-- YANGI MAHSULOT -->
+    <!-- =====================================================
+         CATEGORY
+         ===================================================== -->
 
     <section class="panel">
 
-        <div class="panel-title">
-            <div>
-                <h2>Yangi mahsulot</h2>
-                <p>Omborga yangi mahsulot qo‘shish</p>
-            </div>
-        </div>
+        <div class="category-top">
 
-        <div class="form-grid">
+            <h2 class="panel-title">
+                KATEGORIYALAR
+            </h2>
 
-            <div class="field">
-                <label>Mahsulot nomi</label>
+
+            <div class="category-create">
 
                 <input
-                    id="productName"
+                    id="newCategory"
                     type="text"
-                    placeholder="Masalan: 1088"
+                    placeholder="Yangi kategoriya..."
+                    autocomplete="off"
                 >
-            </div>
 
-            <div class="field">
-                <label>Kategoriya</label>
-
-                <select id="productCategory">
-                    <option value="">Kategoriyasiz</option>
-                </select>
-            </div>
-
-            <div class="field">
-                <label>Miqdor</label>
-
-                <input
-                    id="productQuantity"
-                    type="number"
-                    min="0"
-                    value="0"
+                <button
+                    type="button"
+                    class="btn-red"
+                    id="addCategoryButton"
                 >
-            </div>
+                    + KATEGORIYA
+                </button>
 
-            <div class="field">
-                <label>Minimal miqdor</label>
-
-                <input
-                    id="lowLimit"
-                    type="number"
-                    min="0"
-                    value="5"
-                >
             </div>
 
         </div>
 
-        <button
-            id="addBtn"
-            class="main-button"
-            type="button"
-            onclick="addProduct()"
-        >
-            + MAHSULOT QO‘SHISH
-        </button>
-
-    </section>
-
-
-    <!-- KATEGORIYALAR -->
-
-    <section class="panel">
-
-        <div class="panel-title">
-            <div>
-                <h2>Kategoriyalar</h2>
-                <p>
-                    Kategoriyani tanlang yoki mahsulotni 2 soniya bosib boshqa kategoriyaga olib boring
-                </p>
-            </div>
-        </div>
 
         <div
             id="categoryButtons"
             class="category-buttons"
         ></div>
 
-        <div class="category-add">
-
-            <input
-                id="newCategory"
-                type="text"
-                placeholder="Yangi kategoriya nomi"
-            >
-
-            <button
-                class="secondary-button"
-                type="button"
-                onclick="addCategory()"
-            >
-                + KATEGORIYA QO‘SHISH
-            </button>
-
-        </div>
-
     </section>
 
 
-    <!-- SEARCH -->
+    <!-- =====================================================
+         ADD PRODUCT
+         ===================================================== -->
 
     <section class="panel">
 
-        <div class="search-box">
-
-            <span class="search-icon">⌕</span>
-
-            <input
-                id="search"
-                type="text"
-                placeholder="Mahsulot qidirish..."
-            >
-
-        </div>
-
-    </section>
+        <h2 class="panel-title">
+            YANGI MAHSULOT
+        </h2>
 
 
-    <!-- PRODUCTS -->
+        <div class="form-grid">
 
-    <section class="panel">
+            <div class="form-group">
 
-        <div class="panel-title products-title">
+                <label>
+                    MAHSULOT NOMI
+                </label>
 
-            <div>
-                <h2>Mahsulotlar</h2>
-                <p>
-                    Mahsulot ustiga 2 soniya bosib turing va kategoriyaga olib boring
-                </p>
+                <input
+                    id="productName"
+                    type="text"
+                    placeholder="Mahsulot nomi"
+                >
+
             </div>
+
 
             <div
-                id="selectedCategoryTitle"
-                class="selected-category-title"
+                style="
+                    display:grid;
+                    grid-template-columns:
+                        repeat(3, minmax(0,1fr));
+                    gap:12px;
+                "
             >
-                BARCHASI
+
+                <div class="form-group">
+
+                    <label>
+                        MIQDOR
+                    </label>
+
+                    <input
+                        id="productQuantity"
+                        type="number"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        MINIMAL
+                    </label>
+
+                    <input
+                        id="productLowLimit"
+                        type="number"
+                        min="0"
+                        value="5"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        KATEGORIYA
+                    </label>
+
+                    <select id="productCategory">
+
+                        <option value="">
+                            Kategoriyasiz
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    type="button"
+                    class="btn-red"
+                    id="addProductButton"
+                >
+                    + MAHSULOT QO'SHISH
+                </button>
+
             </div>
 
         </div>
 
+    </section>
+
+
+    <!-- =====================================================
+         PRODUCTS
+         ===================================================== -->
+
+    <section class="panel">
 
         <div
-            id="dragInfo"
-            class="drag-info"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                gap:15px;
+                margin-bottom:15px;
+            "
         >
-            Mahsulotni 2 soniya bosib turing — keyin uni kerakli kategoriyaga olib boring.
+
+            <h2
+                class="panel-title"
+                style="margin:0"
+            >
+                <span id="selectedCategoryTitle">
+                    BARCHASI
+                </span>
+            </h2>
+
         </div>
 
+
+        <!-- SEARCH -->
+
+        <div class="search-row">
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="Mahsulot yoki kategoriya qidirish..."
+            >
+
+        </div>
+
+
+        <!-- BULK ACTIONS -->
+
+        <div
+            id="bulkActions"
+            class="bulk-actions"
+        ></div>
+
+
+        <!-- TABLE -->
 
         <div class="table-wrapper">
 
             <table>
 
                 <thead>
+
                     <tr>
-                        <th>MAHSULOT</th>
-                        <th>KATEGORIYA</th>
-                        <th>MIQDOR</th>
-                        <th>MINIMAL</th>
-                        <th>HOLAT</th>
-                        <th>AMALLAR</th>
+
+                        <th style="width:26%">
+                            MAHSULOT
+                        </th>
+
+                        <th style="width:15%">
+                            KATEGORIYA
+                        </th>
+
+                        <th style="width:17%">
+                            MIQDOR
+                        </th>
+
+                        <th style="width:13%">
+                            MINIMAL
+                        </th>
+
+                        <th style="width:13%">
+                            HOLAT
+                        </th>
+
+                        <th style="width:16%">
+                            AMALLAR
+                        </th>
+
                     </tr>
+
                 </thead>
 
-                <tbody id="productsTable"></tbody>
+
+                <tbody id="productsTable">
+
+                </tbody>
 
             </table>
 
         </div>
 
-    </section>
-
-</main>
-
-
-<!-- NOTIFICATION BUTTON -->
-
-<button
-    id="notificationButton"
-    class="notification-float"
-    type="button"
-    onclick="openNotifications()"
-    title="Bildirishnomalar"
->
-
-    <span class="bell-icon">🔔</span>
-
-    <span
-        id="notificationIndicator"
-        class="notification-indicator"
-    ></span>
-
-</button>
-
-
-<!-- NOTIFICATION MODAL -->
-
-<div
-    id="notificationModal"
-    class="modal-overlay"
->
-
-    <div class="modal notification-modal">
-
-        <button
-            class="modal-close"
-            type="button"
-            onclick="closeNotifications()"
-        >
-            ×
-        </button>
-
-        <div class="panel-title">
-
-            <div>
-                <h2>Bildirishnomalar</h2>
-                <p>Ombordagi muhim holatlar</p>
-            </div>
-
-        </div>
 
         <div
-            id="notifications"
-            class="notifications"
-        ></div>
+            style="
+                margin-top:15px;
+                color:#858a91;
+                font-size:12px;
+            "
+        >
+            Mahsulotni 2 soniya bosib turing —
+            tanlash rejimi ochiladi.
+            Bir nechta mahsulotni tanlab,
+            ularni bitta kategoriyaga o'tkazishingiz mumkin.
+        </div>
 
-    </div>
+    </section>
+
 
 </div>
 
 
-<!-- EDIT MODAL -->
+<!-- =========================================================
+     EDIT MODAL
+     ========================================================= -->
 
 <div
     id="editModal"
-    class="modal-overlay"
+    class="modal"
 >
 
-    <div class="modal">
+    <div class="modal-card">
 
-        <button
-            class="modal-close"
-            type="button"
-            onclick="closeEdit()"
-        >
-            ×
-        </button>
-
-        <div class="panel-title">
-
-            <div>
-                <h2>Mahsulotni tahrirlash</h2>
-                <p>Mahsulot ma’lumotlarini o‘zgartirish</p>
-            </div>
-
-        </div>
+        <h2>
+            MAHSULOTNI TAHRIRLASH
+        </h2>
 
 
-        <input
-            id="editId"
-            type="hidden"
-        >
+        <div class="form-grid">
 
+            <div class="form-group">
 
-        <div class="field">
-            <label>Mahsulot nomi</label>
-
-            <input
-                id="editName"
-                type="text"
-            >
-        </div>
-
-
-        <div class="field">
-            <label>Kategoriya</label>
-
-            <select id="editCategory">
-                <option value="">Kategoriyasiz</option>
-            </select>
-        </div>
-
-
-        <div class="edit-grid">
-
-            <div class="field">
-                <label>Miqdor</label>
+                <label>
+                    MAHSULOT NOMI
+                </label>
 
                 <input
-                    id="editQuantity"
+                    id="editProductName"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    MIQDOR
+                </label>
+
+                <input
+                    id="editProductQuantity"
                     type="number"
                     min="0"
                 >
+
             </div>
 
-            <div class="field">
-                <label>Minimal miqdor</label>
+
+            <div class="form-group">
+
+                <label>
+                    MINIMAL MIQDOR
+                </label>
 
                 <input
-                    id="editLowLimit"
+                    id="editProductLowLimit"
                     type="number"
                     min="0"
                 >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    KATEGORIYA
+                </label>
+
+                <select id="editProductCategory">
+
+                    <option value="">
+                        Kategoriyasiz
+                    </option>
+
+                </select>
+
             </div>
 
         </div>
@@ -378,17 +477,16 @@
         <div class="modal-actions">
 
             <button
-                class="secondary-button"
                 type="button"
-                onclick="closeEdit()"
+                id="cancelEditButton"
             >
                 BEKOR QILISH
             </button>
 
             <button
-                class="main-button"
                 type="button"
-                onclick="saveEdit()"
+                class="btn-red"
+                id="saveEditButton"
             >
                 SAQLASH
             </button>
@@ -400,11 +498,42 @@
 </div>
 
 
+<!-- =========================================================
+     NOTIFICATION
+     ========================================================= -->
+
+<div
+    id="notification"
+    class="notification"
+>
+
+    <div
+        id="notificationTitle"
+        class="notification-title"
+    >
+        Bildirishnoma
+    </div>
+
+    <div
+        id="notificationBody"
+        class="notification-body"
+    ></div>
+
+</div>
+
+
+<!-- =========================================================
+     SUPABASE
+     ========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
 
 /* =========================================================
    SUPABASE
-========================================================= */
+   ========================================================= */
 
 const SUPABASE_URL =
     "https://szgtlkykyfacjliisigf.supabase.co";
@@ -420,142 +549,156 @@ const db =
 
 
 /* =========================================================
-   DATA
-========================================================= */
+   STATE
+   ========================================================= */
 
 let products = [];
 let categories = [];
+
 let selectedCategory = "all";
+let searchText = "";
+
+let selectedProductIds =
+    new Set();
+
+let multiSelectMode = false;
+
+let longPressTimer = null;
+let longPressProductId = null;
+
+let pointerStartX = 0;
+let pointerStartY = 0;
+
+let longPressTriggered = false;
 
 
 /* =========================================================
-   ELEMENTS
-========================================================= */
-
-const productName =
-    document.getElementById("productName");
-
-const productCategory =
-    document.getElementById("productCategory");
-
-const productQuantity =
-    document.getElementById("productQuantity");
-
-const lowLimit =
-    document.getElementById("lowLimit");
-
-const search =
-    document.getElementById("search");
-
-const productsTableElement =
-    document.getElementById("productsTable");
-
-
-/* =========================================================
-   HTML SECURITY
-========================================================= */
-
-function escapeHTML(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================================================
-   CATEGORY
-========================================================= */
+   HELPERS
+   ========================================================= */
 
 function normalizeCategory(value) {
 
     return String(value || "")
         .trim()
         .toLowerCase();
-
 }
 
 
-function getCategoryLabel(value) {
+function categoryLabel(value) {
 
-    const normalized =
+    const v =
         normalizeCategory(value);
 
-    const labels = {
+    const map = {
 
-        "rezinka": "REZINKALAR",
-        "rezinkalar": "REZINKALAR",
+        rezinka: "REZINKALAR",
+        rezinkalar: "REZINKALAR",
 
-        "mexanizm": "MEXANIZM",
-        "mexanizmlar": "MEXANIZM",
+        mexanizm: "MEXANIZM",
+        mexanizmlar: "MEXANIZM",
 
-        "profil": "PROFIL",
-        "profillar": "PROFIL",
+        profil: "PROFIL",
+        profillar: "PROFIL",
 
-        "rels": "RELS",
-        "relslar": "RELS",
+        rels: "RELS",
+        relslar: "RELS",
 
-        "petla": "PETLA",
-        "petlalar": "PETLA"
-
+        petla: "PETLA",
+        petlalar: "PETLA"
     };
 
     return (
-        labels[normalized] ||
-        (
-            value
-                ? String(value).toUpperCase()
-                : "KATEGORIYASIZ"
-        )
+        map[v] ||
+        String(value || "KATEGORIYASIZ")
+            .trim()
+            .toUpperCase()
     );
+}
 
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }
 
 
 /* =========================================================
-   PRODUCT NORMALIZE
-========================================================= */
+   NOTIFICATION
+   ========================================================= */
 
-function normalizeProduct(product) {
+let notificationTimer = null;
 
-    return {
+function notify(message, type = "info") {
 
-        id: product.id,
+    const box =
+        document.getElementById(
+            "notification"
+        );
 
-        name:
-            product.name || "",
+    const title =
+        document.getElementById(
+            "notificationTitle"
+        );
 
-        category:
-            product.category || "",
+    const body =
+        document.getElementById(
+            "notificationBody"
+        );
 
-        quantity:
-            Number(product.quantity) || 0,
 
-        lowLimit:
-            Number(product.low_limit) || 0,
+    if (!box || !title || !body) {
 
-        image:
-            product.image || null
+        alert(message);
 
-    };
+        return;
+    }
 
+
+    title.textContent =
+        type === "error"
+            ? "XATOLIK"
+            : type === "success"
+                ? "TAYYOR"
+                : "BILDIRISHNOMA";
+
+
+    body.textContent =
+        message;
+
+
+    box.style.borderColor =
+        type === "error"
+            ? "#e00000"
+            : type === "success"
+                ? "#28d17c"
+                : "#777";
+
+
+    box.classList.add("show");
+
+
+    clearTimeout(
+        notificationTimer
+    );
+
+
+    notificationTimer =
+        setTimeout(() => {
+
+            box.classList.remove("show");
+
+        }, 3500);
 }
 
 
 /* =========================================================
    LOAD CATEGORIES
-========================================================= */
+   ========================================================= */
 
 async function loadCategories() {
 
@@ -564,42 +707,64 @@ async function loadCategories() {
         error
     } = await db
         .from("categories")
-        .select("id, name, created_at")
-        .order("created_at", {
-            ascending: true
-        });
+        .select(
+            "id,name,created_at"
+        )
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
 
 
     if (error) {
 
         console.error(
-            "Category loading error:",
             error
         );
 
-        categories = [];
-
-        renderCategoryButtons();
-        renderCategorySelects();
+        notify(
+            "Kategoriyalar yuklanmadi: " +
+            error.message,
+            "error"
+        );
 
         return;
-
     }
 
 
-    categories = data || [];
+    categories =
+        data || [];
 
-    renderCategoryButtons();
+
+    if (
+        selectedCategory !== "all" &&
+        !categories.some(
+            c =>
+                normalizeCategory(
+                    c.name
+                ) ===
+                normalizeCategory(
+                    selectedCategory
+                )
+        )
+    ) {
+
+        selectedCategory = "all";
+    }
+
+
+    renderCategories();
     renderCategorySelects();
-
 }
 
 
 /* =========================================================
-   CATEGORY BUTTONS
-========================================================= */
+   RENDER CATEGORIES
+   ========================================================= */
 
-function renderCategoryButtons() {
+function renderCategories() {
 
     const box =
         document.getElementById(
@@ -607,178 +772,244 @@ function renderCategoryButtons() {
         );
 
 
-    let html = `
-
-        <button
-            class="category-button ${
-                selectedCategory === "all"
-                    ? "active"
-                    : ""
-            }"
-            type="button"
-            onclick="selectCategory('all')"
-            data-category-all="true"
-        >
-            BARCHASI
-        </button>
-
-    `;
+    box.innerHTML = "";
 
 
-    categories.forEach(category => {
+    const all =
+        document.createElement(
+            "button"
+        );
 
-        const active =
-            selectedCategory !== "all" &&
-            normalizeCategory(
-                selectedCategory
-            ) ===
-            normalizeCategory(
-                category.name
-            )
+
+    all.className =
+        "category-button " +
+        (
+            selectedCategory === "all"
                 ? "active"
-                : "";
+                : ""
+        );
 
 
-        html += `
+    all.textContent =
+        "BARCHASI";
 
-            <div
-                class="category-item"
-                data-category="${escapeHTML(category.name)}"
-            >
 
-                <button
-                    class="category-button ${active}"
-                    type="button"
-                    onclick="selectCategory(${JSON.stringify(category.name)})"
-                >
-                    ${escapeHTML(
-                        getCategoryLabel(
+    all.onclick = () => {
+
+        if (multiSelectMode) {
+
+            notify(
+                "Tanlash rejimida yuqoridagi kategoriyani tanlang.",
+                "info"
+            );
+
+            return;
+        }
+
+
+        selectedCategory =
+            "all";
+
+
+        updateCategoryTitle();
+
+        renderCategories();
+
+        renderProducts();
+    };
+
+
+    box.appendChild(all);
+
+
+    categories.forEach(
+        category => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "category-item";
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "category-button " +
+                (
+                    normalizeCategory(
+                        selectedCategory
+                    ) ===
+                    normalizeCategory(
+                        category.name
+                    )
+                        ? "active"
+                        : ""
+                );
+
+
+            button.textContent =
+                categoryLabel(
+                    category.name
+                );
+
+
+            button.onclick =
+                async () => {
+
+                    /*
+                     * Agar tanlash rejimi bo'lsa:
+                     * kategoriya tugmasi barcha
+                     * tanlangan mahsulotlarni ko'chiradi.
+                     */
+
+                    if (multiSelectMode) {
+
+                        await moveSelected(
                             category.name
-                        )
-                    )}
-                </button>
+                        );
 
-                <button
-                    class="category-delete"
-                    type="button"
-                    onclick="deleteCategory(
-                        ${Number(category.id)},
-                        ${JSON.stringify(category.name)}
-                    )"
-                    title="Kategoriyani o‘chirish"
-                >
-                    ×
-                </button>
-
-            </div>
-
-        `;
-
-    });
+                        return;
+                    }
 
 
-    box.innerHTML = html;
+                    selectedCategory =
+                        category.name;
 
+
+                    updateCategoryTitle();
+
+                    renderCategories();
+
+                    renderProducts();
+                };
+
+
+            const del =
+                document.createElement(
+                    "button"
+                );
+
+
+            del.className =
+                "category-delete";
+
+
+            del.textContent =
+                "×";
+
+
+            del.title =
+                "Kategoriyani o'chirish";
+
+
+            del.onclick =
+                async event => {
+
+                    event.stopPropagation();
+
+                    await deleteCategory(
+                        category.id,
+                        category.name
+                    );
+                };
+
+
+            item.appendChild(
+                button
+            );
+
+            item.appendChild(
+                del
+            );
+
+            box.appendChild(
+                item
+            );
+        }
+    );
 }
 
 
 /* =========================================================
    CATEGORY SELECTS
-========================================================= */
+   ========================================================= */
 
 function renderCategorySelects() {
 
-    const addSelect =
+    const selects = [
+
         document.getElementById(
             "productCategory"
-        );
+        ),
 
-    const editSelect =
         document.getElementById(
-            "editCategory"
-        );
+            "editProductCategory"
+        )
+    ];
 
 
-    const currentAdd =
-        addSelect.value;
+    selects.forEach(
+        select => {
 
-    const currentEdit =
-        editSelect.value;
-
-
-    let html = `
-        <option value="">
-            Kategoriyasiz
-        </option>
-    `;
+            if (!select) return;
 
 
-    categories.forEach(category => {
-
-        html += `
-
-            <option
-                value="${escapeHTML(category.name)}"
-            >
-                ${escapeHTML(
-                    getCategoryLabel(
-                        category.name
-                    )
-                )}
-            </option>
-
-        `;
-
-    });
+            const old =
+                select.value;
 
 
-    addSelect.innerHTML = html;
-    editSelect.innerHTML = html;
+            select.innerHTML =
+                `
+                <option value="">
+                    Kategoriyasiz
+                </option>
+                `;
 
 
-    const addCategoryObject =
-        categories.find(
-            category =>
-                normalizeCategory(
-                    category.name
-                ) ===
-                normalizeCategory(
-                    currentAdd
-                )
-        );
+            categories.forEach(
+                category => {
 
-    if (addCategoryObject) {
-
-        addSelect.value =
-            addCategoryObject.name;
-
-    }
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
 
 
-    const editCategoryObject =
-        categories.find(
-            category =>
-                normalizeCategory(
-                    category.name
-                ) ===
-                normalizeCategory(
-                    currentEdit
-                )
-        );
+                    option.value =
+                        category.name;
 
-    if (editCategoryObject) {
 
-        editSelect.value =
-            editCategoryObject.name;
+                    option.textContent =
+                        categoryLabel(
+                            category.name
+                        );
 
-    }
 
+                    select.appendChild(
+                        option
+                    );
+                }
+            );
+
+
+            select.value =
+                old;
+        }
+    );
 }
 
 
 /* =========================================================
    ADD CATEGORY
-========================================================= */
+   ========================================================= */
 
 async function addCategory() {
 
@@ -794,23 +1025,20 @@ async function addCategory() {
 
     if (!name) {
 
-        showMessage(
+        notify(
             "Kategoriya nomini kiriting.",
             "error"
         );
 
-        input.focus();
-
         return;
-
     }
 
 
     const exists =
         categories.some(
-            category =>
+            c =>
                 normalizeCategory(
-                    category.name
+                    c.name
                 ) ===
                 normalizeCategory(
                     name
@@ -820,115 +1048,196 @@ async function addCategory() {
 
     if (exists) {
 
-        showMessage(
+        notify(
             "Bu kategoriya allaqachon mavjud.",
             "error"
         );
 
         return;
-
     }
 
 
     const {
+        data,
         error
     } = await db
         .from("categories")
         .insert({
-            name: name
-        });
+            name
+        })
+        .select()
+        .single();
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
-        showMessage(
-            "Kategoriya qo‘shishda xatolik.",
+        notify(
+            "Kategoriya qo'shilmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    input.value = "";
-
-    await loadCategories();
-
-    showMessage(
-        "Kategoriya qo‘shildi.",
-        "success"
+    categories.push(
+        data
     );
 
+
+    input.value =
+        "";
+
+
+    renderCategories();
+
+    renderCategorySelects();
+
+
+    notify(
+        "Kategoriya qo'shildi.",
+        "success"
+    );
 }
 
 
 /* =========================================================
    DELETE CATEGORY
-========================================================= */
+   ========================================================= */
 
 async function deleteCategory(
     id,
-    categoryName
+    name
 ) {
 
-    const confirmed =
-        confirm(
-            `"${getCategoryLabel(categoryName)}" kategoriyasini o‘chirishni xohlaysizmi?\n\nBu kategoriya ichidagi mahsulotlar o‘chirilmaydi. Ular "Kategoriyasiz" bo‘ladi.`
-        );
-
-
-    if (!confirmed) {
+    if (
+        !confirm(
+            `"${categoryLabel(name)}" kategoriyasi o'chirilsinmi?\n\nMahsulotlar "Kategoriyasiz" bo'ladi.`
+        )
+    ) {
         return;
     }
 
 
-    const {
-        error: productError
-    } = await db
-        .from("products")
-        .update({
-            category: null
-        })
-        .eq("category", categoryName);
+    /*
+      Shu kategoriyadagi mahsulotlarni
+      ID orqali topamiz.
+    */
+
+    const ids =
+        products
+            .filter(
+                product =>
+                    normalizeCategory(
+                        product.category
+                    ) ===
+                    normalizeCategory(
+                        name
+                    )
+            )
+            .map(
+                product =>
+                    product.id
+            );
 
 
-    if (productError) {
+    /*
+      Mahsulotlarni kategoriyasiz qilamiz.
+    */
 
-        console.error(productError);
+    if (ids.length > 0) {
 
-        showMessage(
-            "Kategoriya o‘chirishda xatolik.",
-            "error"
-        );
+        const {
+            error
+        } = await db
+            .from("products")
+            .update({
+                category: null
+            })
+            .in(
+                "id",
+                ids
+            );
 
-        return;
 
+        if (error) {
+
+            console.error(
+                error
+            );
+
+            notify(
+                "Mahsulot kategoriyasini o'zgartirib bo'lmadi: " +
+                error.message,
+                "error"
+            );
+
+            return;
+        }
     }
 
 
+    /*
+      Kategoriyani o'chirish.
+    */
+
     const {
-        error: categoryError
+        error
     } = await db
         .from("categories")
         .delete()
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
-    if (categoryError) {
+    if (error) {
 
-        console.error(categoryError);
+        console.error(
+            error
+        );
 
-        showMessage(
-            "Kategoriyani o‘chirishda xatolik.",
+        notify(
+            "Kategoriyani o'chirib bo'lmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
+
+
+    categories =
+        categories.filter(
+            c =>
+                Number(c.id) !==
+                Number(id)
+        );
+
+
+    products =
+        products.map(
+            product =>
+                ids.includes(
+                    product.id
+                )
+                    ? {
+                        ...product,
+                        category: null
+                    }
+                    : product
+        );
+
+
+    selectedProductIds.clear();
+
+    multiSelectMode = false;
 
 
     if (
@@ -936,83 +1245,36 @@ async function deleteCategory(
             selectedCategory
         ) ===
         normalizeCategory(
-            categoryName
+            name
         )
     ) {
 
-        selectedCategory = "all";
-
+        selectedCategory =
+            "all";
     }
 
 
-    await loadCategories();
-    await loadProducts();
+    renderCategories();
 
-    showMessage(
-        "Kategoriya o‘chirildi.",
-        "success"
-    );
+    renderCategorySelects();
 
-}
-
-
-/* =========================================================
-   SELECT CATEGORY
-========================================================= */
-
-function selectCategory(category) {
-
-    selectedCategory =
-        category;
-
-    renderCategoryButtons();
     renderProducts();
 
-}
+    updateStats();
+
+    updateCategoryTitle();
 
 
-/* =========================================================
-   STATUS
-========================================================= */
-
-function getStatus(product) {
-
-    if (
-        product.quantity === 0
-    ) {
-
-        return {
-            text: "TUGAGAN",
-            className: "status-out"
-        };
-
-    }
-
-
-    if (
-        product.quantity <=
-        product.lowLimit
-    ) {
-
-        return {
-            text: "KAM QOLDI",
-            className: "status-low"
-        };
-
-    }
-
-
-    return {
-        text: "YETARLI",
-        className: "status-ok"
-    };
-
+    notify(
+        "Kategoriya o'chirildi.",
+        "success"
+    );
 }
 
 
 /* =========================================================
    LOAD PRODUCTS
-========================================================= */
+   ========================================================= */
 
 async function loadProducts() {
 
@@ -1022,160 +1284,1001 @@ async function loadProducts() {
     } = await db
         .from("products")
         .select(
-            "id, created_at, name, quantity, low_limit, image, category"
+            "id,created_at,name,quantity,low_limit,image,category"
         )
-        .order("id", {
-            ascending: true
-        });
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
-        showMessage(
-            "Mahsulotlarni yuklashda xatolik.",
+        notify(
+            "Mahsulotlar yuklanmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
     products =
-        (data || [])
-            .map(
-                normalizeProduct
+        (data || []).map(
+            product => ({
+                ...product,
+
+                quantity:
+                    Number(
+                        product.quantity
+                    ) || 0,
+
+                low_limit:
+                    Number(
+                        product.low_limit
+                    ) || 5
+            })
+        );
+
+
+    const ids =
+        new Set(
+            products.map(
+                p => p.id
+            )
+        );
+
+
+    selectedProductIds.forEach(
+        id => {
+
+            if (!ids.has(id)) {
+
+                selectedProductIds.delete(
+                    id
+                );
+            }
+        }
+    );
+
+
+    updateStats();
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+   ========================================================= */
+
+function renderProducts() {
+
+    const tbody =
+        document.getElementById(
+            "productsTable"
+        );
+
+
+    let list =
+        [...products];
+
+
+    if (
+        selectedCategory !== "all"
+    ) {
+
+        list =
+            list.filter(
+                product =>
+                    normalizeCategory(
+                        product.category
+                    ) ===
+                    normalizeCategory(
+                        selectedCategory
+                    )
             );
+    }
+
+
+    if (searchText) {
+
+        const q =
+            searchText.toLowerCase();
+
+
+        list =
+            list.filter(
+                product => {
+
+                    return (
+
+                        String(
+                            product.name || ""
+                        )
+                        .toLowerCase()
+                        .includes(q)
+
+                        ||
+
+                        String(
+                            product.category || ""
+                        )
+                        .toLowerCase()
+                        .includes(q)
+                    );
+                }
+            );
+    }
+
+
+    tbody.innerHTML =
+        "";
+
+
+    if (!list.length) {
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML =
+            `
+            <td colspan="6">
+
+                <div class="empty-state">
+                    Mahsulot topilmadi
+                </div>
+
+            </td>
+            `;
+
+
+        tbody.appendChild(
+            row
+        );
+
+        return;
+    }
+
+
+    list.forEach(
+        product => {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.className =
+                "product-row";
+
+
+            if (
+                selectedProductIds.has(
+                    product.id
+                )
+            ) {
+
+                row.classList.add(
+                    "selected"
+                );
+            }
+
+
+            const quantity =
+                Number(
+                    product.quantity
+                ) || 0;
+
+
+            const low =
+                Number(
+                    product.low_limit
+                ) || 0;
+
+
+            let status =
+                "YETARLI";
+
+
+            let statusClass =
+                "status status-ok";
+
+
+            if (quantity <= 0) {
+
+                status =
+                    "TUGAGAN";
+
+                statusClass =
+                    "status status-empty";
+
+            } else if (
+                quantity <= low
+            ) {
+
+                status =
+                    "KAM QOLDI";
+
+                statusClass =
+                    "status status-low";
+            }
+
+
+            const image =
+                product.image
+                    ? `
+                        <img
+                            class="product-image"
+                            src="${escapeHTML(product.image)}"
+                            alt=""
+                        >
+                    `
+                    : "";
+
+
+            row.innerHTML =
+                `
+
+                <td>
+
+                    <div class="product-name">
+
+                        <span class="selection-mark">
+                            ✓
+                        </span>
+
+                        ${image}
+
+                        <strong>
+                            ${escapeHTML(
+                                product.name
+                            )}
+                        </strong>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="category-badge">
+
+                        ${escapeHTML(
+                            product.category
+                                ? categoryLabel(
+                                    product.category
+                                )
+                                : "KATEGORIYASIZ"
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div class="quantity-box">
+
+                        <button
+                            type="button"
+                            data-minus
+                        >
+                            −
+                        </button>
+
+
+                        <input
+                            class="quantity-input"
+                            type="number"
+                            min="0"
+                            value="${quantity}"
+                        >
+
+
+                        <button
+                            type="button"
+                            data-plus
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <input
+                        class="low-limit-input"
+                        type="number"
+                        min="0"
+                        value="${low}"
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="${statusClass}"
+                    >
+                        ${status}
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div
+                        style="
+                            display:flex;
+                            gap:7px;
+                            flex-wrap:wrap;
+                        "
+                    >
+
+                        <button
+                            type="button"
+                            data-edit
+                        >
+                            TAHRIRLASH
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="btn-danger"
+                            data-delete
+                        >
+                            O'CHIRISH
+                        </button>
+
+                    </div>
+
+                </td>
+                `;
+
+
+            /*
+              Quantity
+            */
+
+            row.querySelector(
+                "[data-minus]"
+            ).onclick =
+                event => {
+
+                    event.stopPropagation();
+
+                    updateQuantity(
+                        product.id,
+                        -1
+                    );
+                };
+
+
+            row.querySelector(
+                "[data-plus]"
+            ).onclick =
+                event => {
+
+                    event.stopPropagation();
+
+                    updateQuantity(
+                        product.id,
+                        1
+                    );
+                };
+
+
+            const quantityInput =
+                row.querySelector(
+                    ".quantity-input"
+                );
+
+
+            quantityInput.onchange =
+                event => {
+
+                    event.stopPropagation();
+
+                    setQuantity(
+                        product.id,
+                        quantityInput.value
+                    );
+                };
+
+
+            quantityInput.onclick =
+                event =>
+                    event.stopPropagation();
+
+
+            /*
+              Low limit
+            */
+
+            const lowInput =
+                row.querySelector(
+                    ".low-limit-input"
+                );
+
+
+            lowInput.onchange =
+                event => {
+
+                    event.stopPropagation();
+
+                    setLowLimit(
+                        product.id,
+                        lowInput.value
+                    );
+                };
+
+
+            lowInput.onclick =
+                event =>
+                    event.stopPropagation();
+
+
+            /*
+              Edit
+            */
+
+            row.querySelector(
+                "[data-edit]"
+            ).onclick =
+                event => {
+
+                    event.stopPropagation();
+
+                    openEdit(
+                        product.id
+                    );
+                };
+
+
+            /*
+              Delete
+            */
+
+            row.querySelector(
+                "[data-delete]"
+            ).onclick =
+                event => {
+
+                    event.stopPropagation();
+
+                    deleteProduct(
+                        product.id
+                    );
+                };
+
+
+            /*
+              2 SECOND LONG PRESS
+            */
+
+            attachSelectionEvents(
+                row,
+                product.id
+            );
+
+
+            tbody.appendChild(
+                row
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   LONG PRESS / MULTI SELECT
+   ========================================================= */
+
+function attachSelectionEvents(
+    row,
+    productId
+) {
+
+    row.addEventListener(
+        "pointerdown",
+        event => {
+
+            if (
+                event.target.closest(
+                    "button"
+                ) ||
+                event.target.closest(
+                    "input"
+                ) ||
+                event.target.closest(
+                    "select"
+                )
+            ) {
+
+                return;
+            }
+
+
+            pointerStartX =
+                event.clientX;
+
+
+            pointerStartY =
+                event.clientY;
+
+
+            longPressProductId =
+                productId;
+
+
+            longPressTriggered =
+                false;
+
+
+            clearTimeout(
+                longPressTimer
+            );
+
+
+            /*
+              Selection mode'da oddiy click
+              bilan tanlash.
+            */
+
+            if (multiSelectMode) {
+
+                longPressTimer =
+                    setTimeout(
+                        () => {
+
+                            longPressTriggered =
+                                true;
+
+                        },
+                        350
+                    );
+
+                return;
+            }
+
+
+            /*
+              Oddiy rejim:
+              2 soniya.
+            */
+
+            longPressTimer =
+                setTimeout(
+                    () => {
+
+                        longPressTriggered =
+                            true;
+
+
+                        multiSelectMode =
+                            true;
+
+
+                        selectedProductIds.clear();
+
+
+                        selectedProductIds.add(
+                            productId
+                        );
+
+
+                        renderProducts();
+
+
+                        notify(
+                            "Tanlash rejimi yoqildi. Boshqa mahsulotlarni bosing.",
+                            "info"
+                        );
+
+                    },
+                    2000
+                );
+        }
+    );
+
+
+    row.addEventListener(
+        "pointermove",
+        event => {
+
+            if (
+                !longPressProductId
+            ) return;
+
+
+            const dx =
+                Math.abs(
+                    event.clientX -
+                    pointerStartX
+                );
+
+
+            const dy =
+                Math.abs(
+                    event.clientY -
+                    pointerStartY
+                );
+
+
+            if (
+                dx > 15 ||
+                dy > 15
+            ) {
+
+                clearTimeout(
+                    longPressTimer
+                );
+
+                longPressTimer =
+                    null;
+
+                longPressProductId =
+                    null;
+            }
+        }
+    );
+
+
+    row.addEventListener(
+        "pointerup",
+        event => {
+
+            clearTimeout(
+                longPressTimer
+            );
+
+
+            const id =
+                longPressProductId;
+
+
+            longPressTimer =
+                null;
+
+            longPressProductId =
+                null;
+
+
+            if (!id) return;
+
+
+            /*
+              Agar selection mode bo'lsa,
+              oddiy bosish = tanlash/olib tashlash.
+            */
+
+            if (
+                multiSelectMode &&
+                !longPressTriggered
+            ) {
+
+                if (
+                    selectedProductIds.has(
+                        id
+                    )
+                ) {
+
+                    selectedProductIds.delete(
+                        id
+                    );
+
+                } else {
+
+                    selectedProductIds.add(
+                        id
+                    );
+                }
+
+
+                if (
+                    selectedProductIds.size === 0
+                ) {
+
+                    multiSelectMode =
+                        false;
+                }
+
+
+                renderProducts();
+
+                updateBulkActions();
+            }
+
+
+            longPressTriggered =
+                false;
+        }
+    );
+
+
+    row.addEventListener(
+        "pointercancel",
+        () => {
+
+            clearTimeout(
+                longPressTimer
+            );
+
+            longPressTimer =
+                null;
+
+            longPressProductId =
+                null;
+
+            longPressTriggered =
+                false;
+        }
+    );
+}
+
+
+/* =========================================================
+   BULK ACTIONS
+   ========================================================= */
+
+function updateBulkActions() {
+
+    const box =
+        document.getElementById(
+            "bulkActions"
+        );
+
+
+    if (
+        !multiSelectMode ||
+        selectedProductIds.size === 0
+    ) {
+
+        box.classList.remove(
+            "show"
+        );
+
+        box.innerHTML =
+            "";
+
+        return;
+    }
+
+
+    box.classList.add(
+        "show"
+    );
+
+
+    box.innerHTML =
+        `
+
+        <div class="bulk-count">
+
+            ${selectedProductIds.size}
+            TA TANLANGAN
+
+        </div>
+
+
+        <button
+            type="button"
+            id="selectAllButton"
+        >
+            BARCHASINI TANLASH
+        </button>
+
+
+        <select
+            id="bulkCategorySelect"
+        >
+
+            <option value="">
+                KATEGORIYANI TANLANG
+            </option>
+
+            ${categories.map(
+                category =>
+                    `
+                    <option value="${escapeHTML(
+                        category.name
+                    )}">
+                        ${escapeHTML(
+                            categoryLabel(
+                                category.name
+                            )
+                        )}
+                    </option>
+                    `
+            ).join("")}
+
+        </select>
+
+
+        <button
+            type="button"
+            class="btn-red"
+            id="moveBulkButton"
+        >
+            BARCHASINI O'TKAZISH
+        </button>
+
+
+        <button
+            type="button"
+            id="cancelSelectionButton"
+        >
+            BEKOR QILISH
+        </button>
+
+        `;
+
+
+    document.getElementById(
+        "selectAllButton"
+    ).onclick =
+        selectAllVisible;
+
+
+    document.getElementById(
+        "moveBulkButton"
+    ).onclick =
+        () => {
+
+            const select =
+                document.getElementById(
+                    "bulkCategorySelect"
+                );
+
+
+            if (!select.value) {
+
+                notify(
+                    "Kategoriyani tanlang.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            moveSelected(
+                select.value
+            );
+        };
+
+
+    document.getElementById(
+        "cancelSelectionButton"
+    ).onclick =
+        cancelSelection;
+}
+
+
+/* =========================================================
+   SELECT ALL
+   ========================================================= */
+
+function selectAllVisible() {
+
+    let list =
+        [...products];
+
+
+    if (
+        selectedCategory !== "all"
+    ) {
+
+        list =
+            list.filter(
+                product =>
+                    normalizeCategory(
+                        product.category
+                    ) ===
+                    normalizeCategory(
+                        selectedCategory
+                    )
+            );
+    }
+
+
+    if (searchText) {
+
+        const q =
+            searchText.toLowerCase();
+
+
+        list =
+            list.filter(
+                product =>
+                    String(
+                        product.name || ""
+                    )
+                    .toLowerCase()
+                    .includes(q)
+            );
+    }
+
+
+    list.forEach(
+        product => {
+
+            selectedProductIds.add(
+                product.id
+            );
+        }
+    );
+
+
+    multiSelectMode =
+        selectedProductIds.size > 0;
 
 
     renderProducts();
 
+    updateBulkActions();
 }
 
 
 /* =========================================================
-   ADD PRODUCT
-========================================================= */
+   CANCEL SELECTION
+   ========================================================= */
 
-async function addProduct() {
+function cancelSelection() {
 
-    const name =
-        productName.value.trim();
+    selectedProductIds.clear();
 
-    const category =
-        productCategory.value.trim();
-
-    const quantity =
-        Math.max(
-            0,
-            Number(
-                productQuantity.value
-            ) || 0
-        );
-
-    const minimum =
-        Math.max(
-            0,
-            Number(
-                lowLimit.value
-            ) || 0
-        );
+    multiSelectMode =
+        false;
 
 
-    if (!name) {
+    renderProducts();
 
-        showMessage(
-            "Mahsulot nomini kiriting.",
-            "error"
-        );
-
-        productName.focus();
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .insert({
-
-            name: name,
-
-            category:
-                category || null,
-
-            quantity: quantity,
-
-            low_limit: minimum,
-
-            image: null
-
-        });
-
-
-    if (error) {
-
-        console.error(error);
-
-        showMessage(
-            "Mahsulot qo‘shishda xatolik.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    productName.value = "";
-    productQuantity.value = "0";
-    lowLimit.value = "5";
-    productCategory.value = "";
-
-
-    await loadProducts();
-
-
-    showMessage(
-        "Mahsulot qo‘shildi.",
-        "success"
-    );
-
+    updateBulkActions();
 }
 
 
 /* =========================================================
-   QUANTITY
-========================================================= */
+   MOVE SELECTED
+   ========================================================= */
 
-async function changeQuantity(
-    id,
-    amount
+async function moveSelected(
+    categoryName
 ) {
 
-    const product =
-        products.find(
-            item =>
-                item.id === id
+    const ids =
+        [...selectedProductIds];
+
+
+    if (!ids.length) {
+
+        notify(
+            "Mahsulot tanlanmagan.",
+            "error"
         );
 
-
-    if (!product) {
         return;
     }
-
-
-    const newQuantity =
-        Math.max(
-            0,
-            product.quantity +
-                amount
-        );
 
 
     const {
@@ -1183,30 +2286,98 @@ async function changeQuantity(
     } = await db
         .from("products")
         .update({
-            quantity: newQuantity
+            category:
+                categoryName
         })
-        .eq("id", id);
+        .in(
+            "id",
+            ids
+        );
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
-        showMessage(
-            "Miqdorni o‘zgartirishda xatolik.",
+        notify(
+            "Mahsulotlarni o'tkazib bo'lmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    product.quantity =
-        newQuantity;
+    products =
+        products.map(
+            product =>
+                ids.includes(
+                    product.id
+                )
+                    ? {
+                        ...product,
+                        category:
+                            categoryName
+                    }
+                    : product
+        );
+
+
+    selectedProductIds.clear();
+
+    multiSelectMode =
+        false;
+
+
+    renderCategories();
 
     renderProducts();
 
+    updateBulkActions();
+
+
+    notify(
+        `${ids.length} ta mahsulot "${categoryLabel(categoryName)}" kategoriyasiga o'tkazildi.`,
+        "success"
+    );
+}
+
+
+/* =========================================================
+   QUANTITY
+   ========================================================= */
+
+async function updateQuantity(
+    id,
+    change
+) {
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if (!product) return;
+
+
+    const newValue =
+        Math.max(
+            0,
+            Number(
+                product.quantity
+            ) +
+            Number(change)
+        );
+
+
+    await setQuantity(
+        id,
+        newValue
+    );
 }
 
 
@@ -1215,10 +2386,26 @@ async function setQuantity(
     value
 ) {
 
-    const quantity =
+    let quantity =
+        Math.floor(
+            Number(value)
+        );
+
+
+    if (
+        !Number.isFinite(
+            quantity
+        )
+    ) {
+
+        quantity = 0;
+    }
+
+
+    quantity =
         Math.max(
             0,
-            Number(value) || 0
+            quantity
         );
 
 
@@ -1227,52 +2414,71 @@ async function setQuantity(
     } = await db
         .from("products")
         .update({
-            quantity: quantity
+            quantity
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
-
-        showMessage(
-            "Miqdorni saqlashda xatolik.",
+        notify(
+            "Miqdor saqlanmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    const product =
-        products.find(
-            item =>
-                item.id === id
+    products =
+        products.map(
+            product =>
+                product.id === id
+                    ? {
+                        ...product,
+                        quantity
+                    }
+                    : product
         );
 
 
-    if (product) {
-        product.quantity =
-            quantity;
-    }
-
+    updateStats();
 
     renderProducts();
-
 }
 
+
+/* =========================================================
+   LOW LIMIT
+   ========================================================= */
 
 async function setLowLimit(
     id,
     value
 ) {
 
-    const limit =
+    let low =
+        Math.floor(
+            Number(value)
+        );
+
+
+    if (
+        !Number.isFinite(low)
+    ) {
+
+        low = 5;
+    }
+
+
+    low =
         Math.max(
             0,
-            Number(value) || 0
+            low
         );
 
 
@@ -1281,227 +2487,69 @@ async function setLowLimit(
     } = await db
         .from("products")
         .update({
-            low_limit: limit
+            low_limit:
+                low
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
-
-        showMessage(
-            "Minimal miqdorni saqlashda xatolik.",
+        notify(
+            "Minimal miqdor saqlanmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    const product =
-        products.find(
-            item =>
-                item.id === id
+    products =
+        products.map(
+            product =>
+                product.id === id
+                    ? {
+                        ...product,
+                        low_limit:
+                            low
+                    }
+                    : product
         );
 
 
-    if (product) {
-        product.lowLimit =
-            limit;
-    }
-
+    updateStats();
 
     renderProducts();
-
-}
-
-
-/* =========================================================
-   EDIT
-========================================================= */
-
-function openEdit(id) {
-
-    const product =
-        products.find(
-            item =>
-                item.id === id
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    document.getElementById(
-        "editId"
-    ).value = product.id;
-
-
-    document.getElementById(
-        "editName"
-    ).value = product.name;
-
-
-    document.getElementById(
-        "editCategory"
-    ).value =
-        product.category || "";
-
-
-    document.getElementById(
-        "editQuantity"
-    ).value =
-        product.quantity;
-
-
-    document.getElementById(
-        "editLowLimit"
-    ).value =
-        product.lowLimit;
-
-
-    document.getElementById(
-        "editModal"
-    ).classList.add("show");
-
-}
-
-
-function closeEdit() {
-
-    document.getElementById(
-        "editModal"
-    ).classList.remove("show");
-
-}
-
-
-async function saveEdit() {
-
-    const id =
-        Number(
-            document.getElementById(
-                "editId"
-            ).value
-        );
-
-    const name =
-        document.getElementById(
-            "editName"
-        ).value.trim();
-
-    const category =
-        document.getElementById(
-            "editCategory"
-        ).value.trim();
-
-    const quantity =
-        Math.max(
-            0,
-            Number(
-                document.getElementById(
-                    "editQuantity"
-                ).value
-            ) || 0
-        );
-
-    const minimum =
-        Math.max(
-            0,
-            Number(
-                document.getElementById(
-                    "editLowLimit"
-                ).value
-            ) || 0
-        );
-
-
-    if (!name) {
-
-        showMessage(
-            "Mahsulot nomini kiriting.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-
-            name: name,
-
-            category:
-                category || null,
-
-            quantity: quantity,
-
-            low_limit: minimum
-
-        })
-        .eq("id", id);
-
-
-    if (error) {
-
-        console.error(error);
-
-        showMessage(
-            "Mahsulotni saqlashda xatolik.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    closeEdit();
-
-    await loadProducts();
-
-    showMessage(
-        "Mahsulot yangilandi.",
-        "success"
-    );
-
 }
 
 
 /* =========================================================
    DELETE PRODUCT
-========================================================= */
+   ========================================================= */
 
-async function deleteProduct(id) {
+async function deleteProduct(
+    id
+) {
 
     const product =
         products.find(
-            item =>
-                item.id === id
+            p => p.id === id
         );
 
 
-    if (!product) {
-        return;
-    }
+    if (!product) return;
 
 
-    const confirmed =
-        confirm(
-            `"${product.name}" mahsulotini o‘chirishni xohlaysizmi?`
-        );
+    if (
+        !confirm(
+            `"${product.name}" o'chirilsinmi?`
+        )
+    ) {
 
-
-    if (!confirmed) {
         return;
     }
 
@@ -1511,267 +2559,400 @@ async function deleteProduct(id) {
     } = await db
         .from("products")
         .delete()
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if (error) {
 
-        console.error(error);
-
-        showMessage(
-            "Mahsulotni o‘chirishda xatolik.",
+        notify(
+            "Mahsulot o'chirilmadi: " +
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    await loadProducts();
-
-    showMessage(
-        "Mahsulot o‘chirildi.",
-        "success"
-    );
-
-}
-
-
-/* =========================================================
-   RENDER PRODUCTS
-========================================================= */
-
-function renderProducts() {
-
-    const table =
-        document.getElementById(
-            "productsTable"
-        );
-
-
-    const query =
-        search.value
-            .trim()
-            .toLowerCase();
-
-
-    const filtered =
+    products =
         products.filter(
-            product => {
-
-                const matchesSearch =
-                    !query ||
-                    product.name
-                        .toLowerCase()
-                        .includes(query);
-
-
-                const matchesCategory =
-                    selectedCategory === "all" ||
-                    normalizeCategory(
-                        product.category
-                    ) ===
-                    normalizeCategory(
-                        selectedCategory
-                    );
-
-
-                return (
-                    matchesSearch &&
-                    matchesCategory
-                );
-
-            }
+            p => p.id !== id
         );
 
 
-    document.getElementById(
-        "selectedCategoryTitle"
-    ).textContent =
-        selectedCategory === "all"
-            ? "BARCHASI"
-            : getCategoryLabel(
-                selectedCategory
-            );
-
-
-    if (
-        filtered.length === 0
-    ) {
-
-        table.innerHTML = `
-
-            <tr>
-                <td
-                    colspan="6"
-                    class="empty-table"
-                >
-                    Mahsulot topilmadi
-                </td>
-            </tr>
-
-        `;
-
-        updateStats();
-        renderStockNotifications();
-
-        return;
-
-    }
-
-
-    table.innerHTML =
-        filtered
-            .map(product => {
-
-                const status =
-                    getStatus(product);
-
-
-                const category =
-                    product.category
-                        ? getCategoryLabel(
-                            product.category
-                        )
-                        : "Kategoriyasiz";
-
-
-                return `
-
-                    <tr
-                        class="product-row"
-                        data-product-id="${product.id}"
-                    >
-
-                        <td>
-
-                            <div class="product-name">
-                                ${escapeHTML(
-                                    product.name
-                                )}
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="category-badge">
-                                ${escapeHTML(
-                                    category
-                                )}
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="quantity-control">
-
-                                <button
-                                    class="quantity-button"
-                                    type="button"
-                                    onclick="changeQuantity(${product.id}, -1)"
-                                >
-                                    −
-                                </button>
-
-                                <input
-                                    class="quantity-input"
-                                    type="number"
-                                    min="0"
-                                    value="${product.quantity}"
-                                    onchange="setQuantity(${product.id}, this.value)"
-                                >
-
-                                <button
-                                    class="quantity-button"
-                                    type="button"
-                                    onclick="changeQuantity(${product.id}, 1)"
-                                >
-                                    +
-                                </button>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <input
-                                class="minimum-input"
-                                type="number"
-                                min="0"
-                                value="${product.lowLimit}"
-                                onchange="setLowLimit(${product.id}, this.value)"
-                            >
-
-                        </td>
-
-
-                        <td>
-
-                            <span
-                                class="status ${status.className}"
-                            >
-                                ${status.text}
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="actions">
-
-                                <button
-                                    class="action-button edit-action"
-                                    type="button"
-                                    onclick="openEdit(${product.id})"
-                                >
-                                    TAHRIRLASH
-                                </button>
-
-                                <button
-                                    class="action-button delete-action"
-                                    type="button"
-                                    onclick="deleteProduct(${product.id})"
-                                >
-                                    O‘CHIRISH
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            })
-            .join("");
+    selectedProductIds.delete(
+        id
+    );
 
 
     updateStats();
-    renderStockNotifications();
 
+    renderProducts();
+
+    updateBulkActions();
+
+
+    notify(
+        "Mahsulot o'chirildi.",
+        "success"
+    );
 }
 
 
 /* =========================================================
-   STATISTICS
-========================================================= */
+   ADD PRODUCT
+   ========================================================= */
+
+async function addProduct() {
+
+    const name =
+        document.getElementById(
+            "productName"
+        ).value.trim();
+
+
+    if (!name) {
+
+        notify(
+            "Mahsulot nomini kiriting.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    let quantity =
+        Math.floor(
+            Number(
+                document.getElementById(
+                    "productQuantity"
+                ).value
+            )
+        );
+
+
+    let low =
+        Math.floor(
+            Number(
+                document.getElementById(
+                    "productLowLimit"
+                ).value
+            )
+        );
+
+
+    if (
+        !Number.isFinite(quantity)
+    ) {
+
+        quantity = 0;
+    }
+
+
+    if (
+        !Number.isFinite(low)
+    ) {
+
+        low = 5;
+    }
+
+
+    const category =
+        document.getElementById(
+            "productCategory"
+        ).value ||
+        null;
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("products")
+        .insert({
+            name,
+            quantity:
+                Math.max(
+                    0,
+                    quantity
+                ),
+            low_limit:
+                Math.max(
+                    0,
+                    low
+                ),
+            category,
+            image: null
+        })
+        .select()
+        .single();
+
+
+    if (error) {
+
+        notify(
+            "Mahsulot qo'shilmadi: " +
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    products.push(
+        data
+    );
+
+
+    document.getElementById(
+        "productName"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "productQuantity"
+    ).value =
+        0;
+
+
+    document.getElementById(
+        "productLowLimit"
+    ).value =
+        5;
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        "";
+
+
+    updateStats();
+
+    renderProducts();
+
+
+    notify(
+        "Mahsulot qo'shildi.",
+        "success"
+    );
+}
+
+
+/* =========================================================
+   EDIT
+   ========================================================= */
+
+function openEdit(id) {
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if (!product) return;
+
+
+    document.getElementById(
+        "editProductName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "editProductQuantity"
+    ).value =
+        product.quantity || 0;
+
+
+    document.getElementById(
+        "editProductLowLimit"
+    ).value =
+        product.low_limit || 5;
+
+
+    renderCategorySelects();
+
+
+    document.getElementById(
+        "editProductCategory"
+    ).value =
+        product.category || "";
+
+
+    const modal =
+        document.getElementById(
+            "editModal"
+        );
+
+
+    modal.dataset.productId =
+        id;
+
+
+    modal.classList.add(
+        "show"
+    );
+}
+
+
+async function saveEdit() {
+
+    const modal =
+        document.getElementById(
+            "editModal"
+        );
+
+
+    const id =
+        Number(
+            modal.dataset.productId
+        );
+
+
+    const name =
+        document.getElementById(
+            "editProductName"
+        ).value.trim();
+
+
+    const quantity =
+        Math.max(
+            0,
+            Math.floor(
+                Number(
+                    document.getElementById(
+                        "editProductQuantity"
+                    ).value
+                )
+            ) || 0
+        );
+
+
+    const low =
+        Math.max(
+            0,
+            Math.floor(
+                Number(
+                    document.getElementById(
+                        "editProductLowLimit"
+                    ).value
+                )
+            ) || 0
+        );
+
+
+    const category =
+        document.getElementById(
+            "editProductCategory"
+        ).value ||
+        null;
+
+
+    if (!name) {
+
+        notify(
+            "Mahsulot nomi bo'sh.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("products")
+        .update({
+            name,
+            quantity,
+            low_limit:
+                low,
+            category
+        })
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        notify(
+            "Saqlanmadi: " +
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    products =
+        products.map(
+            product =>
+                product.id === id
+                    ? {
+                        ...product,
+                        name,
+                        quantity,
+                        low_limit:
+                            low,
+                        category
+                    }
+                    : product
+        );
+
+
+    closeEdit();
+
+    updateStats();
+
+    renderProducts();
+
+
+    notify(
+        "Mahsulot o'zgartirildi.",
+        "success"
+    );
+}
+
+
+function closeEdit() {
+
+    document.getElementById(
+        "editModal"
+    ).classList.remove(
+        "show"
+    );
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
 
 function updateStats() {
 
-    const total =
+    const totalProducts =
+        products.length;
+
+
+    const totalQuantity =
         products.reduce(
             (sum, product) =>
                 sum +
-                product.quantity,
+                Number(
+                    product.quantity
+                ),
             0
         );
 
@@ -1779,296 +2960,100 @@ function updateStats() {
     const low =
         products.filter(
             product =>
-                product.quantity > 0 &&
-                product.quantity <=
-                    product.lowLimit
+                Number(
+                    product.quantity
+                ) > 0 &&
+                Number(
+                    product.quantity
+                ) <=
+                Number(
+                    product.low_limit
+                )
         ).length;
 
 
-    const out =
+    const empty =
         products.filter(
             product =>
-                product.quantity === 0
+                Number(
+                    product.quantity
+                ) <= 0
         ).length;
 
 
     document.getElementById(
-        "productCount"
+        "statProducts"
     ).textContent =
-        products.length;
+        totalProducts;
 
 
     document.getElementById(
-        "totalStock"
+        "statQuantity"
     ).textContent =
-        total;
+        totalQuantity;
 
 
     document.getElementById(
-        "lowStock"
+        "statLow"
     ).textContent =
         low;
 
 
     document.getElementById(
-        "outStock"
+        "statEmpty"
     ).textContent =
-        out;
-
+        empty;
 }
 
 
 /* =========================================================
-   NOTIFICATIONS
-========================================================= */
+   TITLE
+   ========================================================= */
 
-function renderStockNotifications() {
+function updateCategoryTitle() {
 
-    const box =
-        document.getElementById(
-            "notifications"
-        );
-
-    const indicator =
-        document.getElementById(
-            "notificationIndicator"
-        );
-
-
-    const important =
-        products.filter(
-            product =>
-                product.quantity === 0 ||
-                product.quantity <=
-                    product.lowLimit
-        );
-
-
-    if (
-        important.length > 0
-    ) {
-
-        indicator.classList.add(
-            "show"
-        );
-
-    } else {
-
-        indicator.classList.remove(
-            "show"
-        );
-
-    }
-
-
-    if (
-        important.length === 0
-    ) {
-
-        box.innerHTML = `
-
-            <div class="notification empty-notification">
-                Hozircha muhim bildirishnoma yo‘q.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-        important
-            .map(product => {
-
-                const out =
-                    product.quantity === 0;
-
-
-                return `
-
-                    <div
-                        class="
-                            notification
-                            ${
-                                out
-                                    ? "notification-out"
-                                    : "notification-low"
-                            }
-                        "
-                    >
-
-                        <div class="notification-icon">
-                            !
-                        </div>
-
-
-                        <div class="notification-text">
-
-                            <strong>
-                                ${escapeHTML(
-                                    product.name
-                                )}
-                            </strong>
-
-                            <span>
-
-                                ${
-                                    out
-
-                                        ? "Mahsulot tugagan — 0 dona."
-
-                                        : `
-                                            Faqat
-                                            ${product.quantity}
-                                            dona qoldi.
-                                            Minimal miqdor:
-                                            ${product.lowLimit}
-                                            dona.
-                                        `
-
-                                }
-
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="notification-edit"
-                            type="button"
-                            onclick="openProductFromNotification(${product.id})"
-                        >
-                            KO‘RISH
-                        </button>
-
-                    </div>
-
-                `;
-
-            })
-            .join("");
-
-}
-
-
-function openNotifications() {
-
-    renderStockNotifications();
-
-    document
-        .getElementById(
-            "notificationModal"
-        )
-        .classList.add("show");
-
-}
-
-
-function closeNotifications() {
-
-    document
-        .getElementById(
-            "notificationModal"
-        )
-        .classList.remove("show");
-
-}
-
-
-function openProductFromNotification(id) {
-
-    closeNotifications();
-
-    setTimeout(
-        () => openEdit(id),
-        100
-    );
-
+    document.getElementById(
+        "selectedCategoryTitle"
+    ).textContent =
+        selectedCategory === "all"
+            ? "BARCHASI"
+            : categoryLabel(
+                selectedCategory
+            );
 }
 
 
 /* =========================================================
-   MESSAGE
-========================================================= */
+   EVENTS
+   ========================================================= */
 
-let messageTimer = null;
-
-
-function showMessage(
-    text,
-    type = "success"
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
+document.getElementById(
+    "addCategoryButton"
+).onclick =
+    addCategory;
 
 
-    message.textContent =
-        text;
+document.getElementById(
+    "addProductButton"
+).onclick =
+    addProduct;
 
 
-    message.className =
-        `message show ${type}`;
+document.getElementById(
+    "saveEditButton"
+).onclick =
+    saveEdit;
 
 
-    clearTimeout(
-        messageTimer
-    );
+document.getElementById(
+    "cancelEditButton"
+).onclick =
+    closeEdit;
 
 
-    messageTimer =
-        setTimeout(
-            () => {
-
-                message.className =
-                    "message";
-
-            },
-            3000
-        );
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-search.addEventListener(
-    "input",
-    renderProducts
-);
-
-
-/* =========================================================
-   ENTER
-========================================================= */
-
-document
-    .getElementById("newCategory")
-    .addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                event.preventDefault();
-
-                addCategory();
-
-            }
-
-        }
-    );
-
-
-productName.addEventListener(
+document.getElementById(
+    "newCategory"
+).addEventListener(
     "keydown",
     event => {
 
@@ -2076,56 +3061,44 @@ productName.addEventListener(
             event.key === "Enter"
         ) {
 
-            event.preventDefault();
-
-            addProduct();
-
+            addCategory();
         }
-
     }
 );
 
 
-/* =========================================================
-   MODALS
-========================================================= */
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    event => {
 
-document
-    .getElementById("editModal")
-    .addEventListener(
-        "click",
-        event => {
+        searchText =
+            event.target.value
+                .trim()
+                .toLowerCase();
 
-            if (
-                event.target.id ===
-                "editModal"
-            ) {
 
-                closeEdit();
+        renderProducts();
+    }
+);
 
-            }
 
+document.getElementById(
+    "editModal"
+).addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.id ===
+            "editModal"
+        ) {
+
+            closeEdit();
         }
-    );
-
-
-document
-    .getElementById("notificationModal")
-    .addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target.id ===
-                "notificationModal"
-            ) {
-
-                closeNotifications();
-
-            }
-
-        }
-    );
+    }
+);
 
 
 document.addEventListener(
@@ -2136,661 +3109,103 @@ document.addEventListener(
             event.key === "Escape"
         ) {
 
-            closeEdit();
-            closeNotifications();
-            resetDragState();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   TELEGRAM-LIKE LONG PRESS DRAG
-========================================================= */
-
-const LONG_PRESS_MS = 2000;
-
-const DRAG_MOVE_CANCEL_DISTANCE = 22;
-
-let dragTimer = null;
-
-let dragProductId = null;
-
-let dragPointerId = null;
-
-let dragSourceRow = null;
-
-let dragStartX = 0;
-
-let dragStartY = 0;
-
-let isDraggingProduct = false;
-
-let activeDropCategory = null;
-
-
-/* ---------------------------------------------------------
-   RESET
---------------------------------------------------------- */
-
-function resetDragState() {
-
-    clearTimeout(
-        dragTimer
-    );
-
-    dragTimer = null;
-
-    if (
-        dragSourceRow
-    ) {
-
-        dragSourceRow.classList.remove(
-            "drag-ready"
-        );
-
-        dragSourceRow.classList.remove(
-            "dragging"
-        );
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".category-drop-active"
-        )
-        .forEach(
-            element =>
-                element.classList.remove(
-                    "category-drop-active"
-                )
-        );
-
-
-    document.body.classList.remove(
-        "product-dragging"
-    );
-
-
-    dragProductId = null;
-
-    dragPointerId = null;
-
-    dragSourceRow = null;
-
-    activeDropCategory = null;
-
-    isDraggingProduct = false;
-
-}
-
-
-/* ---------------------------------------------------------
-   FIND CATEGORY UNDER POINTER
---------------------------------------------------------- */
-
-function findDropCategory(
-    x,
-    y
-) {
-
-    const elements =
-        document.elementsFromPoint(
-            x,
-            y
-        );
-
-
-    for (
-        const element of elements
-    ) {
-
-        const category =
-            element.closest(
-                ".category-item[data-category]"
-            );
-
-
-        if (
-            category &&
-            document
-                .getElementById(
-                    "categoryButtons"
-                )
-                .contains(category)
-        ) {
-
-            return category;
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-/* ---------------------------------------------------------
-   UPDATE DROP TARGET
---------------------------------------------------------- */
-
-function updateDropCategory(
-    x,
-    y
-) {
-
-    const category =
-        findDropCategory(
-            x,
-            y
-        );
-
-
-    if (
-        category ===
-        activeDropCategory
-    ) {
-
-        return;
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".category-drop-active"
-        )
-        .forEach(
-            element =>
-                element.classList.remove(
-                    "category-drop-active"
-                )
-        );
-
-
-    activeDropCategory =
-        category;
-
-
-    if (
-        activeDropCategory
-    ) {
-
-        activeDropCategory.classList.add(
-            "category-drop-active"
-        );
-
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   START REAL DRAG
---------------------------------------------------------- */
-
-function startActualProductDrag() {
-
-    if (
-        !dragSourceRow ||
-        dragProductId === null
-    ) {
-
-        return;
-
-    }
-
-
-    isDraggingProduct = true;
-
-
-    dragSourceRow.classList.remove(
-        "drag-ready"
-    );
-
-    dragSourceRow.classList.add(
-        "dragging"
-    );
-
-
-    document.body.classList.add(
-        "product-dragging"
-    );
-
-
-    if (
-        dragPointerId !== null &&
-        dragSourceRow.setPointerCapture
-    ) {
-
-        try {
-
-            dragSourceRow.setPointerCapture(
-                dragPointerId
-            );
-
-        } catch (error) {
-
-            console.log(
-                "Pointer capture:",
-                error
-            );
-
-        }
-
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   MOVE PRODUCT TO CATEGORY
---------------------------------------------------------- */
-
-async function moveProductToCategory(
-    productId,
-    categoryName
-) {
-
-    if (
-        !categoryName
-    ) {
-
-        return;
-
-    }
-
-
-    const product =
-        products.find(
-            item =>
-                item.id === productId
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    if (
-        normalizeCategory(
-            product.category
-        ) ===
-        normalizeCategory(
-            categoryName
-        )
-    ) {
-
-        showMessage(
-            "Mahsulot allaqachon shu kategoriyada.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-            category:
-                categoryName
-        })
-        .eq(
-            "id",
-            productId
-        );
-
-
-    if (error) {
-
-        console.error(error);
-
-        showMessage(
-            "Mahsulot kategoriyasini o‘zgartirishda xatolik.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    product.category =
-        categoryName;
-
-
-    renderProducts();
-
-
-    showMessage(
-        `"${product.name}" → ${getCategoryLabel(categoryName)}`,
-        "success"
-    );
-
-}
-
-
-/* ---------------------------------------------------------
-   POINTER DOWN
---------------------------------------------------------- */
-
-productsTableElement.addEventListener(
-    "pointerdown",
-    event => {
-
-        /*
-         * Agar foydalanuvchi tugma yoki inputni bossa,
-         * DRAG umuman boshlanmaydi.
-         */
-
-        const interactive =
-            event.target.closest(
-                "button, input, select, textarea, a"
-            );
-
-
-        if (
-            interactive
-        ) {
-
-            return;
-
-        }
-
-
-        const row =
-            event.target.closest(
-                ".product-row"
-            );
-
-
-        if (
-            !row
-        ) {
-
-            return;
-
-        }
-
-
-        resetDragState();
-
-
-        dragSourceRow =
-            row;
-
-
-        dragProductId =
-            Number(
-                row.dataset.productId
-            );
-
-
-        dragPointerId =
-            event.pointerId;
-
-
-        dragStartX =
-            event.clientX;
-
-        dragStartY =
-            event.clientY;
-
-
-        dragSourceRow.classList.add(
-            "drag-ready"
-        );
-
-
-        dragTimer =
-            setTimeout(
-                () => {
-
-                    startActualProductDrag();
-
-                },
-                LONG_PRESS_MS
-            );
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* ---------------------------------------------------------
-   POINTER MOVE
---------------------------------------------------------- */
-
-document.addEventListener(
-    "pointermove",
-    event => {
-
-        if (
-            dragPointerId !==
-            event.pointerId
-        ) {
-
-            return;
-
-        }
-
-
-        const distance =
-            Math.hypot(
-                event.clientX -
-                    dragStartX,
-                event.clientY -
-                    dragStartY
-            );
-
-
-        /*
-         * До начала DRAG небольшой сдвиг разрешён.
-         * Это предотвращает случайное отменение
-         * из-за лёгкого движения пальца.
-         */
-
-        if (
-            !isDraggingProduct
-        ) {
-
             if (
-                distance >
-                DRAG_MOVE_CANCEL_DISTANCE
+                multiSelectMode
             ) {
 
-                resetDragState();
+                cancelSelection();
 
+            } else {
+
+                closeEdit();
             }
-
-            return;
-
         }
-
-
-        event.preventDefault();
-
-
-        updateDropCategory(
-            event.clientX,
-            event.clientY
-        );
-
-    },
-    {
-        passive: false
-    }
-);
-
-
-/* ---------------------------------------------------------
-   POINTER UP
---------------------------------------------------------- */
-
-document.addEventListener(
-    "pointerup",
-    event => {
-
-        if (
-            dragPointerId !==
-            event.pointerId
-        ) {
-
-            return;
-
-        }
-
-
-        const wasDragging =
-            isDraggingProduct;
-
-        const productId =
-            dragProductId;
-
-        const target =
-            activeDropCategory;
-
-
-        let categoryName =
-            null;
-
-
-        if (
-            target
-        ) {
-
-            categoryName =
-                target.dataset.category;
-
-        }
-
-
-        resetDragState();
-
-
-        if (
-            wasDragging &&
-            productId !== null &&
-            categoryName
-        ) {
-
-            moveProductToCategory(
-                productId,
-                categoryName
-            );
-
-        }
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* ---------------------------------------------------------
-   POINTER CANCEL
---------------------------------------------------------- */
-
-document.addEventListener(
-    "pointercancel",
-    event => {
-
-        if (
-            dragPointerId ===
-            event.pointerId
-        ) {
-
-            resetDragState();
-
-        }
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* ---------------------------------------------------------
-   WINDOW LOST FOCUS
---------------------------------------------------------- */
-
-window.addEventListener(
-    "blur",
-    resetDragState
-);
-
-
-document.addEventListener(
-    "visibilitychange",
-    () => {
-
-        if (
-            document.hidden
-        ) {
-
-            resetDragState();
-
-        }
-
     }
 );
 
 
 /* =========================================================
-   START APP
-========================================================= */
+   START
+   ========================================================= */
 
 async function startApp() {
 
-    await loadCategories();
+    try {
 
-    await loadProducts();
+        await loadCategories();
 
+        await loadProducts();
+
+        updateCategoryTitle();
+
+        updateBulkActions();
+
+        console.log(
+            "GRAND X METAL EDITION READY"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "START ERROR:",
+            error
+        );
+
+        notify(
+            "Saytni ishga tushirishda xatolik.",
+            "error"
+        );
+    }
 }
 
 
-startApp();
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        startApp
+    );
+
+} else {
+
+    startApp();
+}
 
 
 /* =========================================================
    AUTO REFRESH
-========================================================= */
+   ========================================================= */
 
 setInterval(
     async () => {
 
-        /*
-         * Не перерисовываем таблицу во время
-         * перетаскивания товара.
-         */
-
         if (
-            dragSourceRow
-        ) {
-
-            return;
-
-        }
+            multiSelectMode
+        ) return;
 
 
         await loadProducts();
 
     },
-    5000
+    7000
+);
+
+
+setInterval(
+    async () => {
+
+        if (
+            multiSelectMode
+        ) return;
+
+
+        await loadCategories();
+
+    },
+    15000
 );
 
 </script>
