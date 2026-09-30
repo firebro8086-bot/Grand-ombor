@@ -62,12 +62,14 @@ body {
 
     display: flex;
     align-items: center;
+
     gap: 24px;
 }
 
 .logo {
     font-size: 28px;
     font-weight: 950;
+
     letter-spacing: 2px;
 }
 
@@ -94,9 +96,14 @@ body {
 ========================================================= */
 
 .container {
-    width: min(1450px, calc(100% - 40px));
+    width:
+        min(
+            1450px,
+            calc(100% - 40px)
+        );
 
-    margin: 32px auto 70px;
+    margin:
+        32px auto 70px;
 }
 
 
@@ -108,7 +115,10 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
 
     gap: 18px;
 
@@ -131,12 +141,14 @@ body {
             #0c0c0c
         );
 
-    border: 2px solid #303030;
+    border:
+        2px solid #303030;
 
     border-radius: 18px;
 
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, .25);
+        0 10px 35px
+        rgba(0, 0, 0, .25);
 
     transition:
         border-color .2s ease,
@@ -146,7 +158,8 @@ body {
 .stat-card:hover {
     border-color: #4b4b4b;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 .stat-title {
@@ -194,11 +207,13 @@ body {
 
     min-width: 280px;
 
-    padding: 15px 18px;
+    padding:
+        15px 18px;
 
     background: #151515;
 
-    border: 2px solid #3a3a3a;
+    border:
+        2px solid #3a3a3a;
 
     border-radius: 12px;
 
@@ -219,7 +234,8 @@ body {
         visibility .2s ease;
 
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, .5);
+        0 15px 40px
+        rgba(0, 0, 0, .5);
 }
 
 .message.show {
@@ -259,16 +275,23 @@ body {
             #0b0b0b
         );
 
-    border: 2px solid #2d2d2d;
+    border:
+        2px solid #2d2d2d;
 
     border-radius: 18px;
 
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, .22);
+        0 10px 35px
+        rgba(0, 0, 0, .22);
+}
+
+.panel:hover {
+    border-color: #353535;
 }
 
 .panel-title {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -301,7 +324,10 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
 
     gap: 16px;
 
@@ -332,13 +358,15 @@ select {
 
     min-height: 50px;
 
-    padding: 0 15px;
+    padding:
+        0 15px;
 
     color: #fff;
 
     background: #090909;
 
-    border: 2px solid #333;
+    border:
+        2px solid #333;
 
     border-radius: 11px;
 
@@ -364,7 +392,8 @@ select:focus {
     background: #0e0e0e;
 
     box-shadow:
-        0 0 0 3px rgba(255, 255, 255, .025);
+        0 0 0 3px
+        rgba(255, 255, 255, .025);
 }
 
 select {
@@ -380,11 +409,20 @@ button {
     font-family: inherit;
 }
 
+button:focus-visible {
+    outline:
+        2px solid #a92a2a;
+
+    outline-offset:
+        2px;
+}
+
 .main-button,
 .secondary-button {
     min-height: 50px;
 
-    padding: 0 22px;
+    padding:
+        0 22px;
 
     border-radius: 11px;
 
@@ -412,10 +450,12 @@ button {
             #681414
         );
 
-    border: 2px solid #ad2c2c;
+    border:
+        2px solid #ad2c2c;
 
     box-shadow:
-        0 7px 20px rgba(100, 15, 15, .18);
+        0 7px 20px
+        rgba(100, 15, 15, .18);
 }
 
 .main-button:hover {
@@ -426,12 +466,14 @@ button {
             #751818
         );
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 .main-button:active,
 .secondary-button:active {
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .secondary-button {
@@ -439,7 +481,8 @@ button {
 
     background: #121212;
 
-    border: 2px solid #444;
+    border:
+        2px solid #444;
 }
 
 .secondary-button:hover {
@@ -459,22 +502,27 @@ button {
     width: 100%;
 
     display: flex;
+
     flex-wrap: wrap;
 
     gap: 12px;
 
     margin-bottom: 20px;
+
+    padding: 4px;
 }
 
 .category-item {
     display: flex;
+
     align-items: stretch;
 
     overflow: hidden;
 
     background: #0d0d0d;
 
-    border: 2px solid #393939;
+    border:
+        2px solid #393939;
 
     border-radius: 13px;
 
@@ -482,18 +530,22 @@ button {
         border-color .18s ease,
         transform .18s ease,
         box-shadow .18s ease;
+
+    position: relative;
 }
 
 .category-item:hover {
     border-color: #5a5a5a;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 .category-button {
     min-height: 52px;
 
-    padding: 0 22px;
+    padding:
+        0 22px;
 
     color: #aaa;
 
@@ -532,9 +584,11 @@ button {
 
 .category-delete {
     width: 48px;
+
     min-height: 52px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -543,7 +597,9 @@ button {
     background: #101010;
 
     border: 0;
-    border-left: 2px solid #333;
+
+    border-left:
+        2px solid #333;
 
     font-size: 22px;
 
@@ -560,8 +616,55 @@ button {
 
     background: #711818;
 
-    border-left-color: #9b2828;
+    border-left-color:
+        #9b2828;
 }
+
+
+/* =========================================================
+   CATEGORY DROP
+========================================================= */
+
+.category-item.category-drop-active {
+    border-color:
+        #e12d2d !important;
+
+    transform:
+        translateY(-5px)
+        scale(1.035);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(209, 43, 43, .17),
+
+        0 0 35px
+        rgba(209, 43, 43, .25);
+}
+
+.category-item.category-drop-active
+.category-button {
+    color: #fff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b02a2a,
+            #681515
+        );
+}
+
+.category-item.category-drop-active
+.category-delete {
+    color: #ddd;
+
+    background:
+        #1d0c0c;
+}
+
+
+/* =========================================================
+   CATEGORY ADD
+========================================================= */
 
 .category-add {
     width: 100%;
@@ -581,40 +684,6 @@ button {
 
 .category-add .secondary-button {
     min-height: 52px;
-}
-
-
-/* =========================================================
-   CATEGORY DROP
-========================================================= */
-
-.category-item.category-drop-active {
-    border-color: #d12b2b !important;
-
-    transform:
-        translateY(-3px)
-        scale(1.015);
-
-    box-shadow:
-        0 0 0 3px rgba(209, 43, 43, .16),
-        0 0 28px rgba(209, 43, 43, .14);
-}
-
-.category-item.category-drop-active
-.category-button {
-    color: #fff;
-
-    background:
-        linear-gradient(
-            180deg,
-            #9d2424,
-            #681515
-        );
-}
-
-.category-item.category-drop-active
-.category-delete {
-    color: #aaa;
 }
 
 
@@ -658,13 +727,15 @@ button {
 }
 
 .selected-category-title {
-    padding: 10px 15px;
+    padding:
+        10px 15px;
 
     color: #ddd;
 
     background: #111;
 
-    border: 2px solid #3b3b3b;
+    border:
+        2px solid #3b3b3b;
 
     border-radius: 9px;
 
@@ -672,6 +743,46 @@ button {
     font-weight: 900;
 
     letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   DRAG INFO
+========================================================= */
+
+.drag-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin:
+        -7px 0 18px;
+
+    padding:
+        11px 14px;
+
+    color: #777;
+
+    background:
+        rgba(255, 255, 255, .018);
+
+    border:
+        1px solid #282828;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .5px;
+}
+
+.drag-info-icon {
+    color: #a72a2a;
+
+    font-size: 16px;
 }
 
 
@@ -684,9 +795,12 @@ button {
 
     overflow-x: auto;
 
-    border: 2px solid #292929;
+    border:
+        2px solid #292929;
 
     border-radius: 14px;
+
+    scrollbar-width: thin;
 }
 
 table {
@@ -702,11 +816,13 @@ thead {
 }
 
 th {
-    padding: 17px 16px;
+    padding:
+        17px 16px;
 
     color: #707070;
 
-    border-bottom: 2px solid #292929;
+    border-bottom:
+        2px solid #292929;
 
     font-size: 9px;
     font-weight: 900;
@@ -719,9 +835,11 @@ th {
 }
 
 td {
-    padding: 17px 16px;
+    padding:
+        17px 16px;
 
-    border-bottom: 1px solid #242424;
+    border-bottom:
+        1px solid #242424;
 
     background: #111;
 
@@ -732,11 +850,22 @@ tbody tr:last-child td {
     border-bottom: 0;
 }
 
+
+/* =========================================================
+   PRODUCT ROW
+========================================================= */
+
 .product-row {
+    user-select: none;
+    -webkit-user-select: none;
+
     transition:
         background .15s ease,
         opacity .2s ease,
-        transform .2s ease;
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    touch-action: pan-y;
 }
 
 .product-row:hover td {
@@ -744,31 +873,48 @@ tbody tr:last-child td {
 }
 
 
-/* =========================================================
-   PRODUCT DRAG
-========================================================= */
-
-.product-row {
-    user-select: none;
-    -webkit-user-select: none;
-}
+/*
+ * Короткое удержание.
+ */
 
 .product-row.drag-ready td {
-    background: #191919;
+    background:
+        #191919;
+
+    transition:
+        background .15s ease;
 }
 
+
+/*
+ * Реальный drag после 2 секунд.
+ */
+
 .product-row.dragging {
-    opacity: .42;
+    opacity: .55;
+
+    position: relative;
 
     outline:
         2px solid #a52626;
 
-    outline-offset: -2px;
+    outline-offset:
+        -2px;
 
     cursor: grabbing;
+
+    transform:
+        scale(1.005);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, .35);
 }
 
 .product-row.dragging td {
+    background:
+        #1b1111;
+
     cursor: grabbing;
 }
 
@@ -797,13 +943,15 @@ tbody tr:last-child td {
 
     min-height: 30px;
 
-    padding: 0 11px;
+    padding:
+        0 11px;
 
     color: #aaa;
 
     background: #171717;
 
-    border: 1px solid #373737;
+    border:
+        1px solid #373737;
 
     border-radius: 7px;
 
@@ -822,13 +970,15 @@ tbody tr:last-child td {
 
 .quantity-control {
     display: flex;
+
     align-items: center;
 
     width: max-content;
 
     overflow: hidden;
 
-    border: 2px solid #343434;
+    border:
+        2px solid #343434;
 
     border-radius: 10px;
 
@@ -837,6 +987,7 @@ tbody tr:last-child td {
 
 .quantity-button {
     width: 42px;
+
     height: 42px;
 
     color: #ccc;
@@ -862,17 +1013,23 @@ tbody tr:last-child td {
 
 .quantity-input {
     width: 70px;
+
     min-height: 42px;
 
-    padding: 0 8px;
+    padding:
+        0 8px;
 
     color: #fff;
 
     background: #0b0b0b;
 
     border: 0;
-    border-left: 2px solid #292929;
-    border-right: 2px solid #292929;
+
+    border-left:
+        2px solid #292929;
+
+    border-right:
+        2px solid #292929;
 
     border-radius: 0;
 
@@ -909,7 +1066,8 @@ tbody tr:last-child td {
 
     min-height: 32px;
 
-    padding: 0 12px;
+    padding:
+        0 12px;
 
     border-radius: 7px;
 
@@ -926,7 +1084,8 @@ tbody tr:last-child td {
 
     background: #17231a;
 
-    border: 1px solid #34573a;
+    border:
+        1px solid #34573a;
 }
 
 .status-low {
@@ -934,7 +1093,8 @@ tbody tr:last-child td {
 
     background: #292512;
 
-    border: 1px solid #62572b;
+    border:
+        1px solid #62572b;
 }
 
 .status-out {
@@ -942,7 +1102,8 @@ tbody tr:last-child td {
 
     background: #2b1515;
 
-    border: 1px solid #6b2929;
+    border:
+        1px solid #6b2929;
 }
 
 
@@ -959,7 +1120,8 @@ tbody tr:last-child td {
 .action-button {
     min-height: 38px;
 
-    padding: 0 12px;
+    padding:
+        0 12px;
 
     border-radius: 8px;
 
@@ -981,7 +1143,8 @@ tbody tr:last-child td {
 
     background: #191919;
 
-    border: 1px solid #444;
+    border:
+        1px solid #444;
 }
 
 .edit-action:hover {
@@ -997,7 +1160,8 @@ tbody tr:last-child td {
 
     background: #1c1010;
 
-    border: 1px solid #572727;
+    border:
+        1px solid #572727;
 }
 
 .delete-action:hover {
@@ -1037,27 +1201,50 @@ tbody tr:last-child td {
 
     pointer-events: none;
 
-    padding: 10px 14px;
+    min-width: 185px;
+
+    padding:
+        11px 14px;
 
     color: #fff;
 
-    background: #111;
+    background:
+        rgba(14, 14, 14, .96);
 
-    border: 2px solid #444;
+    border:
+        2px solid #6b2929;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, .55);
+        0 12px 35px
+        rgba(0, 0, 0, .6);
 
-    font-size: 11px;
-    font-weight: 800;
-
-    white-space: nowrap;
+    backdrop-filter:
+        blur(8px);
 }
 
 .drag-hint.show {
-    display: block;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.drag-hint-main {
+    color: #eee;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.drag-hint-sub {
+    color: #777;
+
+    font-size: 9px;
 }
 
 
@@ -1077,19 +1264,22 @@ tbody tr:last-child td {
     height: 58px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background: #111;
 
-    border: 2px solid #444;
+    border:
+        2px solid #444;
 
     border-radius: 50%;
 
     cursor: pointer;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, .45);
+        0 10px 30px
+        rgba(0, 0, 0, .45);
 
     transition:
         transform .18s ease,
@@ -1123,7 +1313,8 @@ tbody tr:last-child td {
 
     background: #d52b2b;
 
-    border: 2px solid #111;
+    border:
+        2px solid #111;
 
     border-radius: 50%;
 }
@@ -1145,6 +1336,7 @@ tbody tr:last-child td {
     z-index: 5000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1160,7 +1352,8 @@ tbody tr:last-child td {
         opacity .2s ease,
         visibility .2s ease;
 
-    backdrop-filter: blur(7px);
+    backdrop-filter:
+        blur(7px);
 }
 
 .modal-overlay.show {
@@ -1171,7 +1364,8 @@ tbody tr:last-child td {
 .modal {
     position: relative;
 
-    width: min(560px, 100%);
+    width:
+        min(560px, 100%);
 
     max-height: 90vh;
 
@@ -1186,16 +1380,19 @@ tbody tr:last-child td {
             #0b0b0b
         );
 
-    border: 2px solid #383838;
+    border:
+        2px solid #383838;
 
     border-radius: 18px;
 
     box-shadow:
-        0 30px 90px rgba(0, 0, 0, .65);
+        0 30px 90px
+        rgba(0, 0, 0, .65);
 }
 
 .notification-modal {
-    width: min(700px, 100%);
+    width:
+        min(700px, 100%);
 }
 
 .modal-close {
@@ -1211,7 +1408,8 @@ tbody tr:last-child td {
 
     background: #111;
 
-    border: 1px solid #3b3b3b;
+    border:
+        1px solid #3b3b3b;
 
     border-radius: 9px;
 
@@ -1250,6 +1448,7 @@ tbody tr:last-child td {
 
 .modal-actions {
     display: flex;
+
     justify-content: flex-end;
 
     gap: 10px;
@@ -1264,6 +1463,7 @@ tbody tr:last-child td {
 
 .notifications {
     display: flex;
+
     flex-direction: column;
 
     gap: 10px;
@@ -1271,6 +1471,7 @@ tbody tr:last-child td {
 
 .notification {
     display: flex;
+
     align-items: center;
 
     gap: 13px;
@@ -1279,7 +1480,8 @@ tbody tr:last-child td {
 
     background: #121212;
 
-    border: 2px solid #303030;
+    border:
+        2px solid #303030;
 
     border-radius: 11px;
 }
@@ -1296,9 +1498,11 @@ tbody tr:last-child td {
     width: 34px;
     height: 34px;
 
-    flex: 0 0 34px;
+    flex:
+        0 0 34px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1311,7 +1515,8 @@ tbody tr:last-child td {
     font-weight: 900;
 }
 
-.notification-low .notification-icon {
+.notification-low
+.notification-icon {
     background: #65561e;
 }
 
@@ -1321,6 +1526,7 @@ tbody tr:last-child td {
     flex: 1;
 
     display: flex;
+
     flex-direction: column;
 
     gap: 4px;
@@ -1341,13 +1547,15 @@ tbody tr:last-child td {
 .notification-edit {
     min-height: 36px;
 
-    padding: 0 11px;
+    padding:
+        0 11px;
 
     color: #ccc;
 
     background: #1a1a1a;
 
-    border: 1px solid #444;
+    border:
+        1px solid #444;
 
     border-radius: 7px;
 
@@ -1484,7 +1692,8 @@ tbody tr:last-child td {
         grid-template-columns: 1fr;
     }
 
-    .category-add .secondary-button {
+    .category-add
+    .secondary-button {
         width: 100%;
     }
 
@@ -1494,15 +1703,21 @@ tbody tr:last-child td {
 
     .notification {
         align-items: flex-start;
+
         flex-wrap: wrap;
     }
 
     .notification-text {
-        width: calc(100% - 55px);
+        width:
+            calc(100% - 55px);
     }
 
     .notification-edit {
         width: 100%;
+    }
+
+    .drag-info {
+        line-height: 1.5;
     }
 }
 
@@ -1526,6 +1741,7 @@ tbody tr:last-child td {
 
     .category-delete {
         width: 44px;
+
         min-height: 48px;
     }
 
@@ -1549,11 +1765,6 @@ tbody tr:last-child td {
     .modal-actions button {
         width: 100%;
     }
-
-    /*
-     * На телефоне подсказка мыши не нужна.
-     * Сам drag при этом продолжает работать.
-     */
 
     .drag-hint {
         display: none !important;
