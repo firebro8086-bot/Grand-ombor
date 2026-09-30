@@ -1,2459 +1,18 @@
-<!DOCTYPE html>
-<html lang="uz">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>GRAND X — Ombor</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-
-<body>
-
-<header class="header">
-
-    <div class="header-left">
-
-        <div class="logo">
-            GRAND <span>X</span>
-        </div>
-
-        <div class="header-subtitle">
-            OMBOR BOSHQARUV TIZIMI
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="container">
-
-    <!-- =====================================================
-         STATS
-    ====================================================== -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <span class="stat-title">
-                MAHSULOTLAR
-            </span>
-
-            <strong id="productCount">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <span class="stat-title">
-                JAMI MIQDOR
-            </span>
-
-            <strong id="totalStock">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card warning-stat">
-
-            <span class="stat-title">
-                KAM QOLGAN
-            </span>
-
-            <strong id="lowStock">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card danger-stat">
-
-            <span class="stat-title">
-                TUGAGAN
-            </span>
-
-            <strong id="outStock">
-                0
-            </strong>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         MESSAGE
-    ====================================================== -->
-
-    <div
-        id="message"
-        class="message"
-    ></div>
-
-
-    <!-- =====================================================
-         ADD PRODUCT
-    ====================================================== -->
-
-    <section class="panel">
-
-        <div class="panel-title">
-
-            <div>
-
-                <h2>
-                    Yangi mahsulot
-                </h2>
-
-                <p>
-                    Omborga yangi mahsulot qo‘shish
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="form-grid">
-
-            <div class="field">
-
-                <label>
-                    Mahsulot nomi
-                </label>
-
-                <input
-                    id="productName"
-                    type="text"
-                    placeholder="Masalan: 1088"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Kategoriya
-                </label>
-
-                <select id="productCategory">
-
-                    <option value="">
-                        Kategoriyasiz
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Miqdor
-                </label>
-
-                <input
-                    id="productQuantity"
-                    type="number"
-                    min="0"
-                    value="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Minimal miqdor
-                </label>
-
-                <input
-                    id="lowLimit"
-                    type="number"
-                    min="0"
-                    value="5"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            id="addBtn"
-            class="main-button"
-            onclick="addProduct()"
-        >
-            + MAHSULOT QO‘SHISH
-        </button>
-
-    </section>
-
-
-    <!-- =====================================================
-         CATEGORIES
-    ====================================================== -->
-
-    <section class="panel">
-
-        <div class="panel-title">
-
-            <div>
-
-                <h2>
-                    Kategoriyalar
-                </h2>
-
-                <p>
-                    Mahsulotlarni kategoriya bo‘yicha ko‘rish
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="categoryButtons"
-            class="category-buttons"
-        ></div>
-
-
-        <div class="category-add">
-
-            <input
-                id="newCategory"
-                type="text"
-                placeholder="Yangi kategoriya nomi"
-            >
-
-            <button
-                class="secondary-button"
-                onclick="addCategory()"
-            >
-                + KATEGORIYA QO‘SHISH
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SEARCH
-    ====================================================== -->
-
-    <section class="panel">
-
-        <div class="search-box">
-
-            <span class="search-icon">
-                ⌕
-            </span>
-
-            <input
-                id="search"
-                type="text"
-                placeholder="Mahsulot qidirish..."
-            >
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         PRODUCTS
-    ====================================================== -->
-
-    <section class="panel">
-
-        <div class="panel-title products-title">
-
-            <div>
-
-                <h2>
-                    Mahsulotlar
-                </h2>
-
-                <p>
-                    Ombordagi barcha mahsulotlar
-                </p>
-
-            </div>
-
-
-            <div
-                id="selectedCategoryTitle"
-                class="selected-category-title"
-            >
-                BARCHASI
-            </div>
-
-        </div>
-
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            MAHSULOT
-                        </th>
-
-                        <th>
-                            KATEGORIYA
-                        </th>
-
-                        <th>
-                            MIQDOR
-                        </th>
-
-                        <th>
-                            MINIMAL
-                        </th>
-
-                        <th>
-                            HOLAT
-                        </th>
-
-                        <th>
-                            AMALLAR
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="productsTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- =====================================================
-     NOTIFICATION BUTTON
-====================================================== -->
-
-<button
-    id="notificationButton"
-    class="notification-float"
-    onclick="openNotifications()"
-    title="Bildirishnomalar"
->
-
-    <span class="bell-icon">
-        🔔
-    </span>
-
-    <span
-        id="notificationIndicator"
-        class="notification-indicator"
-    ></span>
-
-</button>
-
-
-<!-- =====================================================
-     NOTIFICATION MODAL
-====================================================== -->
-
-<div
-    id="notificationModal"
-    class="modal-overlay"
->
-
-    <div class="modal notification-modal">
-
-        <button
-            class="modal-close"
-            onclick="closeNotifications()"
-        >
-            ×
-        </button>
-
-
-        <div class="panel-title">
-
-            <div>
-
-                <h2>
-                    Bildirishnomalar
-                </h2>
-
-                <p>
-                    Ombordagi muhim holatlar
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="notifications"
-            class="notifications"
-        ></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     EDIT MODAL
-====================================================== -->
-
-<div
-    id="editModal"
-    class="modal-overlay"
->
-
-    <div class="modal">
-
-        <button
-            class="modal-close"
-            onclick="closeEdit()"
-        >
-            ×
-        </button>
-
-
-        <div class="panel-title">
-
-            <div>
-
-                <h2>
-                    Mahsulotni tahrirlash
-                </h2>
-
-                <p>
-                    Mahsulot ma’lumotlarini o‘zgartirish
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <input
-            id="editId"
-            type="hidden"
-        >
-
-
-        <div class="field">
-
-            <label>
-                Mahsulot nomi
-            </label>
-
-            <input
-                id="editName"
-                type="text"
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label>
-                Kategoriya
-            </label>
-
-            <select id="editCategory">
-
-                <option value="">
-                    Kategoriyasiz
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="edit-grid">
-
-            <div class="field">
-
-                <label>
-                    Miqdor
-                </label>
-
-                <input
-                    id="editQuantity"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Minimal miqdor
-                </label>
-
-                <input
-                    id="editLowLimit"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeEdit()"
-            >
-                BEKOR QILISH
-            </button>
-
-            <button
-                class="main-button"
-                onclick="saveEdit()"
-            >
-                SAQLASH
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-/* =========================================================
-   SUPABASE
-========================================================= */
-
-const SUPABASE_URL =
-    "https://szgtlkykyfacjliisigf.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_yFGFSQb4K_gR-3KTqckJlQ_rF__5tfI";
-
-const db =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =========================================================
-   DATA
-========================================================= */
-
-let products = [];
-
-let categories = [];
-
-let selectedCategory = "all";
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const productName =
-    document.getElementById("productName");
-
-const productCategory =
-    document.getElementById("productCategory");
-
-const productQuantity =
-    document.getElementById("productQuantity");
-
-const lowLimit =
-    document.getElementById("lowLimit");
-
-const search =
-    document.getElementById("search");
-
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHTML(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* =========================================================
-   CATEGORY NORMALIZATION
-========================================================= */
-
-function normalizeCategory(value) {
-
-    return String(value || "")
-        .trim()
-        .toLowerCase();
-}
-
-
-/* =========================================================
-   CATEGORY LABELS
-========================================================= */
-
-function getCategoryLabel(value) {
-
-    const normalized =
-        normalizeCategory(value);
-
-    const labels = {
-
-        "rezinka": "REZINKALAR",
-        "rezinkalar": "REZINKALAR",
-
-        "mexanizm": "MEXANIZM",
-        "mexanizmlar": "MEXANIZM",
-
-        "profil": "PROFIL",
-        "profillar": "PROFIL",
-
-        "rels": "RELS",
-        "relslar": "RELS",
-
-        "petla": "PETLA",
-        "petlalar": "PETLA"
-
-    };
-
-    return (
-        labels[normalized] ||
-        (
-            value
-                ? String(value).toUpperCase()
-                : "KATEGORIYASIZ"
-        )
-    );
-}
-
-
-/* =========================================================
-   PRODUCT NORMALIZATION
-========================================================= */
-
-function normalizeProduct(product) {
-
-    return {
-
-        id: product.id,
-
-        name:
-            product.name || "",
-
-        category:
-            product.category || "",
-
-        quantity:
-            Number(product.quantity) || 0,
-
-        lowLimit:
-            Number(product.low_limit) || 0,
-
-        image:
-            product.image || null
-
-    };
-}
-
-
-/* =========================================================
-   LOAD CATEGORIES
-========================================================= */
-
-async function loadCategories() {
-
-    const {
-        data,
-        error
-    } = await db
-        .from("categories")
-        .select("id, name, created_at")
-        .order(
-            "created_at",
-            {
-                ascending: true
-            }
-        );
-
-    if (error) {
-
-        console.error(
-            "Category error:",
-            error
-        );
-
-        categories = [];
-
-        renderCategoryButtons();
-        renderCategorySelects();
-
-        return;
-    }
-
-    categories =
-        data || [];
-
-    renderCategoryButtons();
-    renderCategorySelects();
-}
-
-
-/* =========================================================
-   RENDER CATEGORY BUTTONS
-========================================================= */
-
-function renderCategoryButtons() {
-
-    const box =
-        document.getElementById(
-            "categoryButtons"
-        );
-
-    let html = `
-
-        <button
-            class="category-button ${
-                selectedCategory === "all"
-                    ? "active"
-                    : ""
-            }"
-            onclick="selectCategory('all')"
-        >
-            BARCHASI
-        </button>
-
-    `;
-
-
-    categories.forEach(category => {
-
-        const active =
-            selectedCategory !== "all" &&
-            normalizeCategory(
-                selectedCategory
-            ) ===
-            normalizeCategory(
-                category.name
-            )
-                ? "active"
-                : "";
-
-
-        html += `
-
-            <div
-                class="category-item ${active ? "selected-category-item" : ""}"
-                data-category="${escapeHTML(category.name)}"
-            >
-
-                <button
-                    class="category-button ${active}"
-                    onclick="selectCategory(${JSON.stringify(category.name)})"
-                >
-                    ${escapeHTML(
-                        getCategoryLabel(
-                            category.name
-                        )
-                    )}
-                </button>
-
-
-                <button
-                    class="category-delete"
-                    onclick="deleteCategory(
-                        ${Number(category.id)},
-                        ${JSON.stringify(category.name)}
-                    )"
-                    title="Kategoriyani o‘chirish"
-                >
-                    ×
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-
-    box.innerHTML = html;
-}
-
-
-/* =========================================================
-   CATEGORY SELECTS
-========================================================= */
-
-function renderCategorySelects() {
-
-    const addSelect =
-        document.getElementById(
-            "productCategory"
-        );
-
-    const editSelect =
-        document.getElementById(
-            "editCategory"
-        );
-
-
-    const currentAdd =
-        addSelect.value;
-
-    const currentEdit =
-        editSelect.value;
-
-
-    let html = `
-        <option value="">
-            Kategoriyasiz
-        </option>
-    `;
-
-
-    categories.forEach(category => {
-
-        html += `
-
-            <option
-                value="${escapeHTML(category.name)}"
-            >
-                ${escapeHTML(
-                    getCategoryLabel(
-                        category.name
-                    )
-                )}
-            </option>
-
-        `;
-
-    });
-
-
-    addSelect.innerHTML =
-        html;
-
-    editSelect.innerHTML =
-        html;
-
-
-    const addMatch =
-        categories.find(
-            category =>
-                normalizeCategory(
-                    category.name
-                ) ===
-                normalizeCategory(
-                    currentAdd
-                )
-        );
-
-
-    if (addMatch) {
-        addSelect.value =
-            addMatch.name;
-    }
-
-
-    const editMatch =
-        categories.find(
-            category =>
-                normalizeCategory(
-                    category.name
-                ) ===
-                normalizeCategory(
-                    currentEdit
-                )
-        );
-
-
-    if (editMatch) {
-        editSelect.value =
-            editMatch.name;
-    }
-}
-
-
-/* =========================================================
-   ADD CATEGORY
-========================================================= */
-
-async function addCategory() {
-
-    const input =
-        document.getElementById(
-            "newCategory"
-        );
-
-    const name =
-        input.value.trim();
-
-
-    if (!name) {
-
-        showMessage(
-            "Kategoriya nomini kiriting.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const exists =
-        categories.some(
-            category =>
-                normalizeCategory(
-                    category.name
-                ) ===
-                normalizeCategory(
-                    name
-                )
-        );
-
-
-    if (exists) {
-
-        showMessage(
-            "Bu kategoriya allaqachon mavjud.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("categories")
-        .insert({
-            name
-        });
-
-
-    if (error) {
-
-        console.error(
-            "Add category error:",
-            error
-        );
-
-        showMessage(
-            "Kategoriya qo‘shishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    input.value = "";
-
-    await loadCategories();
-
-    showMessage(
-        "Kategoriya qo‘shildi.",
-        "success"
-    );
-}
-
-
-/* =========================================================
-   DELETE CATEGORY
-========================================================= */
-
-async function deleteCategory(
-    id,
-    categoryName
-) {
-
-    const confirmed =
-        confirm(
-            `"${getCategoryLabel(categoryName)}" kategoriyasini o‘chirishni xohlaysizmi?\n\nBu kategoriya ichidagi mahsulotlar o‘chirilmaydi. Ular "Kategoriyasiz" bo‘ladi.`
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    const {
-        error: productError
-    } = await db
-        .from("products")
-        .update({
-            category: null
-        })
-        .eq(
-            "category",
-            categoryName
-        );
-
-
-    if (productError) {
-
-        console.error(
-            "Reset category error:",
-            productError
-        );
-
-        showMessage(
-            "Kategoriya o‘chirishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const {
-        error: categoryError
-    } = await db
-        .from("categories")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (categoryError) {
-
-        console.error(
-            "Delete category error:",
-            categoryError
-        );
-
-        showMessage(
-            "Kategoriyani o‘chirishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (
-        normalizeCategory(
-            selectedCategory
-        ) ===
-        normalizeCategory(
-            categoryName
-        )
-    ) {
-
-        selectedCategory =
-            "all";
-    }
-
-
-    await loadCategories();
-    await loadProducts();
-
-
-    showMessage(
-        "Kategoriya o‘chirildi.",
-        "success"
-    );
-}
-
-
-/* =========================================================
-   SELECT CATEGORY
-========================================================= */
-
-function selectCategory(category) {
-
-    selectedCategory =
-        category;
-
-    renderCategoryButtons();
-    renderProducts();
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function getStatus(product) {
-
-    if (
-        product.quantity === 0
-    ) {
-
-        return {
-            text: "TUGAGAN",
-            className: "status-out"
-        };
-    }
-
-
-    if (
-        product.quantity <=
-        product.lowLimit
-    ) {
-
-        return {
-            text: "KAM QOLDI",
-            className: "status-low"
-        };
-    }
-
-
-    return {
-        text: "YETARLI",
-        className: "status-ok"
-    };
-}
-
-
-/* =========================================================
-   LOAD PRODUCTS
-========================================================= */
-
-async function loadProducts() {
-
-    const {
-        data,
-        error
-    } = await db
-        .from("products")
-        .select(
-            "id, created_at, name, quantity, low_limit, image, category"
-        )
-        .order(
-            "id",
-            {
-                ascending: true
-            }
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Product loading error:",
-            error
-        );
-
-        showMessage(
-            "Mahsulotlarni yuklashda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    products =
-        (data || [])
-            .map(
-                normalizeProduct
-            );
-
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   ADD PRODUCT
-========================================================= */
-
-async function addProduct() {
-
-    const name =
-        productName.value.trim();
-
-    const category =
-        productCategory.value.trim();
-
-    const quantity =
-        Math.max(
-            0,
-            Number(
-                productQuantity.value
-            ) || 0
-        );
-
-    const minimum =
-        Math.max(
-            0,
-            Number(
-                lowLimit.value
-            ) || 0
-        );
-
-
-    if (!name) {
-
-        showMessage(
-            "Mahsulot nomini kiriting.",
-            "error"
-        );
-
-        productName.focus();
-
-        return;
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .insert({
-
-            name,
-
-            category:
-                category || null,
-
-            quantity,
-
-            low_limit:
-                minimum,
-
-            image: null
-
-        });
-
-
-    if (error) {
-
-        console.error(
-            "Add product error:",
-            error
-        );
-
-        showMessage(
-            "Mahsulot qo‘shishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    productName.value =
-        "";
-
-    productQuantity.value =
-        "0";
-
-    lowLimit.value =
-        "5";
-
-    productCategory.value =
-        "";
-
-
-    await loadProducts();
-
-
-    showMessage(
-        "Mahsulot qo‘shildi.",
-        "success"
-    );
-}
-
-
-/* =========================================================
-   CHANGE QUANTITY
-========================================================= */
-
-async function changeQuantity(
-    id,
-    amount
-) {
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    const newQuantity =
-        Math.max(
-            0,
-            product.quantity +
-                amount
-        );
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-            quantity:
-                newQuantity
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Quantity error:",
-            error
-        );
-
-        showMessage(
-            "Miqdorni o‘zgartirishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    product.quantity =
-        newQuantity;
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   SET QUANTITY
-========================================================= */
-
-async function setQuantity(
-    id,
-    value
-) {
-
-    const quantity =
-        Math.max(
-            0,
-            Number(value) || 0
-        );
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-            quantity
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Set quantity error:",
-            error
-        );
-
-        showMessage(
-            "Miqdorni saqlashda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (product) {
-        product.quantity =
-            quantity;
-    }
-
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   SET LOW LIMIT
-========================================================= */
-
-async function setLowLimit(
-    id,
-    value
-) {
-
-    const limit =
-        Math.max(
-            0,
-            Number(value) || 0
-        );
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-            low_limit:
-                limit
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Set low limit error:",
-            error
-        );
-
-        showMessage(
-            "Minimal miqdorni saqlashda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (product) {
-        product.lowLimit =
-            limit;
-    }
-
-
-    renderProducts();
-}
-
-
-/* =========================================================
-   OPEN EDIT
-========================================================= */
-
-function openEdit(id) {
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    document.getElementById(
-        "editId"
-    ).value =
-        product.id;
-
-
-    document.getElementById(
-        "editName"
-    ).value =
-        product.name;
-
-
-    document.getElementById(
-        "editCategory"
-    ).value =
-        product.category || "";
-
-
-    document.getElementById(
-        "editQuantity"
-    ).value =
-        product.quantity;
-
-
-    document.getElementById(
-        "editLowLimit"
-    ).value =
-        product.lowLimit;
-
-
-    document.getElementById(
-        "editModal"
-    ).classList.add(
-        "show"
-    );
-}
-
-
-/* =========================================================
-   CLOSE EDIT
-========================================================= */
-
-function closeEdit() {
-
-    document.getElementById(
-        "editModal"
-    ).classList.remove(
-        "show"
-    );
-}
-
-
-/* =========================================================
-   SAVE EDIT
-========================================================= */
-
-async function saveEdit() {
-
-    const id =
-        Number(
-            document.getElementById(
-                "editId"
-            ).value
-        );
-
-
-    const name =
-        document.getElementById(
-            "editName"
-        ).value.trim();
-
-
-    const category =
-        document.getElementById(
-            "editCategory"
-        ).value.trim();
-
-
-    const quantity =
-        Math.max(
-            0,
-            Number(
-                document.getElementById(
-                    "editQuantity"
-                ).value
-            ) || 0
-        );
-
-
-    const minimum =
-        Math.max(
-            0,
-            Number(
-                document.getElementById(
-                    "editLowLimit"
-                ).value
-            ) || 0
-        );
-
-
-    if (!name) {
-
-        showMessage(
-            "Mahsulot nomini kiriting.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-
-            name,
-
-            category:
-                category || null,
-
-            quantity,
-
-            low_limit:
-                minimum
-
-        })
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Save edit error:",
-            error
-        );
-
-        showMessage(
-            "Mahsulotni saqlashda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    closeEdit();
-
-    await loadProducts();
-
-
-    showMessage(
-        "Mahsulot yangilandi.",
-        "success"
-    );
-}
-
-
-/* =========================================================
-   DELETE PRODUCT
-========================================================= */
-
-async function deleteProduct(id) {
-
-    const product =
-        products.find(
-            item =>
-                String(item.id) ===
-                String(id)
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    const confirmed =
-        confirm(
-            `"${product.name}" mahsulotini o‘chirishni xohlaysizmi?`
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Delete product error:",
-            error
-        );
-
-        showMessage(
-            "Mahsulotni o‘chirishda xatolik.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    await loadProducts();
-
-
-    showMessage(
-        "Mahsulot o‘chirildi.",
-        "success"
-    );
-}
-
-
-/* =========================================================
-   RENDER PRODUCTS
-========================================================= */
-
-function renderProducts() {
-
-    const table =
-        document.getElementById(
-            "productsTable"
-        );
-
-
-    const query =
-        search.value
-            .trim()
-            .toLowerCase();
-
-
-    const filtered =
-        products.filter(
-            product => {
-
-                const matchesSearch =
-                    !query ||
-                    product.name
-                        .toLowerCase()
-                        .includes(query);
-
-
-                const matchesCategory =
-                    selectedCategory ===
-                        "all" ||
-
-                    normalizeCategory(
-                        product.category
-                    ) ===
-                    normalizeCategory(
-                        selectedCategory
-                    );
-
-
-                return (
-                    matchesSearch &&
-                    matchesCategory
-                );
-            }
-        );
-
-
-    document.getElementById(
-        "selectedCategoryTitle"
-    ).textContent =
-        selectedCategory === "all"
-            ? "BARCHASI"
-            : getCategoryLabel(
-                selectedCategory
-            );
-
-
-    if (
-        filtered.length === 0
-    ) {
-
-        table.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="6"
-                    class="empty-table"
-                >
-                    Mahsulot topilmadi
-                </td>
-
-            </tr>
-
-        `;
-
-        updateStats();
-        renderStockNotifications();
-
-        return;
-    }
-
-
-    table.innerHTML =
-        filtered
-            .map(
-                product => {
-
-                    const status =
-                        getStatus(
-                            product
-                        );
-
-
-                    const category =
-                        product.category
-                            ? getCategoryLabel(
-                                product.category
-                            )
-                            : "Kategoriyasiz";
-
-
-                    return `
-
-                        <tr
-                            class="product-row"
-                            data-product-id="${product.id}"
-                        >
-
-                            <td>
-
-                                <div class="product-name">
-
-                                    ${escapeHTML(
-                                        product.name
-                                    )}
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span
-                                    class="category-badge"
-                                >
-
-                                    ${escapeHTML(
-                                        category
-                                    )}
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="quantity-control">
-
-                                    <button
-                                        class="quantity-button"
-                                        onclick="changeQuantity(
-                                            ${product.id},
-                                            -1
-                                        )"
-                                    >
-                                        −
-                                    </button>
-
-
-                                    <input
-                                        class="quantity-input"
-                                        type="number"
-                                        min="0"
-                                        value="${product.quantity}"
-                                        onchange="setQuantity(
-                                            ${product.id},
-                                            this.value
-                                        )"
-                                    >
-
-
-                                    <button
-                                        class="quantity-button"
-                                        onclick="changeQuantity(
-                                            ${product.id},
-                                            1
-                                        )"
-                                    >
-                                        +
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <input
-                                    class="minimum-input"
-                                    type="number"
-                                    min="0"
-                                    value="${product.lowLimit}"
-                                    onchange="setLowLimit(
-                                        ${product.id},
-                                        this.value
-                                    )"
-                                >
-
-                            </td>
-
-
-                            <td>
-
-                                <span
-                                    class="
-                                        status
-                                        ${status.className}
-                                    "
-                                >
-                                    ${status.text}
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="actions">
-
-                                    <button
-                                        class="
-                                            action-button
-                                            edit-action
-                                        "
-                                        onclick="openEdit(
-                                            ${product.id}
-                                        )"
-                                    >
-                                        TAHRIRLASH
-                                    </button>
-
-
-                                    <button
-                                        class="
-                                            action-button
-                                            delete-action
-                                        "
-                                        onclick="deleteProduct(
-                                            ${product.id}
-                                        )"
-                                    >
-                                        O‘CHIRISH
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-                    `;
-                }
-            )
-            .join("");
-
-
-    updateStats();
-    renderStockNotifications();
-}
-
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-function updateStats() {
-
-    const total =
-        products.reduce(
-            (
-                sum,
-                product
-            ) =>
-                sum +
-                product.quantity,
-            0
-        );
-
-
-    const low =
-        products.filter(
-            product =>
-                product.quantity > 0 &&
-                product.quantity <=
-                    product.lowLimit
-        ).length;
-
-
-    const out =
-        products.filter(
-            product =>
-                product.quantity === 0
-        ).length;
-
-
-    document.getElementById(
-        "productCount"
-    ).textContent =
-        products.length;
-
-
-    document.getElementById(
-        "totalStock"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "lowStock"
-    ).textContent =
-        low;
-
-
-    document.getElementById(
-        "outStock"
-    ).textContent =
-        out;
-}
-
-
-/* =========================================================
-   STOCK NOTIFICATIONS
-========================================================= */
-
-function renderStockNotifications() {
-
-    const box =
-        document.getElementById(
-            "notifications"
-        );
-
-    const indicator =
-        document.getElementById(
-            "notificationIndicator"
-        );
-
-
-    const important =
-        products.filter(
-            product =>
-                product.quantity === 0 ||
-                product.quantity <=
-                    product.lowLimit
-        );
-
-
-    if (
-        important.length > 0
-    ) {
-
-        indicator.classList.add(
-            "show"
-        );
-
-    } else {
-
-        indicator.classList.remove(
-            "show"
-        );
-    }
-
-
-    if (
-        important.length === 0
-    ) {
-
-        box.innerHTML = `
-
-            <div class="
-                notification
-                empty-notification
-            ">
-                Hozircha muhim bildirishnoma yo‘q.
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    box.innerHTML =
-        important
-            .map(
-                product => {
-
-                    const out =
-                        product.quantity === 0;
-
-
-                    return `
-
-                        <div
-                            class="
-                                notification
-                                ${
-                                    out
-                                        ? "notification-out"
-                                        : "notification-low"
-                                }
-                            "
-                        >
-
-                            <div class="notification-icon">
-                                !
-                            </div>
-
-
-                            <div class="notification-text">
-
-                                <strong>
-                                    ${escapeHTML(
-                                        product.name
-                                    )}
-                                </strong>
-
-
-                                <span>
-
-                                    ${
-                                        out
-                                            ? "Mahsulot tugagan — 0 dona."
-
-                                            : `
-                                                Faqat
-                                                ${product.quantity}
-                                                dona qoldi.
-                                                Minimal miqdor:
-                                                ${product.lowLimit}
-                                                dona.
-                                            `
-                                    }
-
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                class="notification-edit"
-                                onclick="openProductFromNotification(
-                                    ${product.id}
-                                )"
-                            >
-                                KO‘RISH
-                            </button>
-
-                        </div>
-
-                    `;
-                }
-            )
-            .join("");
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
-function openNotifications() {
-
-    renderStockNotifications();
-
-    document
-        .getElementById(
-            "notificationModal"
-        )
-        .classList.add(
-            "show"
-        );
-}
-
-
-function closeNotifications() {
-
-    document
-        .getElementById(
-            "notificationModal"
-        )
-        .classList.remove(
-            "show"
-        );
-}
-
-
-function openProductFromNotification(
-    id
-) {
-
-    closeNotifications();
-
-    setTimeout(
-        () => openEdit(id),
-        100
-    );
-}
-
-
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-let messageTimer = null;
-
-
-function showMessage(
-    text,
-    type = "success"
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        `message show ${type}`;
-
-
-    clearTimeout(
-        messageTimer
-    );
-
-
-    messageTimer =
-        setTimeout(
-            () => {
-
-                message.className =
-                    "message";
-
-            },
-            3000
-        );
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-search.addEventListener(
-    "input",
-    renderProducts
-);
-
-
-/* =========================================================
-   ENTER — CATEGORY
-========================================================= */
-
-document
-    .getElementById(
-        "newCategory"
-    )
-    .addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                event.preventDefault();
-
-                addCategory();
-            }
-        }
-    );
-
-
-/* =========================================================
-   ENTER — PRODUCT
-========================================================= */
-
-productName.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            event.preventDefault();
-
-            addProduct();
-        }
-    }
-);
-
-
-/* =========================================================
-   MODAL BACKGROUND
-========================================================= */
-
-document
-    .getElementById(
-        "editModal"
-    )
-    .addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target.id ===
-                "editModal"
-            ) {
-
-                closeEdit();
-            }
-        }
-    );
-
-
-document
-    .getElementById(
-        "notificationModal"
-    )
-    .addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target.id ===
-                "notificationModal"
-            ) {
-
-                closeNotifications();
-            }
-        }
-    );
-
-
-/* =========================================================
-   ESCAPE
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closeEdit();
-            closeNotifications();
-
-            finishProductDrag();
-        }
-    }
-);
-
-
 /* =========================================================
    LONG PRESS → DRAG PRODUCT
 ========================================================= */
 
-const LONG_PRESS_MS =
-    2000;
+const LONG_PRESS_MS = 2000;
 
-const DRAG_CANCEL_DISTANCE =
-    12;
-
-
-let dragTimer =
-    null;
-
-let dragProductId =
-    null;
-
-let dragPointerId =
-    null;
-
-let dragStartX =
-    0;
-
-let dragStartY =
-    0;
-
-let isDraggingProduct =
-    false;
-
-let dragSourceRow =
-    null;
-
-let dragHint =
-    null;
-
-let activeDropCategory =
-    null;
+let dragTimer = null;
+let dragProductId = null;
+let dragPointerId = null;
+let dragSourceRow = null;
+let dragStartX = 0;
+let dragStartY = 0;
+let isDraggingProduct = false;
+let activeDropCategory = null;
+let dragHint = null;
 
 
 /* =========================================================
@@ -2462,68 +21,45 @@ let activeDropCategory =
 
 function ensureDragHint() {
 
-    if (dragHint) {
-        return;
-    }
+    if (dragHint) return;
 
+    dragHint = document.createElement("div");
 
-    dragHint =
-        document.createElement(
-            "div"
-        );
-
-
-    dragHint.className =
-        "drag-hint";
-
+    dragHint.className = "drag-hint";
 
     dragHint.textContent =
-        "Перетащите в категорию";
+        "Mahsulotni kategoriyaga olib boring";
 
-
-    document.body.appendChild(
-        dragHint
-    );
+    document.body.appendChild(dragHint);
 }
 
 
-function updateDragHint(
-    x,
-    y
-) {
+function updateDragHint(x, y) {
 
     ensureDragHint();
 
-
-    dragHint.style.left =
-        `${x + 16}px`;
-
-
-    dragHint.style.top =
-        `${y + 16}px`;
+    dragHint.style.left = `${x + 15}px`;
+    dragHint.style.top = `${y + 15}px`;
 }
 
 
 /* =========================================================
-   CLEAR DROP
+   CLEAR DROP CATEGORY
 ========================================================= */
 
 function clearDropCategory() {
 
     document
-        .querySelectorAll(
-            ".category-item.category-drop-active"
-        )
-        .forEach(
-            element =>
-                element.classList.remove(
-                    "category-drop-active"
-                )
-        );
+        .querySelectorAll(".category-item.category-drop-active")
+        .forEach(item => {
 
+            item.classList.remove(
+                "category-drop-active"
+            );
 
-    activeDropCategory =
-        null;
+        });
+
+    activeDropCategory = null;
 }
 
 
@@ -2531,59 +67,40 @@ function clearDropCategory() {
    FIND CATEGORY UNDER POINTER
 ========================================================= */
 
-function findDropCategory(
-    x,
-    y
-) {
+function findDropCategory(x, y) {
 
     const elements =
-        document.elementsFromPoint(
-            x,
-            y
-        );
+        document.elementsFromPoint(x, y);
 
+    for (const element of elements) {
 
-    for (
-        const element
-        of elements
-    ) {
-
-        const item =
-            element.closest?.(
-                ".category-item"
-            );
-
+        const category =
+            element.closest?.(".category-item");
 
         if (
-            item &&
-            item.dataset.category
+            category &&
+            category.dataset.category
         ) {
 
-            return item;
+            return category;
         }
     }
-
 
     return null;
 }
 
 
 /* =========================================================
-   CANCEL LONG PRESS TIMER
+   CANCEL TIMER ONLY
 ========================================================= */
 
 function cancelProductLongPress() {
 
-    if (
-        dragTimer
-    ) {
+    if (dragTimer !== null) {
 
-        clearTimeout(
-            dragTimer
-        );
+        clearTimeout(dragTimer);
 
-        dragTimer =
-            null;
+        dragTimer = null;
     }
 }
 
@@ -2596,42 +113,28 @@ function finishProductDrag() {
 
     cancelProductLongPress();
 
-
-    if (
-        dragSourceRow
-    ) {
+    if (dragSourceRow) {
 
         dragSourceRow.classList.remove(
-            "dragging",
-            "drag-ready"
+            "drag-ready",
+            "dragging"
         );
     }
 
-
-    if (
-        dragHint
-    ) {
+    if (dragHint) {
 
         dragHint.classList.remove(
             "show"
         );
     }
 
-
     clearDropCategory();
 
+    dragProductId = null;
+    dragPointerId = null;
+    dragSourceRow = null;
 
-    dragProductId =
-        null;
-
-    dragPointerId =
-        null;
-
-    dragSourceRow =
-        null;
-
-    isDraggingProduct =
-        false;
+    isDraggingProduct = false;
 }
 
 
@@ -2651,19 +154,12 @@ async function moveProductToCategory(
                 String(productId)
         );
 
-
-    if (!product) {
-        return;
-    }
+    if (!product) return;
 
 
     if (
-        normalizeCategory(
-            product.category
-        ) ===
-        normalizeCategory(
-            categoryName
-        )
+        normalizeCategory(product.category) ===
+        normalizeCategory(categoryName)
     ) {
 
         showMessage(
@@ -2680,13 +176,9 @@ async function moveProductToCategory(
     } = await db
         .from("products")
         .update({
-            category:
-                categoryName
+            category: categoryName
         })
-        .eq(
-            "id",
-            productId
-        );
+        .eq("id", productId);
 
 
     if (error) {
@@ -2705,12 +197,9 @@ async function moveProductToCategory(
     }
 
 
-    product.category =
-        categoryName;
-
+    product.category = categoryName;
 
     renderProducts();
-
 
     showMessage(
         `“${product.name}” → ${getCategoryLabel(categoryName)}`,
@@ -2733,88 +222,101 @@ productsTableElement.addEventListener(
     "pointerdown",
     event => {
 
+        /*
+         * ТОЛЬКО ЛЕВАЯ КНОПКА МЫШИ
+         */
+
         if (
-            event.button !== undefined &&
+            event.pointerType === "mouse" &&
             event.button !== 0
         ) {
             return;
         }
 
 
-        const row =
-            event.target.closest?.(
-                "tr.product-row[data-product-id]"
-            );
-
-
-        if (!row) {
-            return;
-        }
-
-
         /*
-         * Кнопки, поля количества,
-         * редактирование и удаление
-         * не должны запускать drag.
+         * Если нажали на кнопку,
+         * input, select или ссылку —
+         * НИКАКОГО DRAG.
          */
 
         if (
             event.target.closest(
-                "button, input, select, a"
+                "button, input, select, textarea, a"
             )
         ) {
-
             return;
         }
 
 
-        cancelProductLongPress();
+        const row =
+            event.target.closest(
+                "tr.product-row[data-product-id]"
+            );
+
+
+        if (!row) return;
+
+
+        /*
+         * На всякий случай завершаем
+         * старый drag.
+         */
+
+        finishProductDrag();
 
 
         dragProductId =
             row.dataset.productId;
 
-
         dragPointerId =
             event.pointerId;
-
-
-        dragStartX =
-            event.clientX;
-
-
-        dragStartY =
-            event.clientY;
-
 
         dragSourceRow =
             row;
 
+        dragStartX =
+            event.clientX;
+
+        dragStartY =
+            event.clientY;
 
         isDraggingProduct =
             false;
 
+
+        /*
+         * Показываем лёгкое состояние ожидания.
+         */
 
         row.classList.add(
             "drag-ready"
         );
 
 
-        try {
-
-            row.setPointerCapture(
-                event.pointerId
-            );
-
-        } catch (_) {}
+        /*
+         * ВАЖНО:
+         *
+         * pointer capture здесь НЕ ставим.
+         *
+         * Именно это помогает обычным
+         * кликам и функциям работать нормально.
+         */
 
 
         dragTimer =
             setTimeout(
                 () => {
 
+                    /*
+                     * Если пользователь уже
+                     * отпустил кнопку —
+                     * ничего не делаем.
+                     */
+
                     if (
-                        !dragSourceRow
+                        !dragSourceRow ||
+                        dragPointerId === null
                     ) {
                         return;
                     }
@@ -2832,6 +334,21 @@ productsTableElement.addEventListener(
                     dragSourceRow.classList.add(
                         "dragging"
                     );
+
+
+                    /*
+                     * Только ПОСЛЕ 2 секунд
+                     * начинаем перехватывать
+                     * pointer.
+                     */
+
+                    try {
+
+                        dragSourceRow.setPointerCapture(
+                            dragPointerId
+                        );
+
+                    } catch (_) {}
 
 
                     ensureDragHint();
@@ -2863,57 +380,34 @@ document.addEventListener(
     event => {
 
         if (
-            dragPointerId !== null &&
-            event.pointerId !==
-                dragPointerId
-        ) {
-
-            return;
-        }
-
-
-        if (
-            !dragSourceRow
+            dragPointerId === null ||
+            event.pointerId !== dragPointerId
         ) {
             return;
         }
 
 
-        const distance =
-            Math.hypot(
-                event.clientX -
-                    dragStartX,
-
-                event.clientY -
-                    dragStartY
-            );
+        if (!dragSourceRow) {
+            return;
+        }
 
 
         /*
-         * Пока 2 секунды ещё не прошло,
-         * маленькое движение разрешаем,
-         * большое движение отменяет long press.
+         * Пока 2 секунды не прошли —
+         * вообще ничего не перехватываем.
+         *
+         * Это важно для обычной работы
+         * сайта.
          */
 
-        if (
-            !isDraggingProduct &&
-            distance >
-                DRAG_CANCEL_DISTANCE
-        ) {
-
-            finishProductDrag();
-
+        if (!isDraggingProduct) {
             return;
         }
 
 
-        if (
-            !isDraggingProduct
-        ) {
-
-            return;
-        }
-
+        /*
+         * Только настоящий drag.
+         */
 
         event.preventDefault();
 
@@ -2934,14 +428,11 @@ document.addEventListener(
         clearDropCategory();
 
 
-        if (
-            dropCategory
-        ) {
+        if (dropCategory) {
 
             dropCategory.classList.add(
                 "category-drop-active"
             );
-
 
             activeDropCategory =
                 dropCategory;
@@ -2963,19 +454,9 @@ document.addEventListener(
     async event => {
 
         if (
-            dragPointerId !== null &&
-            event.pointerId !==
-                dragPointerId
+            dragPointerId === null ||
+            event.pointerId !== dragPointerId
         ) {
-
-            return;
-        }
-
-
-        if (
-            !dragSourceRow
-        ) {
-
             return;
         }
 
@@ -2983,22 +464,30 @@ document.addEventListener(
         const wasDragging =
             isDraggingProduct;
 
-
         const productId =
             dragProductId;
 
-
         const dropCategory =
             activeDropCategory;
-
 
         const categoryName =
             dropCategory?.dataset.category ||
             null;
 
 
+        /*
+         * Сначала запоминаем данные,
+         * потом полностью закрываем drag.
+         */
+
         finishProductDrag();
 
+
+        /*
+         * Если пользователь действительно
+         * держал 2 секунды и отпустил
+         * над категорией — переносим.
+         */
 
         if (
             wasDragging &&
@@ -3021,24 +510,47 @@ document.addEventListener(
 
 document.addEventListener(
     "pointercancel",
-    finishProductDrag
+    () => {
+
+        finishProductDrag();
+
+    }
 );
 
 
 /* =========================================================
-   TAB HIDDEN
+   ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeEdit();
+            closeNotifications();
+
+            finishProductDrag();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TAB / PAGE HIDDEN
 ========================================================= */
 
 document.addEventListener(
     "visibilitychange",
     () => {
 
-        if (
-            document.hidden
-        ) {
+        if (document.hidden) {
 
             finishProductDrag();
         }
+
     }
 );
 
@@ -3066,14 +578,11 @@ setInterval(
     async () => {
 
         /*
-         * Не обновляем во время drag,
-         * чтобы таблица не пересоздалась
-         * прямо под пальцем/мышью.
+         * Не обновляем таблицу во время
+         * настоящего перетаскивания.
          */
 
-        if (
-            !dragSourceRow
-        ) {
+        if (!isDraggingProduct) {
 
             await loadProducts();
         }
