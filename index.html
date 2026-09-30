@@ -2,7 +2,6 @@
 <html lang="uz">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,1460 +9,42 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>GRAND X — Ombor</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
+    <meta
+        name="theme-color"
+        content="#050505"
     >
 
-    <style>
+    <title>GRAND X — Ombor</title>
 
-        /* =====================================================
-           GRAND X — METAL / NEON COMPACT UI
-           ===================================================== */
-
-        :root {
-            --black: #050607;
-            --black-2: #090b0d;
-            --black-3: #101316;
-
-            --metal-dark: #1b1e21;
-            --metal: #777d83;
-            --metal-light: #c9cdd1;
-            --silver: #e4e7e9;
-
-            --red: #e51f3f;
-            --red-soft: #bd1733;
-            --red-neon: #ff2447;
-
-            --border: rgba(255, 36, 71, .62);
-            --border-soft: rgba(255, 36, 71, .30);
-
-            --text: #f2f3f4;
-            --muted: #8e949a;
-
-            --radius: 14px;
-
-            --shadow-red:
-                0 0 8px rgba(255, 36, 71, .18),
-                0 0 22px rgba(255, 36, 71, .08);
-        }
-
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-
-            background:
-                radial-gradient(
-                    circle at 50% -10%,
-                    rgba(255, 255, 255, .055),
-                    transparent 38%
-                ),
-                linear-gradient(
-                    145deg,
-                    #030405 0%,
-                    #080a0c 45%,
-                    #040506 100%
-                );
-
-            color: var(--text);
-
-            font-family:
-                Inter,
-                Arial,
-                Helvetica,
-                sans-serif;
-        }
-
-
-        body::before {
-            content: "";
-
-            position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-
-            background:
-                linear-gradient(
-                    120deg,
-                    transparent 0%,
-                    rgba(255,255,255,.025) 46%,
-                    transparent 52%
-                );
-
-            opacity: .45;
-        }
-
-
-        /* =====================================================
-           MAIN CONTAINER
-           ===================================================== */
-
-        .container {
-            width: min(1320px, calc(100% - 32px));
-            margin: 0 auto;
-            padding: 26px 0 60px;
-        }
-
-
-        /* =====================================================
-           HEADER
-           ===================================================== */
-
-        .header {
-            position: relative;
-
-            padding: 22px 24px;
-            margin-bottom: 20px;
-
-            border: 2px solid var(--border);
-            border-radius: 18px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #15181b,
-                    #080a0c 55%,
-                    #111417
-                );
-
-            box-shadow: var(--shadow-red);
-
-            overflow: hidden;
-        }
-
-
-        .header::after {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: -35%;
-
-            width: 28%;
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,.16),
-                    transparent
-                );
-
-            transform: skewX(-18deg);
-
-            opacity: 0;
-        }
-
-
-        body.scrolling-down .header::after {
-            animation: metalSweep .75s ease;
-        }
-
-
-        @keyframes metalSweep {
-
-            0% {
-                left: -35%;
-                opacity: 0;
-            }
-
-            20% {
-                opacity: .9;
-            }
-
-            100% {
-                left: 125%;
-                opacity: 0;
-            }
-        }
-
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-
-        .logo-mark {
-            width: 58px;
-            height: 58px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 14px;
-
-            border: 2px solid var(--red-neon);
-
-            color: white;
-
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 1px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #c8cdd1,
-                    #555b60 45%,
-                    #151719 70%,
-                    #8c9297
-                );
-
-            text-shadow:
-                0 1px 1px #000;
-
-            box-shadow:
-                0 0 9px rgba(255,36,71,.32);
-        }
-
-
-        .logo-text h1 {
-            margin: 0;
-
-            font-size: 27px;
-            letter-spacing: 3px;
-            font-weight: 900;
-        }
-
-
-        .logo-text p {
-            margin: 4px 0 0;
-
-            color: var(--metal-light);
-
-            font-size: 11px;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-
-        /* =====================================================
-           STATS
-           ===================================================== */
-
-        .stats {
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
-
-            gap: 12px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .stat-card {
-            position: relative;
-
-            min-height: 94px;
-
-            padding: 15px 17px;
-
-            border: 2px solid var(--border-soft);
-            border-radius: 14px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #171a1d,
-                    #090b0d
-                );
-
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,.06),
-                0 0 14px rgba(255,36,71,.05);
-
-            overflow: hidden;
-        }
-
-
-        .stat-card::before {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 2px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    var(--red-neon),
-                    transparent
-                );
-
-            opacity: .75;
-        }
-
-
-        .stat-title {
-            color: var(--metal-light);
-
-            font-size: 10px;
-            font-weight: 800;
-
-            letter-spacing: 1.5px;
-        }
-
-
-        .stat-value {
-            margin-top: 7px;
-
-            font-size: 28px;
-            font-weight: 900;
-
-            color: white;
-
-            text-shadow:
-                0 0 8px rgba(255,255,255,.12);
-        }
-
-
-        .stat-card.low {
-            border-color: rgba(255, 155, 40, .42);
-        }
-
-
-        .stat-card.empty {
-            border-color: rgba(255, 36, 71, .55);
-        }
-
-
-        /* =====================================================
-           PANELS
-           ===================================================== */
-
-        .panel {
-            position: relative;
-
-            margin-bottom: 18px;
-
-            padding: 19px;
-
-            border: 2px solid var(--border);
-            border-radius: var(--radius);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #121518,
-                    #080a0c 58%,
-                    #101316
-                );
-
-            box-shadow:
-                var(--shadow-red),
-                inset 0 1px 0 rgba(255,255,255,.045);
-
-            overflow: hidden;
-        }
-
-
-        .panel::after {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: -40%;
-
-            width: 25%;
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,.09),
-                    transparent
-                );
-
-            transform: skewX(-18deg);
-
-            opacity: 0;
-
-            pointer-events: none;
-        }
-
-
-        body.scrolling-down .panel::after {
-            animation: panelShine .8s ease;
-        }
-
-
-        @keyframes panelShine {
-
-            0% {
-                left: -40%;
-                opacity: 0;
-            }
-
-            18% {
-                opacity: .7;
-            }
-
-            100% {
-                left: 125%;
-                opacity: 0;
-            }
-        }
-
-
-        .panel > * {
-            position: relative;
-            z-index: 2;
-        }
-
-
-        .panel-title {
-            margin: 0 0 15px;
-
-            color: var(--silver);
-
-            font-size: 14px;
-            font-weight: 900;
-
-            letter-spacing: 1.8px;
-        }
-
-
-        /* =====================================================
-           CATEGORY
-           ===================================================== */
-
-        .category-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 16px;
-
-            margin-bottom: 14px;
-        }
-
-
-        .category-create {
-            display: flex;
-            gap: 8px;
-        }
-
-
-        .category-buttons {
-            display: flex;
-            flex-wrap: wrap;
-
-            gap: 8px;
-        }
-
-
-        .category-item {
-            display: flex;
-            align-items: stretch;
-        }
-
-
-        button,
-        input,
-        select {
-            font: inherit;
-        }
-
-
-        button {
-            cursor: pointer;
-        }
-
-
-        button:not(.notification-bell) {
-            border: 1px solid rgba(255,255,255,.14);
-
-            border-radius: 8px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #292d31,
-                    #111417
-                );
-
-            color: #e9ebed;
-
-            padding: 8px 12px;
-
-            font-size: 11px;
-            font-weight: 800;
-
-            letter-spacing: .4px;
-
-            transition:
-                transform .12s ease,
-                border-color .15s ease,
-                box-shadow .15s ease,
-                background .15s ease;
-        }
-
-
-        button:not(.notification-bell):hover {
-            border-color: var(--red-neon);
-
-            box-shadow:
-                0 0 8px rgba(255,36,71,.25);
-        }
-
-
-        button:not(.notification-bell):active {
-            transform: translateY(1px) scale(.985);
-        }
-
-
-        .category-button {
-            border-color: rgba(255,36,71,.42) !important;
-
-            min-height: 34px;
-
-            padding: 7px 14px !important;
-        }
-
-
-        .category-button.active {
-            color: white !important;
-
-            border-color: var(--red-neon) !important;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #651528,
-                    #1c0b10
-                ) !important;
-
-            box-shadow:
-                0 0 10px rgba(255,36,71,.26);
-        }
-
-
-        .category-delete {
-            min-width: 31px;
-
-            padding: 5px !important;
-
-            border-radius: 0 8px 8px 0 !important;
-
-            color: #ff7185 !important;
-
-            border-left: 0 !important;
-        }
-
-
-        /* =====================================================
-           INPUTS
-           ===================================================== */
-
-        input,
-        select {
-            width: 100%;
-
-            min-height: 38px;
-
-            padding: 9px 11px;
-
-            border: 1px solid rgba(255,255,255,.16);
-            border-radius: 8px;
-
-            outline: none;
-
-            color: #f1f2f3;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #15181b,
-                    #080a0c
-                );
-
-            transition:
-                border-color .15s ease,
-                box-shadow .15s ease;
-        }
-
-
-        input:focus,
-        select:focus {
-            border-color: var(--red-neon);
-
-            box-shadow:
-                0 0 0 2px rgba(255,36,71,.10),
-                0 0 12px rgba(255,36,71,.12);
-        }
-
-
-        input::placeholder {
-            color: #686e74;
-        }
-
-
-        .form-grid {
-            display: grid;
-            gap: 13px;
-        }
-
-
-        .form-group {
-            display: grid;
-            gap: 6px;
-        }
-
-
-        .form-group label {
-            color: #aeb3b8;
-
-            font-size: 10px;
-            font-weight: 800;
-
-            letter-spacing: 1px;
-        }
-
-
-        .btn-red {
-            border-color: var(--red-neon) !important;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #9e1732,
-                    #470d19
-                ) !important;
-
-            box-shadow:
-                0 0 10px rgba(255,36,71,.18);
-        }
-
-
-        .btn-red:hover {
-            box-shadow:
-                0 0 14px rgba(255,36,71,.35) !important;
-        }
-
-
-        .btn-danger {
-            border-color: rgba(255,36,71,.55) !important;
-
-            color: #ff6b7e !important;
-        }
-
-
-        /* =====================================================
-           SEARCH
-           ===================================================== */
-
-        .search-row {
-            margin-bottom: 12px;
-        }
-
-
-        /* =====================================================
-           TABLE
-           ===================================================== */
-
-        .table-wrapper {
-            width: 100%;
-
-            overflow-x: auto;
-
-            border: 2px solid rgba(255,36,71,.46);
-
-            border-radius: 12px;
-
-            background: #060708;
-
-            box-shadow:
-                inset 0 0 18px rgba(0,0,0,.7);
-        }
-
-
-        table {
-            width: 100%;
-
-            border-collapse: separate;
-            border-spacing: 0;
-
-            table-layout: fixed;
-
-            min-width: 760px;
-        }
-
-
-        thead th {
-            padding: 10px 9px;
-
-            color: #cbd0d4;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #1d2125,
-                    #0e1012
-                );
-
-            border-bottom: 2px solid var(--red-soft);
-
-            font-size: 9px;
-            font-weight: 900;
-
-            letter-spacing: 1px;
-
-            text-align: left;
-        }
-
-
-        tbody td {
-            padding: 8px 9px;
-
-            height: 54px;
-
-            border-bottom: 1px solid rgba(255,255,255,.055);
-
-            color: #e8eaec;
-
-            font-size: 11px;
-
-            vertical-align: middle;
-        }
-
-
-        tbody tr {
-            background:
-                linear-gradient(
-                    90deg,
-                    #0c0f11,
-                    #101316,
-                    #0b0d0f
-                );
-
-            transition:
-                background .15s ease,
-                box-shadow .15s ease;
-        }
-
-
-        tbody tr:hover {
-            background:
-                linear-gradient(
-                    90deg,
-                    #151012,
-                    #171114,
-                    #101012
-                );
-
-            box-shadow:
-                inset 3px 0 0 var(--red);
-        }
-
-
-        tbody tr.selected {
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(116,15,33,.42),
-                    rgba(42,10,17,.42)
-                );
-
-            box-shadow:
-                inset 3px 0 0 var(--red-neon),
-                0 0 12px rgba(255,36,71,.08);
-        }
-
-
-        .product-name {
-            display: flex;
-            align-items: center;
-
-            gap: 8px;
-
-            min-width: 0;
-        }
-
-
-        .product-name strong {
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-            white-space: nowrap;
-
-            font-size: 11px;
-        }
-
-
-        .selection-mark {
-            display: none;
-
-            flex: 0 0 auto;
-
-            width: 18px;
-            height: 18px;
-
-            place-items: center;
-
-            border: 1px solid var(--red-neon);
-            border-radius: 50%;
-
-            color: white;
-
-            background: #641326;
-
-            font-size: 10px;
-        }
-
-
-        tr.selected .selection-mark {
-            display: grid;
-        }
-
-
-        .product-image {
-            width: 30px;
-            height: 30px;
-
-            object-fit: cover;
-
-            border-radius: 6px;
-
-            border: 1px solid rgba(255,255,255,.2);
-        }
-
-
-        .category-badge {
-            display: inline-block;
-
-            max-width: 100%;
-
-            padding: 4px 7px;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-            white-space: nowrap;
-
-            border: 1px solid rgba(255,36,71,.3);
-            border-radius: 6px;
-
-            color: #cbd0d4;
-
-            background: rgba(255,255,255,.025);
-
-            font-size: 9px;
-            font-weight: 800;
-        }
-
-
-        .quantity-box {
-            display: flex;
-            align-items: center;
-
-            width: 110px;
-
-            border: 1px solid rgba(255,36,71,.35);
-            border-radius: 7px;
-
-            overflow: hidden;
-
-            background: #080a0c;
-        }
-
-
-        .quantity-box button {
-            width: 30px;
-            min-width: 30px;
-
-            padding: 5px !important;
-
-            border: 0 !important;
-            border-radius: 0 !important;
-
-            background: #15181b !important;
-
-            color: white;
-        }
-
-
-        .quantity-box input {
-            min-height: 30px;
-
-            padding: 4px;
-
-            border: 0;
-            border-left: 1px solid rgba(255,255,255,.08);
-            border-right: 1px solid rgba(255,255,255,.08);
-
-            border-radius: 0;
-
-            text-align: center;
-
-            font-size: 11px;
-        }
-
-
-        .low-limit-input {
-            width: 72px;
-
-            min-height: 31px;
-
-            padding: 5px 7px;
-
-            font-size: 11px;
-        }
-
-
-        .status {
-            display: inline-block;
-
-            padding: 5px 7px;
-
-            border-radius: 6px;
-
-            font-size: 8px;
-            font-weight: 900;
-
-            letter-spacing: .6px;
-
-            white-space: nowrap;
-        }
-
-
-        .status-ok {
-            color: #bfc5ca;
-
-            border: 1px solid rgba(180,190,198,.24);
-
-            background: rgba(255,255,255,.035);
-        }
-
-
-        .status-low {
-            color: #ffba55;
-
-            border: 1px solid rgba(255,186,85,.28);
-
-            background: rgba(255,186,85,.05);
-        }
-
-
-        .status-empty {
-            color: #ff5e77;
-
-            border: 1px solid rgba(255,36,71,.45);
-
-            background: rgba(255,36,71,.07);
-        }
-
-
-        /* =====================================================
-           ACTIONS
-           ===================================================== */
-
-        [data-edit],
-        [data-delete] {
-            min-height: 30px !important;
-
-            padding: 6px 8px !important;
-
-            font-size: 8px !important;
-        }
-
-
-        /* =====================================================
-           BULK
-           ===================================================== */
-
-        .bulk-actions {
-            display: none;
-
-            align-items: center;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 12px;
-
-            padding: 10px;
-
-            border: 1px solid rgba(255,36,71,.42);
-
-            border-radius: 9px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #171012,
-                    #0c0b0c
-                );
-        }
-
-
-        .bulk-actions.show {
-            display: flex;
-        }
-
-
-        .bulk-count {
-            color: #ff6579;
-
-            font-size: 10px;
-            font-weight: 900;
-
-            letter-spacing: .7px;
-        }
-
-
-        .bulk-actions select {
-            width: 220px;
-            min-height: 34px;
-        }
-
-
-        /* =====================================================
-           EMPTY
-           ===================================================== */
-
-        .empty-state {
-            padding: 28px 10px;
-
-            text-align: center;
-
-            color: #6e747a;
-
-            font-size: 11px;
-        }
-
-
-        /* =====================================================
-           MODAL
-           ===================================================== */
-
-        .modal {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 1000;
-
-            display: none;
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-                rgba(0,0,0,.78);
-
-            backdrop-filter: blur(7px);
-        }
-
-
-        .modal.show {
-            display: flex;
-        }
-
-
-        .modal-card {
-            position: relative;
-
-            width: min(520px, 100%);
-
-            padding: 21px;
-
-            border: 2px solid var(--red-neon);
-            border-radius: 16px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #1b1e21,
-                    #090b0d 60%,
-                    #15181a
-                );
-
-            box-shadow:
-                0 0 18px rgba(255,36,71,.22),
-                0 20px 70px rgba(0,0,0,.7);
-        }
-
-
-        .modal-card h2 {
-            margin: 0 0 18px;
-
-            font-size: 15px;
-
-            letter-spacing: 1.4px;
-        }
-
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-
-            gap: 8px;
-
-            margin-top: 18px;
-        }
-
-
-        /* =====================================================
-           NOTIFICATION BELL
-           ===================================================== */
-
-        .notification {
-            position: fixed;
-
-            right: 20px;
-            bottom: 20px;
-
-            z-index: 2000;
-        }
-
-
-        .notification-bell {
-            position: relative;
-
-            width: 45px;
-            height: 45px;
-
-            display: grid;
-            place-items: center;
-
-            padding: 0 !important;
-
-            border: 2px solid rgba(255,36,71,.75) !important;
-            border-radius: 50% !important;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #c4c8cb,
-                    #565b60 48%,
-                    #141618
-                ) !important;
-
-            box-shadow:
-                0 0 10px rgba(255,36,71,.22);
-
-            transition:
-                transform .15s ease,
-                box-shadow .15s ease;
-        }
-
-
-        .notification-bell:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 0 15px rgba(255,36,71,.38);
-        }
-
-
-        .bell-icon {
-            font-size: 18px;
-
-            filter:
-                grayscale(.3)
-                drop-shadow(0 1px 1px #000);
-        }
-
-
-        .notification-badge {
-            position: absolute;
-
-            right: -3px;
-            top: -3px;
-
-            min-width: 17px;
-            height: 17px;
-
-            padding: 2px 4px;
-
-            display: none;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid #ff7184;
-            border-radius: 50%;
-
-            color: white;
-
-            background: #a81530;
-
-            font-size: 8px;
-            font-weight: 900;
-        }
-
-
-        .notification-badge.show {
-            display: flex;
-        }
-
-
-        .notification-popup {
-            position: absolute;
-
-            right: 0;
-            bottom: 57px;
-
-            width: 290px;
-
-            display: none;
-
-            border: 2px solid rgba(255,36,71,.72);
-            border-radius: 13px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #181b1e,
-                    #090b0d
-                );
-
-            box-shadow:
-                0 0 18px rgba(255,36,71,.18),
-                0 15px 40px rgba(0,0,0,.6);
-
-            overflow: hidden;
-        }
-
-
-        .notification.open
-        .notification-popup {
-            display: block;
-
-            animation:
-                notificationIn .18s ease;
-        }
-
-
-        @keyframes notificationIn {
-
-            from {
-                opacity: 0;
-                transform: translateY(7px) scale(.98);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-
-        .notification-popup-head {
-            display: flex;
-            align-items: center;
-
-            gap: 8px;
-
-            padding: 10px 11px;
-
-            border-bottom: 1px solid rgba(255,36,71,.35);
-
-            color: #e7e9eb;
-
-            font-size: 10px;
-            font-weight: 900;
-
-            letter-spacing: 1px;
-        }
-
-
-        .notification-popup-icon {
-            font-size: 13px;
-        }
-
-
-        .notification-close {
-            margin-left: auto;
-
-            width: 25px;
-            height: 25px;
-
-            padding: 0 !important;
-
-            border-radius: 50% !important;
-
-            font-size: 17px !important;
-
-            color: #aeb3b8 !important;
-        }
-
-
-        .notification-body {
-            padding: 12px;
-
-            color: #c7cbd0;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-
-        @media (max-width: 850px) {
-
-            .container {
-                width: min(
-                    100% - 18px,
-                    700px
-                );
-
-                padding-top: 10px;
-            }
-
-
-            .stats {
-                grid-template-columns:
-                    repeat(2, minmax(0,1fr));
-            }
-
-
-            .category-top {
-                align-items: stretch;
-
-                flex-direction: column;
-            }
-
-
-            .category-create {
-                width: 100%;
-            }
-
-
-            .category-create input {
-                min-width: 0;
-            }
-
-
-            .panel {
-                padding: 14px;
-            }
-
-
-            .logo-text h1 {
-                font-size: 22px;
-            }
-        }
-
-
-        @media (max-width: 520px) {
-
-            .stats {
-                gap: 8px;
-            }
-
-
-            .stat-card {
-                min-height: 78px;
-
-                padding: 11px;
-            }
-
-
-            .stat-value {
-                font-size: 22px;
-            }
-
-
-            .notification {
-                right: 13px;
-                bottom: 13px;
-            }
-
-
-            .notification-popup {
-                right: 0;
-
-                width:
-                    min(
-                        290px,
-                        calc(100vw - 26px)
-                    );
-            }
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
+<header class="header">
 
-<div class="container">
+    <div class="logo">
 
-
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
-
-    <header class="header">
-
-        <div class="header-content">
-
-            <div class="logo">
-
-                <div class="logo-mark">
-                    GX
-                </div>
-
-                <div class="logo-text">
-
-                    <h1>GRAND X</h1>
-
-                    <p>
-                        OMBOR BOSHQARUV TIZIMI
-                    </p>
-
-                </div>
-
-            </div>
-
+        <div class="logo-mark">
+            GX
         </div>
 
-    </header>
+        <div class="logo-text">
+            GRAND X
+        </div>
 
+    </div>
+
+    <div class="selection-hint" id="selectionHint"></div>
+
+</header>
+
+
+<main>
 
     <!-- =====================================================
-         STATS
+         STATISTICS
          ===================================================== -->
 
     <section class="stats">
@@ -1476,7 +57,7 @@
 
             <div
                 class="stat-value"
-                id="statProducts"
+                id="totalProducts"
             >
                 0
             </div>
@@ -1492,7 +73,7 @@
 
             <div
                 class="stat-value"
-                id="statQuantity"
+                id="totalQuantity"
             >
                 0
             </div>
@@ -1500,7 +81,7 @@
         </div>
 
 
-        <div class="stat-card low">
+        <div class="stat-card">
 
             <div class="stat-title">
                 KAM QOLGAN
@@ -1508,7 +89,7 @@
 
             <div
                 class="stat-value"
-                id="statLow"
+                id="lowStock"
             >
                 0
             </div>
@@ -1516,7 +97,7 @@
         </div>
 
 
-        <div class="stat-card empty">
+        <div class="stat-card">
 
             <div class="stat-title">
                 TUGAGAN
@@ -1524,7 +105,7 @@
 
             <div
                 class="stat-value"
-                id="statEmpty"
+                id="emptyStock"
             >
                 0
             </div>
@@ -1535,14 +116,14 @@
 
 
     <!-- =====================================================
-         CATEGORY
+         CATEGORIES
          ===================================================== -->
 
     <section class="panel">
 
         <div class="category-top">
 
-            <h2 class="panel-title">
+            <h2>
                 KATEGORIYALAR
             </h2>
 
@@ -1550,15 +131,14 @@
             <div class="category-create">
 
                 <input
-                    id="newCategory"
                     type="text"
-                    placeholder="Yangi kategoriya..."
+                    id="categoryInput"
+                    placeholder="Yangi kategoriya"
                     autocomplete="off"
                 >
 
                 <button
                     type="button"
-                    class="btn-red"
                     id="addCategoryButton"
                 >
                     + KATEGORIYA
@@ -1569,10 +149,17 @@
         </div>
 
 
-        <div
-            id="categoryButtons"
-            class="category-buttons"
-        ></div>
+        <div id="categoryButtons">
+
+            <button
+                type="button"
+                class="category-button active"
+                data-category=""
+            >
+                BARCHASI
+            </button>
+
+        </div>
 
     </section>
 
@@ -1583,99 +170,55 @@
 
     <section class="panel">
 
-        <h2 class="panel-title">
-            YANGI MAHSULOT
+        <h2>
+            MAHSULOT QO‘SHISH
         </h2>
 
 
-        <div class="form-grid">
+        <div class="product-form">
 
-            <div class="form-group">
-
-                <label>
-                    MAHSULOT NOMI
-                </label>
-
-                <input
-                    id="productName"
-                    type="text"
-                    placeholder="Mahsulot nomi"
-                >
-
-            </div>
-
-
-            <div
-                style="
-                    display:grid;
-                    grid-template-columns:
-                        repeat(3, minmax(0,1fr));
-                    gap:10px;
-                "
+            <input
+                type="text"
+                id="productName"
+                placeholder="Mahsulot nomi"
+                autocomplete="off"
             >
 
-                <div class="form-group">
 
-                    <label>
-                        MIQDOR
-                    </label>
-
-                    <input
-                        id="productQuantity"
-                        type="number"
-                        min="0"
-                        value="0"
-                    >
-
-                </div>
+            <input
+                type="number"
+                id="productQuantity"
+                placeholder="Miqdor"
+                min="0"
+                step="1"
+            >
 
 
-                <div class="form-group">
-
-                    <label>
-                        MINIMAL
-                    </label>
-
-                    <input
-                        id="productLowLimit"
-                        type="number"
-                        min="0"
-                        value="5"
-                    >
-
-                </div>
+            <input
+                type="number"
+                id="productLowLimit"
+                placeholder="Minimal"
+                min="0"
+                step="1"
+                value="5"
+            >
 
 
-                <div class="form-group">
+            <select id="productCategory">
 
-                    <label>
-                        KATEGORIYA
-                    </label>
+                <option value="">
+                    Kategoriya
+                </option>
 
-                    <select id="productCategory">
-
-                        <option value="">
-                            Kategoriyasiz
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
+            </select>
 
 
-            <div>
-
-                <button
-                    type="button"
-                    class="btn-red"
-                    id="addProductButton"
-                >
-                    + MAHSULOT QO'SHISH
-                </button>
-
-            </div>
+            <button
+                type="button"
+                id="addProductButton"
+            >
+                + MAHSULOT
+            </button>
 
         </div>
 
@@ -1688,48 +231,66 @@
 
     <section class="panel">
 
-        <div
-            style="
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                gap:15px;
-                margin-bottom:13px;
-            "
-        >
+        <div class="products-header">
 
-            <h2
-                class="panel-title"
-                style="margin:0"
-            >
+            <div>
 
-                <span id="selectedCategoryTitle">
-                    BARCHASI
-                </span>
+                <h2>
+                    MAHSULOTLAR
+                </h2>
 
-            </h2>
+            </div>
 
-        </div>
-
-
-        <div class="search-row">
 
             <input
-                id="searchInput"
                 type="search"
-                placeholder="Mahsulot yoki kategoriya qidirish..."
+                id="searchInput"
+                placeholder="Mahsulot qidirish..."
+                autocomplete="off"
             >
 
         </div>
 
 
-        <div
-            id="bulkActions"
-            class="bulk-actions"
-        ></div>
+        <!-- BULK ACTIONS -->
+
+        <div id="bulkActions">
+
+            <span id="selectedCount">
+                0 ta tanlandi
+            </span>
 
 
-        <div class="table-wrapper">
+            <select id="bulkCategory">
+
+                <option value="">
+                    Kategoriyaga o'tkazish
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                id="bulkMoveButton"
+            >
+                O‘TKAZISH
+            </button>
+
+
+            <button
+                type="button"
+                id="bulkCancelButton"
+            >
+                BEKOR
+            </button>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-wrap">
 
             <table>
 
@@ -1737,27 +298,27 @@
 
                     <tr>
 
-                        <th style="width:24%">
+                        <th>
                             MAHSULOT
                         </th>
 
-                        <th style="width:14%">
+                        <th>
                             KATEGORIYA
                         </th>
 
-                        <th style="width:17%">
+                        <th>
                             MIQDOR
                         </th>
 
-                        <th style="width:12%">
+                        <th>
                             MINIMAL
                         </th>
 
-                        <th style="width:13%">
+                        <th>
                             HOLAT
                         </th>
 
-                        <th style="width:20%">
+                        <th>
                             AMALLAR
                         </th>
 
@@ -1766,30 +327,15 @@
                 </thead>
 
 
-                <tbody id="productsTable"></tbody>
+                <tbody id="productsBody"></tbody>
 
             </table>
 
         </div>
 
-
-        <div
-            style="
-                margin-top:12px;
-                color:#70767c;
-                font-size:10px;
-            "
-        >
-            Mahsulotni 2 soniya bosib turing —
-            tanlash rejimi ochiladi.
-            Bir nechta mahsulotni tanlab,
-            ularni bitta kategoriyaga o'tkazishingiz mumkin.
-        </div>
-
     </section>
 
-
-</div>
+</main>
 
 
 <!-- =========================================================
@@ -1798,79 +344,63 @@
 
 <div
     id="editModal"
-    class="modal"
+    aria-hidden="true"
 >
 
-    <div class="modal-card">
+    <div class="modal-content">
 
         <h2>
-            MAHSULOTNI TAHRIRLASH
+            Mahsulotni tahrirlash
         </h2>
 
 
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    MAHSULOT NOMI
-                </label>
-
-                <input
-                    id="editProductName"
-                    type="text"
-                >
-
-            </div>
+        <input
+            type="hidden"
+            id="editId"
+        >
 
 
-            <div class="form-group">
-
-                <label>
-                    MIQDOR
-                </label>
-
-                <input
-                    id="editProductQuantity"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
+        <input
+            type="text"
+            id="editName"
+            placeholder="Mahsulot nomi"
+        >
 
 
-            <div class="form-group">
-
-                <label>
-                    MINIMAL MIQDOR
-                </label>
-
-                <input
-                    id="editProductLowLimit"
-                    type="number"
-                    min="0"
-                >
-
-            </div>
+        <br><br>
 
 
-            <div class="form-group">
+        <input
+            type="number"
+            id="editQuantity"
+            placeholder="Miqdor"
+            min="0"
+            step="1"
+        >
 
-                <label>
-                    KATEGORIYA
-                </label>
 
-                <select id="editProductCategory">
+        <br><br>
 
-                    <option value="">
-                        Kategoriyasiz
-                    </option>
 
-                </select>
+        <input
+            type="number"
+            id="editLowLimit"
+            placeholder="Minimal"
+            min="0"
+            step="1"
+        >
 
-            </div>
 
-        </div>
+        <br><br>
+
+
+        <select id="editCategory">
+
+            <option value="">
+                Kategoriyasiz
+            </option>
+
+        </select>
 
 
         <div class="modal-actions">
@@ -1878,13 +408,14 @@
             <button
                 type="button"
                 id="cancelEditButton"
+                data-no-sound="false"
             >
-                BEKOR QILISH
+                BEKOR
             </button>
+
 
             <button
                 type="button"
-                class="btn-red"
                 id="saveEditButton"
             >
                 SAQLASH
@@ -1898,7 +429,7 @@
 
 
 <!-- =========================================================
-     SMALL NOTIFICATION BELL
+     NOTIFICATION BELL
      ========================================================= -->
 
 <div
@@ -1915,9 +446,34 @@
         title="Bildirishnomalar"
     >
 
-        <span class="bell-icon">
-            🔔
+        <span
+            class="bell-icon"
+            aria-hidden="true"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+
+                <path
+                    d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                ></path>
+
+                <path
+                    d="M10 21h4"
+                ></path>
+
+            </svg>
+
         </span>
+
 
         <span
             id="notificationBadge"
@@ -1933,13 +489,39 @@
 
         <div class="notification-popup-head">
 
-            <span class="notification-popup-icon">
-                🔔
+            <span
+                class="notification-popup-icon"
+                aria-hidden="true"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+
+                    <path
+                        d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                    ></path>
+
+                    <path
+                        d="M10 21h4"
+                    ></path>
+
+                </svg>
+
             </span>
 
+
             <span id="notificationTitle">
-                BILDIRISHNOMALAR
+                KAM QOLDI
             </span>
+
 
             <button
                 type="button"
@@ -1972,6 +554,9 @@
 
 <script>
 
+"use strict";
+
+
 /* =========================================================
    SUPABASE
    ========================================================= */
@@ -1982,7 +567,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_yFGFSQb4K_gR-3KTqckJlQ_rF__5tfI";
 
-const db =
+const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
@@ -1994,30 +579,31 @@ const db =
    ========================================================= */
 
 let products = [];
+
 let categories = [];
 
-let selectedCategory = "all";
+let selectedCategory = "";
+
 let searchText = "";
 
-let selectedProductIds = new Set();
+let selectionMode = false;
 
-let multiSelectMode = false;
+let selectedProducts = new Set();
 
 let longPressTimer = null;
-let longPressProductId = null;
 
-let pointerStartX = 0;
-let pointerStartY = 0;
+let notificationTimer = null;
 
-let longPressTriggered = false;
+let notificationCount = 0;
 
-
-/* =========================================================
-   SOUND ENGINE
-   ========================================================= */
+const stockStates = new Map();
 
 let audioContext = null;
 
+
+/* =========================================================
+   AUDIO — MEMBRANE KEY
+   ========================================================= */
 
 function getAudioContext() {
 
@@ -2041,7 +627,8 @@ function getAudioContext() {
         "suspended"
     ) {
 
-        audioContext.resume()
+        audioContext
+            .resume()
             .catch(() => {});
     }
 
@@ -2050,198 +637,178 @@ function getAudioContext() {
 }
 
 
-function playTone(
-    frequency,
-    duration,
-    type = "triangle",
-    volume = 0.035,
-    endFrequency = null
-) {
+function playMembraneKey() {
 
     const ctx =
         getAudioContext();
 
-    if (!ctx) return;
+    if (!ctx) {
+        return;
+    }
 
 
-    const oscillator =
-        ctx.createOscillator();
+    const now =
+        ctx.currentTime;
+
+    const duration =
+        0.055;
+
+
+    const bufferSize =
+        Math.floor(
+            ctx.sampleRate *
+            duration
+        );
+
+
+    const buffer =
+        ctx.createBuffer(
+            1,
+            bufferSize,
+            ctx.sampleRate
+        );
+
+
+    const data =
+        buffer.getChannelData(0);
+
+
+    for (
+        let i = 0;
+        i < bufferSize;
+        i++
+    ) {
+
+        const t =
+            i / bufferSize;
+
+        const envelope =
+            Math.pow(
+                1 - t,
+                3.2
+            );
+
+        data[i] =
+            (
+                Math.random() * 2 - 1
+            ) *
+            envelope;
+    }
+
+
+    const noise =
+        ctx.createBufferSource();
+
+    noise.buffer =
+        buffer;
+
+
+    const filter =
+        ctx.createBiquadFilter();
+
+    filter.type =
+        "bandpass";
+
+    filter.frequency.setValueAtTime(
+        1750,
+        now
+    );
+
+    filter.Q.setValueAtTime(
+        1.1,
+        now
+    );
+
 
     const gain =
         ctx.createGain();
 
-
-    oscillator.type =
-        type;
-
-
-    oscillator.frequency.setValueAtTime(
-        frequency,
-        ctx.currentTime
-    );
-
-
-    if (endFrequency !== null) {
-
-        oscillator.frequency.linearRampToValueAtTime(
-            endFrequency,
-            ctx.currentTime + duration
-        );
-    }
-
-
     gain.gain.setValueAtTime(
         0.0001,
-        ctx.currentTime
+        now
     );
-
 
     gain.gain.exponentialRampToValueAtTime(
-        volume,
-        ctx.currentTime + 0.004
+        0.055,
+        now + 0.002
     );
-
 
     gain.gain.exponentialRampToValueAtTime(
         0.0001,
-        ctx.currentTime + duration
+        now + duration
     );
 
 
-    oscillator.connect(gain);
-    gain.connect(ctx.destination);
+    noise.connect(filter);
+
+    filter.connect(gain);
+
+    gain.connect(
+        ctx.destination
+    );
 
 
-    oscillator.start();
+    noise.start(now);
 
-    oscillator.stop(
-        ctx.currentTime + duration + .01
+    noise.stop(
+        now + duration
+    );
+
+
+    const thock =
+        ctx.createOscillator();
+
+    const thockGain =
+        ctx.createGain();
+
+
+    thock.type =
+        "sine";
+
+
+    thock.frequency.setValueAtTime(
+        115,
+        now
+    );
+
+    thock.frequency.exponentialRampToValueAtTime(
+        78,
+        now + 0.045
+    );
+
+
+    thockGain.gain.setValueAtTime(
+        0.0001,
+        now
+    );
+
+    thockGain.gain.exponentialRampToValueAtTime(
+        0.025,
+        now + 0.002
+    );
+
+    thockGain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        now + 0.05
+    );
+
+
+    thock.connect(
+        thockGain
+    );
+
+    thockGain.connect(
+        ctx.destination
+    );
+
+
+    thock.start(now);
+
+    thock.stop(
+        now + 0.055
     );
 }
 
-
-function playUISound(type = "click") {
-
-    if (type === "click") {
-
-        playTone(
-            145,
-            .045,
-            "square",
-            .025,
-            105
-        );
-
-        return;
-    }
-
-
-    if (type === "add") {
-
-        playTone(
-            420,
-            .09,
-            "triangle",
-            .035,
-            540
-        );
-
-        setTimeout(() => {
-
-            playTone(
-                650,
-                .12,
-                "triangle",
-                .025,
-                720
-            );
-
-        }, 55);
-
-        return;
-    }
-
-
-    if (type === "delete") {
-
-        playTone(
-            260,
-            .075,
-            "sawtooth",
-            .025,
-            125
-        );
-
-        setTimeout(() => {
-
-            playTone(
-                95,
-                .055,
-                "square",
-                .018,
-                70
-            );
-
-        }, 55);
-
-        return;
-    }
-
-
-    if (type === "error") {
-
-        playTone(
-            180,
-            .10,
-            "square",
-            .022,
-            120
-        );
-
-        setTimeout(() => {
-
-            playTone(
-                120,
-                .12,
-                "square",
-                .018,
-                90
-            );
-
-        }, 85);
-
-        return;
-    }
-
-
-    if (type === "success") {
-
-        playTone(
-            480,
-            .08,
-            "triangle",
-            .025,
-            600
-        );
-
-        setTimeout(() => {
-
-            playTone(
-                680,
-                .11,
-                "triangle",
-                .022,
-                760
-            );
-
-        }, 55);
-    }
-}
-
-
-/* =========================================================
-   BUTTON CLICK SOUND
-   ========================================================= */
 
 document.addEventListener(
     "click",
@@ -2252,9 +819,9 @@ document.addEventListener(
                 "button"
             );
 
-
-        if (!button) return;
-
+        if (!button) {
+            return;
+        }
 
         if (
             button.dataset.noSound ===
@@ -2263,77 +830,9 @@ document.addEventListener(
             return;
         }
 
-
-        playUISound(
-            "click"
-        );
-
+        playMembraneKey();
     },
     true
-);
-
-
-/* =========================================================
-   SCROLL SHINE
-   ========================================================= */
-
-let lastScrollY =
-    window.scrollY;
-
-let scrollTimer =
-    null;
-
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        const current =
-            window.scrollY;
-
-
-        if (
-            current >
-            lastScrollY + 2
-        ) {
-
-            document.body.classList.add(
-                "scrolling-down"
-            );
-
-        } else if (
-            current <
-            lastScrollY - 2
-        ) {
-
-            document.body.classList.remove(
-                "scrolling-down"
-            );
-        }
-
-
-        clearTimeout(
-            scrollTimer
-        );
-
-
-        scrollTimer =
-            setTimeout(() => {
-
-                document.body.classList.remove(
-                    "scrolling-down"
-                );
-
-            }, 500);
-
-
-        lastScrollY =
-            current;
-
-    },
-    {
-        passive: true
-    }
 );
 
 
@@ -2341,91 +840,109 @@ window.addEventListener(
    HELPERS
    ========================================================= */
 
-function normalizeCategory(value) {
+function numberValue(value) {
 
-    return String(value || "")
-        .trim()
-        .toLowerCase();
+    const number =
+        Number(value);
+
+    if (
+        !Number.isFinite(number)
+    ) {
+        return 0;
+    }
+
+    return Math.max(
+        0,
+        Math.floor(number)
+    );
 }
 
 
-function categoryLabel(value) {
+function escapeHtml(value) {
 
-    const v =
-        normalizeCategory(value);
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
 
-    const map = {
+function categoryLabel(name) {
 
-        rezinka: "REZINKALAR",
-        rezinkalar: "REZINKALAR",
+    const value =
+        String(name ?? "")
+            .trim();
 
-        mexanizm: "MEXANIZM",
-        mexanizmlar: "MEXANIZM",
+    const key =
+        value.toLowerCase();
 
-        profil: "PROFIL",
-        profillar: "PROFIL",
 
-        rels: "RELS",
-        relslar: "RELS",
+    const labels = {
 
-        petla: "PETLA",
-        petlalar: "PETLA"
+        "rezinka":
+            "REZINKALAR",
+
+        "rezinkalar":
+            "REZINKALAR",
+
+        "механизм":
+            "MEXANIZM",
+
+        "mехanizm":
+            "MEXANIZM",
+
+        "mexanizm":
+            "MEXANIZM",
+
+        "profil":
+            "PROFIL",
+
+        "rels":
+            "RELS",
+
+        "petla":
+            "PETLA"
 
     };
 
 
     return (
-        map[v] ||
-        String(
-            value ||
-            "KATEGORIYASIZ"
-        )
-        .trim()
-        .toUpperCase()
+        labels[key] ||
+        value.toUpperCase()
     );
 }
 
 
-function escapeHTML(value) {
+/* =========================================================
+   NOTIFICATIONS — STOCK ONLY
+   ========================================================= */
 
-    return String(value ?? "")
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+function getStockState(product) {
+
+    const quantity =
+        Number(product.quantity) || 0;
+
+    const low =
+        Number(product.low_limit) || 0;
+
+
+    if (quantity <= 0) {
+        return "empty";
+    }
+
+    if (quantity <= low) {
+        return "low";
+    }
+
+    return "ok";
 }
 
 
-/* =========================================================
-   NOTIFICATION
-   ========================================================= */
-
-let notificationTimer = null;
-
-let notificationCount = 0;
-
-
-function notify(
-    message,
-    type = "info",
-    sound = null
+function showStockNotification(
+    product,
+    state
 ) {
 
     const box =
@@ -2454,49 +971,40 @@ function notify(
         !title ||
         !body
     ) {
+        return;
+    }
 
-        alert(message);
+
+    const quantity =
+        Number(product.quantity) || 0;
+
+
+    if (state === "empty") {
+
+        title.textContent =
+            "TOVAR TUGADI";
+
+        body.textContent =
+            `${product.name} — qolmadi.`;
+
+    } else if (
+        state === "low"
+    ) {
+
+        title.textContent =
+            "KAM QOLDI";
+
+        body.textContent =
+            `${product.name} — ${quantity} dona qoldi.`;
+
+    } else {
 
         return;
     }
 
 
-    if (sound) {
-
-        playUISound(
-            sound
-        );
-
-    } else if (
-        type === "error"
-    ) {
-
-        playUISound(
-            "error"
-        );
-    }
-
-
-    title.textContent =
-        type === "error"
-            ? "XATOLIK"
-            : type === "success"
-                ? "TAYYOR"
-                : "BILDIRISHNOMA";
-
-
-    body.textContent =
-        message;
-
-
-    box.style.setProperty(
-        "--notification-color",
-        type === "error"
-            ? "#e51f3f"
-            : type === "success"
-                ? "#28d17c"
-                : "#9ca2a7"
-    );
+    box.dataset.type =
+        state;
 
 
     notificationCount++;
@@ -2520,87 +1028,221 @@ function notify(
     );
 
 
+    playMembraneKey();
+
+
     clearTimeout(
         notificationTimer
     );
 
 
     notificationTimer =
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            box.classList.remove(
-                "open"
+                box.classList.remove(
+                    "open"
+                );
+
+            },
+            4500
+        );
+}
+
+
+function checkStockTransition(
+    product,
+    forceNew = false
+) {
+
+    const id =
+        product.id;
+
+    const newState =
+        getStockState(
+            product
+        );
+
+    const oldState =
+        stockStates.get(id);
+
+
+    if (
+        oldState === undefined &&
+        forceNew
+    ) {
+
+        stockStates.set(
+            id,
+            newState
+        );
+
+
+        if (
+            newState === "low" ||
+            newState === "empty"
+        ) {
+
+            showStockNotification(
+                product,
+                newState
             );
+        }
 
-        }, 3500);
+        return;
+    }
+
+
+    if (
+        oldState === undefined
+    ) {
+
+        stockStates.set(
+            id,
+            newState
+        );
+
+        return;
+    }
+
+
+    stockStates.set(
+        id,
+        newState
+    );
+
+
+    if (
+        oldState === "ok" &&
+        newState === "low"
+    ) {
+
+        showStockNotification(
+            product,
+            "low"
+        );
+    }
+
+
+    if (
+        oldState === "ok" &&
+        newState === "empty"
+    ) {
+
+        showStockNotification(
+            product,
+            "empty"
+        );
+    }
+
+
+    if (
+        oldState === "low" &&
+        newState === "empty"
+    ) {
+
+        showStockNotification(
+            product,
+            "empty"
+        );
+    }
+}
+
+
+/*
+    Umumiy bildirishnomalar o'chirilgan.
+    Faqat xatolar console'da.
+*/
+
+function notify(
+    message,
+    type = "info"
+) {
+
+    if (
+        type === "error"
+    ) {
+
+        console.error(
+            "GRAND X:",
+            message
+        );
+    }
 }
 
 
 /* =========================================================
-   NOTIFICATION BUTTON
+   STATISTICS
    ========================================================= */
 
-document.getElementById(
-    "notificationBell"
-).addEventListener(
-    "click",
-    event => {
+function updateStats() {
 
-        event.stopPropagation();
-
-        const box =
-            document.getElementById(
-                "notification"
-            );
+    const totalProducts =
+        products.length;
 
 
-        box.classList.toggle(
-            "open"
+    const totalQuantity =
+        products.reduce(
+            (sum, product) =>
+                sum +
+                numberValue(
+                    product.quantity
+                ),
+            0
         );
 
 
-        notificationCount = 0;
+    const low =
+        products.filter(
+            product =>
+                numberValue(
+                    product.quantity
+                ) > 0 &&
+                numberValue(
+                    product.quantity
+                ) <=
+                numberValue(
+                    product.low_limit
+                )
+        ).length;
 
 
-        const badge =
-            document.getElementById(
-                "notificationBadge"
-            );
+    const empty =
+        products.filter(
+            product =>
+                numberValue(
+                    product.quantity
+                ) <= 0
+        ).length;
 
 
-        if (badge) {
-
-            badge.textContent =
-                "0";
-
-            badge.classList.remove(
-                "show"
-            );
-        }
-
-    }
-);
+    document.getElementById(
+        "totalProducts"
+    ).textContent =
+        totalProducts;
 
 
-document.getElementById(
-    "notificationClose"
-).addEventListener(
-    "click",
-    event => {
+    document.getElementById(
+        "totalQuantity"
+    ).textContent =
+        totalQuantity;
 
-        event.stopPropagation();
 
-        document.getElementById(
-            "notification"
-        ).classList.remove(
-            "open"
-        );
-    }
-);
+    document.getElementById(
+        "lowStock"
+    ).textContent =
+        low;
+
+
+    document.getElementById(
+        "emptyStock"
+    ).textContent =
+        empty;
+}
 
 
 /* =========================================================
-   LOAD CATEGORIES
+   CATEGORIES — LOAD
    ========================================================= */
 
 async function loadCategories() {
@@ -2608,27 +1250,23 @@ async function loadCategories() {
     const {
         data,
         error
-    } = await db
-        .from("categories")
-        .select(
-            "id,name,created_at"
-        )
-        .order(
-            "created_at",
-            {
-                ascending: true
-            }
-        );
+    } =
+        await supabaseClient
+            .from("categories")
+            .select(
+                "id,name,created_at"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: true
+                }
+            );
 
 
     if (error) {
 
-        console.error(
-            error
-        );
-
         notify(
-            "Kategoriyalar yuklanmadi: " +
             error.message,
             "error"
         );
@@ -2641,106 +1279,81 @@ async function loadCategories() {
         data || [];
 
 
-    if (
-        selectedCategory !== "all" &&
-        !categories.some(
-            c =>
-                normalizeCategory(
-                    c.name
-                ) ===
-                normalizeCategory(
-                    selectedCategory
-                )
-        )
-    ) {
-
-        selectedCategory =
-            "all";
-    }
-
-
     renderCategories();
 
-    renderCategorySelects();
+    updateCategorySelects();
 }
 
 
 /* =========================================================
-   RENDER CATEGORIES
+   CATEGORIES — RENDER
    ========================================================= */
 
 function renderCategories() {
 
-    const box =
+    const container =
         document.getElementById(
             "categoryButtons"
         );
 
 
-    box.innerHTML =
-        "";
+    container.innerHTML = "";
 
 
-    const all =
+    const allButton =
         document.createElement(
             "button"
         );
 
+    allButton.type =
+        "button";
 
-    all.className =
-        "category-button " +
+    allButton.className =
+        "category-button" +
         (
-            selectedCategory === "all"
-                ? "active"
+            selectedCategory === ""
+                ? " active"
                 : ""
         );
 
+    allButton.dataset.category =
+        "";
 
-    all.textContent =
+    allButton.textContent =
         "BARCHASI";
 
 
-    all.onclick = () => {
+    allButton.addEventListener(
+        "click",
+        () => {
 
-        if (multiSelectMode) {
+            selectedCategory =
+                "";
 
-            notify(
-                "Tanlash rejimida yuqoridagi kategoriyani tanlang.",
-                "info"
-            );
-
-            return;
+            renderCategories();
+            renderProducts();
         }
+    );
 
 
-        selectedCategory =
-            "all";
-
-
-        updateCategoryTitle();
-
-        renderCategories();
-
-        renderProducts();
-    };
-
-
-    box.appendChild(
-        all
+    container.appendChild(
+        allButton
     );
 
 
     categories.forEach(
         category => {
 
-            const item =
+            const wrapper =
                 document.createElement(
                     "div"
                 );
 
+            wrapper.style.display =
+                "inline-flex";
 
-            item.className =
-                "category-item";
+            wrapper.style.alignItems =
+                "center";
 
 
             const button =
@@ -2748,20 +1361,20 @@ function renderCategories() {
                     "button"
                 );
 
+            button.type =
+                "button";
 
             button.className =
-                "category-button " +
+                "category-button" +
                 (
-                    normalizeCategory(
-                        selectedCategory
-                    ) ===
-                    normalizeCategory(
-                        category.name
-                    )
-                        ? "active"
+                    selectedCategory ===
+                    category.name
+                        ? " active"
                         : ""
                 );
 
+            button.dataset.category =
+                category.name;
 
             button.textContent =
                 categoryLabel(
@@ -2769,73 +1382,65 @@ function renderCategories() {
                 );
 
 
-            button.onclick =
-                async () => {
-
-                    if (
-                        multiSelectMode
-                    ) {
-
-                        await moveSelected(
-                            category.name
-                        );
-
-                        return;
-                    }
-
+            button.addEventListener(
+                "click",
+                () => {
 
                     selectedCategory =
                         category.name;
 
-
-                    updateCategoryTitle();
-
                     renderCategories();
-
                     renderProducts();
-                };
+                }
+            );
 
 
-            const del =
+            const deleteButton =
                 document.createElement(
                     "button"
                 );
 
+            deleteButton.type =
+                "button";
 
-            del.className =
+            deleteButton.className =
                 "category-delete";
 
+            deleteButton.dataset.noSound =
+                "true";
 
-            del.textContent =
+            deleteButton.textContent =
                 "×";
 
+            deleteButton.title =
+                "Kategoriyani o‘chirish";
 
-            del.title =
-                "Kategoriyani o'chirish";
 
-
-            del.onclick =
-                async event => {
+            deleteButton.addEventListener(
+                "click",
+                event => {
 
                     event.stopPropagation();
 
-                    await deleteCategory(
+                    deleteCategory(
                         category.id,
                         category.name
                     );
-                };
+                }
+            );
 
 
-            item.appendChild(
+            wrapper.appendChild(
                 button
             );
 
-            item.appendChild(
-                del
+            wrapper.appendChild(
+                deleteButton
             );
 
-            box.appendChild(
-                item
+
+            container.appendChild(
+                wrapper
             );
         }
     );
@@ -2846,7 +1451,7 @@ function renderCategories() {
    CATEGORY SELECTS
    ========================================================= */
 
-function renderCategorySelects() {
+function updateCategorySelects() {
 
     const selects = [
 
@@ -2855,7 +1460,11 @@ function renderCategorySelects() {
         ),
 
         document.getElementById(
-            "editProductCategory"
+            "editCategory"
+        ),
+
+        document.getElementById(
+            "bulkCategory"
         )
 
     ];
@@ -2864,19 +1473,39 @@ function renderCategorySelects() {
     selects.forEach(
         select => {
 
-            if (!select) return;
+            if (!select) {
+                return;
+            }
 
 
-            const old =
+            const current =
                 select.value;
 
 
-            select.innerHTML =
-                `
-                <option value="">
-                    Kategoriyasiz
-                </option>
+            if (
+                select.id ===
+                "bulkCategory"
+            ) {
+
+                select.innerHTML = `
+                    <option value="">
+                        Kategoriyaga o'tkazish
+                    </option>
                 `;
+
+            } else {
+
+                select.innerHTML = `
+                    <option value="">
+                        ${
+                            select.id ===
+                            "productCategory"
+                                ? "Kategoriyani tanlang"
+                                : "Kategoriyasiz"
+                        }
+                    </option>
+                `;
+            }
 
 
             categories.forEach(
@@ -2887,16 +1516,13 @@ function renderCategorySelects() {
                             "option"
                         );
 
-
                     option.value =
                         category.name;
-
 
                     option.textContent =
                         categoryLabel(
                             category.name
                         );
-
 
                     select.appendChild(
                         option
@@ -2905,8 +1531,17 @@ function renderCategorySelects() {
             );
 
 
-            select.value =
-                old;
+            if (
+                categories.some(
+                    category =>
+                        category.name ===
+                        current
+                )
+            ) {
+
+                select.value =
+                    current;
+            }
         }
     );
 }
@@ -2920,7 +1555,7 @@ async function addCategory() {
 
     const input =
         document.getElementById(
-            "newCategory"
+            "categoryInput"
         );
 
 
@@ -2929,35 +1564,20 @@ async function addCategory() {
 
 
     if (!name) {
-
-        notify(
-            "Kategoriya nomini kiriting.",
-            "error"
-        );
-
         return;
     }
 
 
     const exists =
         categories.some(
-            c =>
-                normalizeCategory(
-                    c.name
-                ) ===
-                normalizeCategory(
-                    name
-                )
+            category =>
+                category.name
+                    .toLowerCase() ===
+                name.toLowerCase()
         );
 
 
     if (exists) {
-
-        notify(
-            "Bu kategoriya allaqachon mavjud.",
-            "error"
-        );
-
         return;
     }
 
@@ -2965,23 +1585,19 @@ async function addCategory() {
     const {
         data,
         error
-    } = await db
-        .from("categories")
-        .insert({
-            name
-        })
-        .select()
-        .single();
+    } =
+        await supabaseClient
+            .from("categories")
+            .insert({
+                name
+            })
+            .select()
+            .single();
 
 
     if (error) {
 
-        console.error(
-            error
-        );
-
         notify(
-            "Kategoriya qo'shilmadi: " +
             error.message,
             "error"
         );
@@ -2995,20 +1611,12 @@ async function addCategory() {
     );
 
 
-    input.value =
-        "";
+    input.value = "";
 
 
     renderCategories();
 
-    renderCategorySelects();
-
-
-    notify(
-        "Kategoriya qo'shildi.",
-        "success",
-        "add"
-    );
+    updateCategorySelects();
 }
 
 
@@ -3021,86 +1629,29 @@ async function deleteCategory(
     name
 ) {
 
-    if (
-        !confirm(
-            `"${categoryLabel(name)}" kategoriyasi o'chirilsinmi?\n\nMahsulotlar "Kategoriyasiz" bo'ladi.`
-        )
-    ) {
+    const confirmed =
+        window.confirm(
+            `Kategoriyani o‘chirish: ${categoryLabel(name)}?`
+        );
 
+
+    if (!confirmed) {
         return;
-    }
-
-
-    const ids =
-        products
-            .filter(
-                product =>
-                    normalizeCategory(
-                        product.category
-                    ) ===
-                    normalizeCategory(
-                        name
-                    )
-            )
-            .map(
-                product =>
-                    product.id
-            );
-
-
-    if (
-        ids.length > 0
-    ) {
-
-        const {
-            error
-        } = await db
-            .from("products")
-            .update({
-                category: null
-            })
-            .in(
-                "id",
-                ids
-            );
-
-
-        if (error) {
-
-            console.error(
-                error
-            );
-
-            notify(
-                "Mahsulot kategoriyasini o'zgartirib bo'lmadi: " +
-                error.message,
-                "error"
-            );
-
-            return;
-        }
     }
 
 
     const {
         error
-    } = await db
-        .from("categories")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
+    } =
+        await supabaseClient
+            .from("categories")
+            .delete()
+            .eq("id", id);
 
 
     if (error) {
 
-        console.error(
-            error
-        );
-
         notify(
-            "Kategoriyani o'chirib bo'lmadi: " +
             error.message,
             "error"
         );
@@ -3109,69 +1660,38 @@ async function deleteCategory(
     }
 
 
-    categories =
-        categories.filter(
-            c =>
-                Number(c.id) !==
-                Number(id)
+    /*
+       Kategoriyani mahsulotlardan ham
+       olib tashlaymiz.
+    */
+
+    await supabaseClient
+        .from("products")
+        .update({
+            category: null
+        })
+        .eq(
+            "category",
+            name
         );
-
-
-    products =
-        products.map(
-            product =>
-                ids.includes(
-                    product.id
-                )
-                    ? {
-                        ...product,
-                        category: null
-                    }
-                    : product
-        );
-
-
-    selectedProductIds.clear();
-
-    multiSelectMode =
-        false;
 
 
     if (
-        normalizeCategory(
-            selectedCategory
-        ) ===
-        normalizeCategory(
-            name
-        )
+        selectedCategory === name
     ) {
 
         selectedCategory =
-            "all";
+            "";
     }
 
 
-    renderCategories();
-
-    renderCategorySelects();
-
-    renderProducts();
-
-    updateStats();
-
-    updateCategoryTitle();
-
-
-    notify(
-        "Kategoriya o'chirildi.",
-        "success",
-        "delete"
-    );
+    await loadCategories();
+    await loadProducts();
 }
 
 
 /* =========================================================
-   LOAD PRODUCTS
+   PRODUCTS — LOAD
    ========================================================= */
 
 async function loadProducts() {
@@ -3179,27 +1699,23 @@ async function loadProducts() {
     const {
         data,
         error
-    } = await db
-        .from("products")
-        .select(
-            "id,created_at,name,quantity,low_limit,image,category"
-        )
-        .order(
-            "created_at",
-            {
-                ascending: true
-            }
-        );
+    } =
+        await supabaseClient
+            .from("products")
+            .select(
+                "id,created_at,name,quantity,low_limit,image,category"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: true
+                }
+            );
 
 
     if (error) {
 
-        console.error(
-            error
-        );
-
         notify(
-            "Mahsulotlar yuklanmadi: " +
             error.message,
             "error"
         );
@@ -3211,42 +1727,63 @@ async function loadProducts() {
     products =
         (data || []).map(
             product => ({
-
                 ...product,
 
                 quantity:
-                    Number(
+                    numberValue(
                         product.quantity
-                    ) || 0,
+                    ),
 
                 low_limit:
-                    Number(
+                    numberValue(
                         product.low_limit
-                    ) || 5
-
+                    )
             })
         );
 
 
-    const ids =
+    /*
+       Initial load:
+       holatni eslab qolamiz,
+       lekin eski low/empty mahsulotlarga
+       bildirishnoma bermaymiz.
+    */
+
+    products.forEach(
+        product =>
+            checkStockTransition(
+                product
+            )
+    );
+
+
+    /*
+       O'chirilgan mahsulotlarning
+       eski holatini tozalaymiz.
+    */
+
+    const currentIds =
         new Set(
             products.map(
-                p => p.id
+                product =>
+                    product.id
             )
         );
 
 
-    selectedProductIds.forEach(
-        id => {
+    for (
+        const id of stockStates.keys()
+    ) {
 
-            if (!ids.has(id)) {
+        if (
+            !currentIds.has(id)
+        ) {
 
-                selectedProductIds.delete(
-                    id
-                );
-            }
+            stockStates.delete(
+                id
+            );
         }
-    );
+    }
 
 
     updateStats();
@@ -3256,75 +1793,64 @@ async function loadProducts() {
 
 
 /* =========================================================
-   RENDER PRODUCTS
+   PRODUCT FILTER
+   ========================================================= */
+
+function getFilteredProducts() {
+
+    const query =
+        searchText
+            .trim()
+            .toLowerCase();
+
+
+    return products.filter(
+        product => {
+
+            const matchesSearch =
+                !query ||
+                String(
+                    product.name || ""
+                )
+                    .toLowerCase()
+                    .includes(query);
+
+
+            const matchesCategory =
+                !selectedCategory ||
+                product.category ===
+                    selectedCategory;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   PRODUCT RENDER
    ========================================================= */
 
 function renderProducts() {
 
-    const tbody =
+    const body =
         document.getElementById(
-            "productsTable"
+            "productsBody"
         );
 
 
-    let list =
-        [...products];
+    const filtered =
+        getFilteredProducts();
 
 
-    if (
-        selectedCategory !== "all"
-    ) {
-
-        list =
-            list.filter(
-                product =>
-                    normalizeCategory(
-                        product.category
-                    ) ===
-                    normalizeCategory(
-                        selectedCategory
-                    )
-            );
-    }
+    body.innerHTML = "";
 
 
-    if (searchText) {
-
-        const q =
-            searchText.toLowerCase();
-
-
-        list =
-            list.filter(
-                product => {
-
-                    return (
-
-                        String(
-                            product.name || ""
-                        )
-                        .toLowerCase()
-                        .includes(q)
-
-                        ||
-
-                        String(
-                            product.category || ""
-                        )
-                        .toLowerCase()
-                        .includes(q)
-
-                    );
-                }
-            );
-    }
-
-
-    tbody.innerHTML =
-        "";
-
-
-    if (!list.length) {
+    if (!filtered.length) {
 
         const row =
             document.createElement(
@@ -3332,27 +1858,30 @@ function renderProducts() {
             );
 
 
-        row.innerHTML =
-            `
-            <td colspan="6">
-
-                <div class="empty-state">
-                    Mahsulot topilmadi
-                </div>
-
+        row.innerHTML = `
+            <td colspan="6"
+                style="
+                    text-align:center;
+                    color:#999;
+                    padding:28px;
+                "
+            >
+                MAHSULOT TOPILMADI
             </td>
-            `;
+        `;
 
 
-        tbody.appendChild(
+        body.appendChild(
             row
         );
+
+        updateSelectionUI();
 
         return;
     }
 
 
-    list.forEach(
+    filtered.forEach(
         product => {
 
             const row =
@@ -3361,12 +1890,8 @@ function renderProducts() {
                 );
 
 
-            row.className =
-                "product-row";
-
-
             if (
-                selectedProductIds.has(
+                selectedProducts.has(
                     product.id
                 )
             ) {
@@ -3378,78 +1903,51 @@ function renderProducts() {
 
 
             const quantity =
-                Number(
+                numberValue(
                     product.quantity
-                ) || 0;
-
+                );
 
             const low =
-                Number(
+                numberValue(
                     product.low_limit
-                ) || 0;
-
-
-            let status =
-                "YETARLI";
+                );
 
 
             let statusClass =
-                "status status-ok";
+                "status-ok";
+
+            let statusText =
+                "YETARLI";
 
 
             if (
                 quantity <= 0
             ) {
 
-                status =
-                    "TUGAGAN";
-
                 statusClass =
-                    "status status-empty";
+                    "status-out";
+
+                statusText =
+                    "TUGAGAN";
 
             } else if (
                 quantity <= low
             ) {
 
-                status =
-                    "KAM QOLDI";
-
                 statusClass =
-                    "status status-low";
+                    "status-low";
+
+                statusText =
+                    "KAM QOLDI";
             }
 
 
-            const image =
-                product.image
-                    ? `
-                        <img
-                            class="product-image"
-                            src="${escapeHTML(product.image)}"
-                            alt=""
-                        >
-                    `
-                    : "";
-
-
-            row.innerHTML =
-                `
+            row.innerHTML = `
 
                 <td>
 
                     <div class="product-name">
-
-                        <span class="selection-mark">
-                            ✓
-                        </span>
-
-                        ${image}
-
-                        <strong>
-                            ${escapeHTML(
-                                product.name
-                            )}
-                        </strong>
-
+                        ${escapeHtml(product.name)}
                     </div>
 
                 </td>
@@ -3457,44 +1955,47 @@ function renderProducts() {
 
                 <td>
 
-                    <span class="category-badge">
-
-                        ${escapeHTML(
+                    <div class="product-category">
+                        ${
                             product.category
-                                ? categoryLabel(
-                                    product.category
+                                ? escapeHtml(
+                                    categoryLabel(
+                                        product.category
+                                    )
                                 )
-                                : "KATEGORIYASIZ"
-                        )}
-
-                    </span>
+                                : "—"
+                        }
+                    </div>
 
                 </td>
 
 
                 <td>
 
-                    <div class="quantity-box">
+                    <div class="quantity-control">
 
                         <button
                             type="button"
-                            data-minus
+                            class="quantity-minus"
+                            data-id="${product.id}"
+                            aria-label="Kamaytirish"
                         >
                             −
                         </button>
 
 
-                        <input
-                            class="quantity-input"
-                            type="number"
-                            min="0"
-                            value="${quantity}"
+                        <span
+                            class="quantity-value"
                         >
+                            ${quantity}
+                        </span>
 
 
                         <button
                             type="button"
-                            data-plus
+                            class="quantity-plus"
+                            data-id="${product.id}"
+                            aria-label="Ko‘paytirish"
                         >
                             +
                         </button>
@@ -3507,10 +2008,13 @@ function renderProducts() {
                 <td>
 
                     <input
-                        class="low-limit-input"
                         type="number"
-                        min="0"
+                        class="low-limit-input"
+                        data-id="${product.id}"
                         value="${low}"
+                        min="0"
+                        step="1"
+                        aria-label="Minimal miqdor"
                     >
 
                 </td>
@@ -3519,9 +2023,9 @@ function renderProducts() {
                 <td>
 
                     <span
-                        class="${statusClass}"
+                        class="status ${statusClass}"
                     >
-                        ${status}
+                        ${statusText}
                     </span>
 
                 </td>
@@ -3529,758 +2033,302 @@ function renderProducts() {
 
                 <td>
 
-                    <div
-                        style="
-                            display:flex;
-                            gap:5px;
-                            flex-wrap:wrap;
-                        "
-                    >
+                    <div class="actions">
 
                         <button
                             type="button"
-                            data-edit
+                            class="edit-button"
+                            data-id="${product.id}"
+                            title="Tahrirlash"
                         >
-                            TAHRIRLASH
+                            ✎
                         </button>
 
 
                         <button
                             type="button"
-                            class="btn-danger"
-                            data-delete
+                            class="delete-button"
+                            data-id="${product.id}"
+                            title="O‘chirish"
                         >
-                            O'CHIRISH
+                            ×
                         </button>
 
                     </div>
 
                 </td>
 
-                `;
+            `;
 
 
-            row.querySelector(
-                "[data-minus]"
-            ).onclick =
+            /*
+               Long press
+            */
+
+            row.addEventListener(
+                "pointerdown",
                 event => {
 
-                    event.stopPropagation();
-
-                    updateQuantity(
-                        product.id,
-                        -1
-                    );
-                };
-
-
-            row.querySelector(
-                "[data-plus]"
-            ).onclick =
-                event => {
-
-                    event.stopPropagation();
-
-                    updateQuantity(
-                        product.id,
-                        1
-                    );
-                };
+                    if (
+                        event.target.closest(
+                            "button,input,select"
+                        )
+                    ) {
+                        return;
+                    }
 
 
-            const quantityInput =
-                row.querySelector(
-                    ".quantity-input"
-                );
+                    if (!selectionMode) {
 
+                        longPressTimer =
+                            setTimeout(
+                                () => {
 
-            quantityInput.onchange =
-                event => {
+                                    selectionMode =
+                                        true;
 
-                    event.stopPropagation();
+                                    toggleProductSelection(
+                                        product.id
+                                    );
 
-                    setQuantity(
-                        product.id,
-                        quantityInput.value
-                    );
-                };
+                                    updateSelectionUI();
 
-
-            quantityInput.onclick =
-                event =>
-                    event.stopPropagation();
-
-
-            const lowInput =
-                row.querySelector(
-                    ".low-limit-input"
-                );
-
-
-            lowInput.onchange =
-                event => {
-
-                    event.stopPropagation();
-
-                    setLowLimit(
-                        product.id,
-                        lowInput.value
-                    );
-                };
-
-
-            lowInput.onclick =
-                event =>
-                    event.stopPropagation();
-
-
-            row.querySelector(
-                "[data-edit]"
-            ).onclick =
-                event => {
-
-                    event.stopPropagation();
-
-                    openEdit(
-                        product.id
-                    );
-                };
-
-
-            row.querySelector(
-                "[data-delete]"
-            ).onclick =
-                event => {
-
-                    event.stopPropagation();
-
-                    deleteProduct(
-                        product.id
-                    );
-                };
-
-
-            attachSelectionEvents(
-                row,
-                product.id
+                                },
+                                2000
+                            );
+                    }
+                }
             );
 
 
-            tbody.appendChild(
+            row.addEventListener(
+                "pointerup",
+                () => {
+
+                    clearTimeout(
+                        longPressTimer
+                    );
+                }
+            );
+
+
+            row.addEventListener(
+                "pointerleave",
+                () => {
+
+                    clearTimeout(
+                        longPressTimer
+                    );
+                }
+            );
+
+
+            row.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        !selectionMode
+                    ) {
+                        return;
+                    }
+
+
+                    if (
+                        event.target.closest(
+                            "button,input,select"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    toggleProductSelection(
+                        product.id
+                    );
+
+                    renderProducts();
+                }
+            );
+
+
+            body.appendChild(
                 row
             );
         }
     );
-}
 
 
-/* =========================================================
-   LONG PRESS
-   ========================================================= */
+    /*
+       Buttons
+    */
 
-function attachSelectionEvents(
-    row,
-    productId
-) {
+    body.querySelectorAll(
+        ".quantity-plus"
+    ).forEach(
+        button => {
 
-    row.addEventListener(
-        "pointerdown",
-        event => {
+            button.addEventListener(
+                "click",
+                () => {
 
-            if (
-                event.target.closest("button") ||
-                event.target.closest("input") ||
-                event.target.closest("select")
-            ) {
+                    const id =
+                        button.dataset.id;
 
-                return;
-            }
-
-
-            pointerStartX =
-                event.clientX;
-
-            pointerStartY =
-                event.clientY;
-
-            longPressProductId =
-                productId;
-
-            longPressTriggered =
-                false;
-
-
-            clearTimeout(
-                longPressTimer
-            );
-
-
-            if (
-                multiSelectMode
-            ) {
-
-                longPressTimer =
-                    setTimeout(
-                        () => {
-
-                            longPressTriggered =
-                                true;
-
-                        },
-                        350
-                    );
-
-                return;
-            }
-
-
-            longPressTimer =
-                setTimeout(
-                    () => {
-
-                        longPressTriggered =
-                            true;
-
-                        multiSelectMode =
-                            true;
-
-                        selectedProductIds.clear();
-
-                        selectedProductIds.add(
-                            productId
+                    const product =
+                        products.find(
+                            item =>
+                                item.id === id
                         );
 
-                        renderProducts();
-
-                        updateBulkActions();
-
-                        notify(
-                            "Tanlash rejimi yoqildi. Boshqa mahsulotlarni bosing.",
-                            "info"
-                        );
-
-                    },
-                    2000
-                );
-        }
-    );
-
-
-    row.addEventListener(
-        "pointermove",
-        event => {
-
-            if (
-                !longPressProductId
-            ) return;
-
-
-            const dx =
-                Math.abs(
-                    event.clientX -
-                    pointerStartX
-                );
-
-
-            const dy =
-                Math.abs(
-                    event.clientY -
-                    pointerStartY
-                );
-
-
-            if (
-                dx > 15 ||
-                dy > 15
-            ) {
-
-                clearTimeout(
-                    longPressTimer
-                );
-
-                longPressTimer =
-                    null;
-
-                longPressProductId =
-                    null;
-            }
-        }
-    );
-
-
-    row.addEventListener(
-        "pointerup",
-        () => {
-
-            clearTimeout(
-                longPressTimer
-            );
-
-
-            const id =
-                longPressProductId;
-
-
-            longPressTimer =
-                null;
-
-            longPressProductId =
-                null;
-
-
-            if (!id) return;
-
-
-            if (
-                multiSelectMode &&
-                !longPressTriggered
-            ) {
-
-                if (
-                    selectedProductIds.has(id)
-                ) {
-
-                    selectedProductIds.delete(id);
-
-                } else {
-
-                    selectedProductIds.add(id);
-                }
-
-
-                if (
-                    selectedProductIds.size === 0
-                ) {
-
-                    multiSelectMode =
-                        false;
-                }
-
-
-                renderProducts();
-
-                updateBulkActions();
-            }
-
-
-            longPressTriggered =
-                false;
-        }
-    );
-
-
-    row.addEventListener(
-        "pointercancel",
-        () => {
-
-            clearTimeout(
-                longPressTimer
-            );
-
-            longPressTimer =
-                null;
-
-            longPressProductId =
-                null;
-
-            longPressTriggered =
-                false;
-        }
-    );
-}
-
-
-/* =========================================================
-   BULK ACTIONS
-   ========================================================= */
-
-function updateBulkActions() {
-
-    const box =
-        document.getElementById(
-            "bulkActions"
-        );
-
-
-    if (
-        !multiSelectMode ||
-        selectedProductIds.size === 0
-    ) {
-
-        box.classList.remove(
-            "show"
-        );
-
-        box.innerHTML =
-            "";
-
-        return;
-    }
-
-
-    box.classList.add(
-        "show"
-    );
-
-
-    box.innerHTML =
-        `
-
-        <div class="bulk-count">
-
-            ${selectedProductIds.size}
-            TA TANLANGAN
-
-        </div>
-
-
-        <button
-            type="button"
-            id="selectAllButton"
-        >
-            BARCHASINI TANLASH
-        </button>
-
-
-        <select
-            id="bulkCategorySelect"
-        >
-
-            <option value="">
-                KATEGORIYANI TANLANG
-            </option>
-
-            ${categories.map(
-                category =>
-                    `
-                    <option value="${escapeHTML(
-                        category.name
-                    )}">
-                        ${escapeHTML(
-                            categoryLabel(
-                                category.name
-                            )
-                        )}
-                    </option>
-                    `
-            ).join("")}
-
-        </select>
-
-
-        <button
-            type="button"
-            class="btn-red"
-            id="moveBulkButton"
-        >
-            BARCHASINI O'TKAZISH
-        </button>
-
-
-        <button
-            type="button"
-            id="cancelSelectionButton"
-        >
-            BEKOR QILISH
-        </button>
-
-        `;
-
-
-    document.getElementById(
-        "selectAllButton"
-    ).onclick =
-        selectAllVisible;
-
-
-    document.getElementById(
-        "moveBulkButton"
-    ).onclick =
-        () => {
-
-            const select =
-                document.getElementById(
-                    "bulkCategorySelect"
-                );
-
-
-            if (!select.value) {
-
-                notify(
-                    "Kategoriyani tanlang.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            moveSelected(
-                select.value
-            );
-        };
-
-
-    document.getElementById(
-        "cancelSelectionButton"
-    ).onclick =
-        cancelSelection;
-}
-
-
-/* =========================================================
-   SELECT ALL
-   ========================================================= */
-
-function selectAllVisible() {
-
-    let list =
-        [...products];
-
-
-    if (
-        selectedCategory !== "all"
-    ) {
-
-        list =
-            list.filter(
-                product =>
-                    normalizeCategory(
-                        product.category
-                    ) ===
-                    normalizeCategory(
-                        selectedCategory
-                    )
-            );
-    }
-
-
-    if (searchText) {
-
-        const q =
-            searchText.toLowerCase();
-
-
-        list =
-            list.filter(
-                product =>
-                    String(
-                        product.name || ""
-                    )
-                    .toLowerCase()
-                    .includes(q)
-            );
-    }
-
-
-    list.forEach(
-        product => {
-
-            selectedProductIds.add(
-                product.id
-            );
-        }
-    );
-
-
-    multiSelectMode =
-        selectedProductIds.size > 0;
-
-
-    renderProducts();
-
-    updateBulkActions();
-}
-
-
-/* =========================================================
-   CANCEL SELECTION
-   ========================================================= */
-
-function cancelSelection() {
-
-    selectedProductIds.clear();
-
-    multiSelectMode =
-        false;
-
-
-    renderProducts();
-
-    updateBulkActions();
-}
-
-
-/* =========================================================
-   MOVE SELECTED
-   ========================================================= */
-
-async function moveSelected(
-    categoryName
-) {
-
-    const ids =
-        [...selectedProductIds];
-
-
-    if (!ids.length) {
-
-        notify(
-            "Mahsulot tanlanmagan.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
-            category:
-                categoryName
-        })
-        .in(
-            "id",
-            ids
-        );
-
-
-    if (error) {
-
-        console.error(
-            error
-        );
-
-        notify(
-            "Mahsulotlarni o'tkazib bo'lmadi: " +
-            error.message,
-            "error"
-        );
-
-        return;
-    }
-
-
-    products =
-        products.map(
-            product =>
-                ids.includes(
-                    product.id
-                )
-                    ? {
-                        ...product,
-                        category:
-                            categoryName
+                    if (!product) {
+                        return;
                     }
-                    : product
-        );
 
 
-    selectedProductIds.clear();
-
-    multiSelectMode =
-        false;
-
-
-    renderCategories();
-
-    renderProducts();
-
-    updateBulkActions();
-
-
-    notify(
-        `${ids.length} ta mahsulot "${categoryLabel(categoryName)}" kategoriyasiga o'tkazildi.`,
-        "success",
-        "success"
+                    setQuantity(
+                        id,
+                        numberValue(
+                            product.quantity
+                        ) + 1
+                    );
+                }
+            );
+        }
     );
+
+
+    body.querySelectorAll(
+        ".quantity-minus"
+    ).forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const id =
+                        button.dataset.id;
+
+                    const product =
+                        products.find(
+                            item =>
+                                item.id === id
+                        );
+
+                    if (!product) {
+                        return;
+                    }
+
+
+                    setQuantity(
+                        id,
+                        Math.max(
+                            0,
+                            numberValue(
+                                product.quantity
+                            ) - 1
+                        )
+                    );
+                }
+            );
+        }
+    );
+
+
+    body.querySelectorAll(
+        ".low-limit-input"
+    ).forEach(
+        input => {
+
+            input.addEventListener(
+                "change",
+                () => {
+
+                    setLowLimit(
+                        input.dataset.id,
+                        numberValue(
+                            input.value
+                        )
+                    );
+                }
+            );
+        }
+    );
+
+
+    body.querySelectorAll(
+        ".edit-button"
+    ).forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    openEdit(
+                        button.dataset.id
+                    );
+                }
+            );
+        }
+    );
+
+
+    body.querySelectorAll(
+        ".delete-button"
+    ).forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    deleteProduct(
+                        button.dataset.id
+                    );
+                }
+            );
+        }
+    );
+
+
+    updateSelectionUI();
 }
 
 
 /* =========================================================
-   QUANTITY
+   SET QUANTITY
    ========================================================= */
-
-async function updateQuantity(
-    id,
-    change
-) {
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if (!product) return;
-
-
-    const newValue =
-        Math.max(
-            0,
-            Number(
-                product.quantity
-            ) +
-            Number(change)
-        );
-
-
-    await setQuantity(
-        id,
-        newValue
-    );
-}
-
 
 async function setQuantity(
     id,
-    value
+    quantity
 ) {
 
-    let quantity =
-        Math.floor(
-            Number(value)
-        );
-
-
-    if (
-        !Number.isFinite(
-            quantity
-        )
-    ) {
-
-        quantity =
-            0;
-    }
-
-
     quantity =
-        Math.max(
-            0,
+        numberValue(
             quantity
         );
 
 
     const {
         error
-    } = await db
-        .from("products")
-        .update({
-            quantity
-        })
-        .eq(
-            "id",
-            id
-        );
+    } =
+        await supabaseClient
+            .from("products")
+            .update({
+                quantity
+            })
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
 
         notify(
-            "Miqdor saqlanmadi: " +
             error.message,
             "error"
         );
@@ -4289,16 +2337,34 @@ async function setQuantity(
     }
 
 
-    products =
-        products.map(
+    const oldProduct =
+        products.find(
             product =>
                 product.id === id
-                    ? {
-                        ...product,
-                        quantity
-                    }
-                    : product
         );
+
+
+    if (oldProduct) {
+
+        const updatedProduct = {
+            ...oldProduct,
+            quantity
+        };
+
+
+        products =
+            products.map(
+                product =>
+                    product.id === id
+                        ? updatedProduct
+                        : product
+            );
+
+
+        checkStockTransition(
+            updatedProduct
+        );
+    }
 
 
     updateStats();
@@ -4308,54 +2374,37 @@ async function setQuantity(
 
 
 /* =========================================================
-   LOW LIMIT
+   SET LOW LIMIT
    ========================================================= */
 
 async function setLowLimit(
     id,
-    value
+    low
 ) {
 
-    let low =
-        Math.floor(
-            Number(value)
-        );
-
-
-    if (
-        !Number.isFinite(low)
-    ) {
-
-        low =
-            5;
-    }
-
-
     low =
-        Math.max(
-            0,
+        numberValue(
             low
         );
 
 
     const {
         error
-    } = await db
-        .from("products")
-        .update({
-            low_limit:
-                low
-        })
-        .eq(
-            "id",
-            id
-        );
+    } =
+        await supabaseClient
+            .from("products")
+            .update({
+                low_limit: low
+            })
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
 
         notify(
-            "Minimal miqdor saqlanmadi: " +
             error.message,
             "error"
         );
@@ -4364,17 +2413,166 @@ async function setLowLimit(
     }
 
 
-    products =
-        products.map(
+    const oldProduct =
+        products.find(
             product =>
                 product.id === id
-                    ? {
-                        ...product,
-                        low_limit:
-                            low
-                    }
-                    : product
         );
+
+
+    if (oldProduct) {
+
+        const updatedProduct = {
+            ...oldProduct,
+            low_limit: low
+        };
+
+
+        products =
+            products.map(
+                product =>
+                    product.id === id
+                        ? updatedProduct
+                        : product
+            );
+
+
+        checkStockTransition(
+            updatedProduct
+        );
+    }
+
+
+    updateStats();
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   ADD PRODUCT
+   ========================================================= */
+
+async function addProduct() {
+
+    const nameInput =
+        document.getElementById(
+            "productName"
+        );
+
+    const quantityInput =
+        document.getElementById(
+            "productQuantity"
+        );
+
+    const lowInput =
+        document.getElementById(
+            "productLowLimit"
+        );
+
+    const categoryInput =
+        document.getElementById(
+            "productCategory"
+        );
+
+
+    const name =
+        nameInput.value.trim();
+
+
+    if (!name) {
+        return;
+    }
+
+
+    const quantity =
+        numberValue(
+            quantityInput.value
+        );
+
+
+    const low =
+        numberValue(
+            lowInput.value || 5
+        );
+
+
+    const category =
+        categoryInput.value ||
+        null;
+
+
+    const data = {
+
+        name,
+
+        quantity,
+
+        low_limit:
+            low || 5,
+
+        category,
+
+        image: null
+    };
+
+
+    const {
+        data: inserted,
+        error
+    } =
+        await supabaseClient
+            .from("products")
+            .insert(data)
+            .select()
+            .single();
+
+
+    if (error) {
+
+        notify(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    const addedProduct = {
+
+        ...inserted,
+
+        quantity:
+            numberValue(
+                inserted.quantity
+            ),
+
+        low_limit:
+            numberValue(
+                inserted.low_limit
+            )
+    };
+
+
+    products.push(
+        addedProduct
+    );
+
+
+    nameInput.value = "";
+
+    quantityInput.value = "";
+
+    lowInput.value = "5";
+
+    categoryInput.value = "";
+
+
+    checkStockTransition(
+        addedProduct,
+        true
+    );
 
 
     updateStats();
@@ -4393,38 +2591,42 @@ async function deleteProduct(
 
     const product =
         products.find(
-            p => p.id === id
+            item =>
+                item.id === id
         );
 
 
-    if (!product) return;
+    if (!product) {
+        return;
+    }
 
 
-    if (
-        !confirm(
-            `"${product.name}" o'chirilsinmi?`
-        )
-    ) {
+    const confirmed =
+        window.confirm(
+            `Mahsulotni o‘chirish: ${product.name}?`
+        );
 
+
+    if (!confirmed) {
         return;
     }
 
 
     const {
         error
-    } = await db
-        .from("products")
-        .delete()
-        .eq(
-            "id",
-            id
-        );
+    } =
+        await supabaseClient
+            .from("products")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
 
         notify(
-            "Mahsulot o'chirilmadi: " +
             error.message,
             "error"
         );
@@ -4433,13 +2635,19 @@ async function deleteProduct(
     }
 
 
+    stockStates.delete(
+        id
+    );
+
+
     products =
         products.filter(
-            p => p.id !== id
+            item =>
+                item.id !== id
         );
 
 
-    selectedProductIds.delete(
+    selectedProducts.delete(
         id
     );
 
@@ -4448,211 +2656,57 @@ async function deleteProduct(
 
     renderProducts();
 
-    updateBulkActions();
-
-
-    notify(
-        "Mahsulot o'chirildi.",
-        "success",
-        "delete"
-    );
+    updateSelectionUI();
 }
 
 
 /* =========================================================
-   ADD PRODUCT
-   ========================================================= */
-
-async function addProduct() {
-
-    const name =
-        document.getElementById(
-            "productName"
-        ).value.trim();
-
-
-    if (!name) {
-
-        notify(
-            "Mahsulot nomini kiriting.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    let quantity =
-        Math.floor(
-            Number(
-                document.getElementById(
-                    "productQuantity"
-                ).value
-            )
-        );
-
-
-    let low =
-        Math.floor(
-            Number(
-                document.getElementById(
-                    "productLowLimit"
-                ).value
-            )
-        );
-
-
-    if (
-        !Number.isFinite(
-            quantity
-        )
-    ) {
-
-        quantity =
-            0;
-    }
-
-
-    if (
-        !Number.isFinite(
-            low
-        )
-    ) {
-
-        low =
-            5;
-    }
-
-
-    const category =
-        document.getElementById(
-            "productCategory"
-        ).value ||
-        null;
-
-
-    const {
-        data,
-        error
-    } = await db
-        .from("products")
-        .insert({
-
-            name,
-
-            quantity:
-                Math.max(
-                    0,
-                    quantity
-                ),
-
-            low_limit:
-                Math.max(
-                    0,
-                    low
-                ),
-
-            category,
-
-            image: null
-
-        })
-        .select()
-        .single();
-
-
-    if (error) {
-
-        notify(
-            "Mahsulot qo'shilmadi: " +
-            error.message,
-            "error"
-        );
-
-        return;
-    }
-
-
-    products.push(
-        data
-    );
-
-
-    document.getElementById(
-        "productName"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "productQuantity"
-    ).value =
-        0;
-
-
-    document.getElementById(
-        "productLowLimit"
-    ).value =
-        5;
-
-
-    document.getElementById(
-        "productCategory"
-    ).value =
-        "";
-
-
-    updateStats();
-
-    renderProducts();
-
-
-    notify(
-        "Mahsulot qo'shildi.",
-        "success",
-        "add"
-    );
-}
-
-
-/* =========================================================
-   EDIT
+   EDIT PRODUCT
    ========================================================= */
 
 function openEdit(id) {
 
     const product =
         products.find(
-            p => p.id === id
+            item =>
+                item.id === id
         );
 
 
-    if (!product) return;
+    if (!product) {
+        return;
+    }
 
 
     document.getElementById(
-        "editProductName"
+        "editId"
+    ).value = id;
+
+
+    document.getElementById(
+        "editName"
     ).value =
         product.name || "";
 
 
     document.getElementById(
-        "editProductQuantity"
+        "editQuantity"
     ).value =
-        product.quantity || 0;
+        numberValue(
+            product.quantity
+        );
 
 
     document.getElementById(
-        "editProductLowLimit"
+        "editLowLimit"
     ).value =
-        product.low_limit || 5;
-
-
-    renderCategorySelects();
+        numberValue(
+            product.low_limit
+        );
 
 
     document.getElementById(
-        "editProductCategory"
+        "editCategory"
     ).value =
         product.category || "";
 
@@ -4663,17 +2717,17 @@ function openEdit(id) {
         );
 
 
-    modal.dataset.productId =
-        id;
+    modal.style.display =
+        "flex";
 
-
-    modal.classList.add(
-        "show"
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
     );
 }
 
 
-async function saveEdit() {
+function closeEdit() {
 
     const modal =
         document.getElementById(
@@ -4681,55 +2735,89 @@ async function saveEdit() {
         );
 
 
+    modal.style.display =
+        "none";
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+}
+
+
+/* =========================================================
+   SAVE EDIT
+   ========================================================= */
+
+async function saveEdit() {
+
     const id =
-        Number(
-            modal.dataset.productId
-        );
+        document.getElementById(
+            "editId"
+        ).value;
 
 
     const name =
         document.getElementById(
-            "editProductName"
+            "editName"
         ).value.trim();
 
 
+    if (!name) {
+        return;
+    }
+
+
     const quantity =
-        Math.max(
-            0,
-            Math.floor(
-                Number(
-                    document.getElementById(
-                        "editProductQuantity"
-                    ).value
-                )
-            ) || 0
+        numberValue(
+            document.getElementById(
+                "editQuantity"
+            ).value
         );
 
 
     const low =
-        Math.max(
-            0,
-            Math.floor(
-                Number(
-                    document.getElementById(
-                        "editProductLowLimit"
-                    ).value
-                )
-            ) || 0
+        numberValue(
+            document.getElementById(
+                "editLowLimit"
+            ).value
         );
 
 
     const category =
         document.getElementById(
-            "editProductCategory"
+            "editCategory"
         ).value ||
         null;
 
 
-    if (!name) {
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("products")
+            .update({
+
+                name,
+
+                quantity,
+
+                low_limit:
+                    low,
+
+                category
+
+            })
+            .eq(
+                "id",
+                id
+            );
+
+
+    if (error) {
 
         notify(
-            "Mahsulot nomi bo'sh.",
+            error.message,
             "error"
         );
 
@@ -4737,11 +2825,18 @@ async function saveEdit() {
     }
 
 
-    const {
-        error
-    } = await db
-        .from("products")
-        .update({
+    const oldProduct =
+        products.find(
+            product =>
+                product.id === id
+        );
+
+
+    if (oldProduct) {
+
+        const updatedProduct = {
+
+            ...oldProduct,
 
             name,
 
@@ -4751,18 +2846,165 @@ async function saveEdit() {
                 low,
 
             category
+        };
 
-        })
-        .eq(
-            "id",
+
+        products =
+            products.map(
+                product =>
+                    product.id === id
+                        ? updatedProduct
+                        : product
+            );
+
+
+        checkStockTransition(
+            updatedProduct
+        );
+    }
+
+
+    closeEdit();
+
+    updateStats();
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+function toggleProductSelection(
+    id
+) {
+
+    if (
+        selectedProducts.has(id)
+    ) {
+
+        selectedProducts.delete(
             id
         );
+
+    } else {
+
+        selectedProducts.add(
+            id
+        );
+    }
+}
+
+
+function updateSelectionUI() {
+
+    const bulk =
+        document.getElementById(
+            "bulkActions"
+        );
+
+    const count =
+        document.getElementById(
+            "selectedCount"
+        );
+
+    const hint =
+        document.getElementById(
+            "selectionHint"
+        );
+
+
+    if (
+        !selectionMode
+    ) {
+
+        bulk.style.display =
+            "none";
+
+        count.textContent =
+            "0 ta tanlandi";
+
+        hint.textContent =
+            "";
+
+        return;
+    }
+
+
+    bulk.style.display =
+        "flex";
+
+
+    count.textContent =
+        `${selectedProducts.size} ta tanlandi`;
+
+
+    hint.textContent =
+        "Tanlash rejimi: mahsulot ustiga bosing";
+}
+
+
+/* =========================================================
+   EXIT SELECTION
+   ========================================================= */
+
+function exitSelectionMode() {
+
+    selectionMode =
+        false;
+
+    selectedProducts.clear();
+
+    updateSelectionUI();
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   BULK MOVE
+   ========================================================= */
+
+async function bulkMove() {
+
+    const category =
+        document.getElementById(
+            "bulkCategory"
+        ).value;
+
+
+    if (
+        !category ||
+        !selectedProducts.size
+    ) {
+        return;
+    }
+
+
+    const ids =
+        Array.from(
+            selectedProducts
+        );
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("products")
+            .update({
+                category
+            })
+            .in(
+                "id",
+                ids
+            );
 
 
     if (error) {
 
         notify(
-            "Saqlanmadi: " +
             error.message,
             "error"
         );
@@ -4774,226 +3016,301 @@ async function saveEdit() {
     products =
         products.map(
             product =>
-                product.id === id
+                selectedProducts.has(
+                    product.id
+                )
                     ? {
                         ...product,
-                        name,
-                        quantity,
-                        low_limit:
-                            low,
                         category
                     }
                     : product
         );
 
 
-    closeEdit();
-
-    updateStats();
-
-    renderProducts();
-
-
-    notify(
-        "Mahsulot o'zgartirildi.",
-        "success",
-        "success"
-    );
-}
-
-
-function closeEdit() {
-
-    document.getElementById(
-        "editModal"
-    ).classList.remove(
-        "show"
-    );
+    exitSelectionMode();
 }
 
 
 /* =========================================================
-   STATS
+   SEARCH
    ========================================================= */
 
-function updateStats() {
+function handleSearch() {
 
-    const totalProducts =
-        products.length;
+    searchText =
+        document.getElementById(
+            "searchInput"
+        ).value;
 
 
-    const totalQuantity =
-        products.reduce(
-            (sum, product) =>
-                sum +
-                Number(
-                    product.quantity
-                ),
-            0
+    renderProducts();
+}
+
+
+/* =========================================================
+   NOTIFICATION BELL
+   ========================================================= */
+
+function toggleNotifications() {
+
+    const box =
+        document.getElementById(
+            "notification"
         );
 
 
-    const low =
-        products.filter(
-            product =>
-                Number(
-                    product.quantity
-                ) > 0 &&
-                Number(
-                    product.quantity
-                ) <=
-                Number(
-                    product.low_limit
-                )
-        ).length;
+    box.classList.toggle(
+        "open"
+    );
 
 
-    const empty =
-        products.filter(
-            product =>
-                Number(
-                    product.quantity
-                ) <= 0
-        ).length;
+    if (
+        box.classList.contains(
+            "open"
+        )
+    ) {
+
+        notificationCount =
+            0;
 
 
-    document.getElementById(
-        "statProducts"
-    ).textContent =
-        totalProducts;
+        const badge =
+            document.getElementById(
+                "notificationBadge"
+            );
 
 
-    document.getElementById(
-        "statQuantity"
-    ).textContent =
-        totalQuantity;
+        badge.textContent =
+            "0";
 
 
-    document.getElementById(
-        "statLow"
-    ).textContent =
-        low;
-
-
-    document.getElementById(
-        "statEmpty"
-    ).textContent =
-        empty;
+        badge.classList.remove(
+            "show"
+        );
+    }
 }
 
 
 /* =========================================================
-   TITLE
+   SCROLL SHINE
    ========================================================= */
 
-function updateCategoryTitle() {
+let scrollTimer = null;
 
-    document.getElementById(
-        "selectedCategoryTitle"
-    ).textContent =
-        selectedCategory === "all"
-            ? "BARCHASI"
-            : categoryLabel(
-                selectedCategory
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        document.body.classList.add(
+            "is-scrolling"
+        );
+
+
+        clearTimeout(
+            scrollTimer
+        );
+
+
+        scrollTimer =
+            setTimeout(
+                () => {
+
+                    document.body.classList.remove(
+                        "is-scrolling"
+                    );
+
+                },
+                650
             );
-}
+
+    },
+    {
+        passive: true
+    }
+);
 
 
 /* =========================================================
    EVENTS
    ========================================================= */
 
-document.getElementById(
-    "addCategoryButton"
-).onclick =
-    addCategory;
+document
+    .getElementById(
+        "addCategoryButton"
+    )
+    .addEventListener(
+        "click",
+        addCategory
+    );
 
 
-document.getElementById(
-    "addProductButton"
-).onclick =
-    addProduct;
+document
+    .getElementById(
+        "categoryInput"
+    )
+    .addEventListener(
+        "keydown",
+        event => {
 
+            if (
+                event.key ===
+                "Enter"
+            ) {
 
-document.getElementById(
-    "saveEditButton"
-).onclick =
-    saveEdit;
-
-
-document.getElementById(
-    "cancelEditButton"
-).onclick =
-    closeEdit;
-
-
-document.getElementById(
-    "newCategory"
-).addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            addCategory();
+                addCategory();
+            }
         }
-    }
-);
+    );
 
 
-document.getElementById(
-    "searchInput"
-).addEventListener(
-    "input",
-    event => {
-
-        searchText =
-            event.target.value
-                .trim()
-                .toLowerCase();
+document
+    .getElementById(
+        "addProductButton"
+    )
+    .addEventListener(
+        "click",
+        addProduct
+    );
 
 
-        renderProducts();
-    }
-);
+document
+    .getElementById(
+        "productName"
+    )
+    .addEventListener(
+        "keydown",
+        event => {
 
+            if (
+                event.key ===
+                "Enter"
+            ) {
 
-document.getElementById(
-    "editModal"
-).addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target.id ===
-            "editModal"
-        ) {
-
-            closeEdit();
+                addProduct();
+            }
         }
-    }
-);
+    );
 
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        handleSearch
+    );
+
+
+document
+    .getElementById(
+        "saveEditButton"
+    )
+    .addEventListener(
+        "click",
+        saveEdit
+    );
+
+
+document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .addEventListener(
+        "click",
+        closeEdit
+    );
+
+
+document
+    .getElementById(
+        "notificationBell"
+    )
+    .addEventListener(
+        "click",
+        toggleNotifications
+    );
+
+
+document
+    .getElementById(
+        "notificationClose"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "notification"
+                )
+                .classList.remove(
+                    "open"
+                );
+        }
+    );
+
+
+document
+    .getElementById(
+        "bulkMoveButton"
+    )
+    .addEventListener(
+        "click",
+        bulkMove
+    );
+
+
+document
+    .getElementById(
+        "bulkCancelButton"
+    )
+    .addEventListener(
+        "click",
+        exitSelectionMode
+    );
+
+
+document
+    .getElementById(
+        "editModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "editModal"
+            ) {
+
+                closeEdit();
+            }
+        }
+    );
+
+
+/* =========================================================
+   ESCAPE
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
+            closeEdit();
+
             if (
-                multiSelectMode
+                selectionMode
             ) {
 
-                cancelSelection();
-
-            } else {
-
-                closeEdit();
+                exitSelectionMode();
             }
         }
     }
@@ -5001,91 +3318,50 @@ document.addEventListener(
 
 
 /* =========================================================
-   START
+   START APP
    ========================================================= */
 
 async function startApp() {
 
-    try {
+    await loadCategories();
 
-        await loadCategories();
-
-        await loadProducts();
-
-        updateCategoryTitle();
-
-        updateBulkActions();
-
-        console.log(
-            "GRAND X METAL NEON EDITION READY"
-        );
-
-    } catch (error) {
-
-        console.error(
-            "START ERROR:",
-            error
-        );
-
-        notify(
-            "Saytni ishga tushirishda xatolik.",
-            "error"
-        );
-    }
-}
+    await loadProducts();
 
 
-if (
-    document.readyState ===
-    "loading"
-) {
+    /*
+       Товары обновляем каждые 7 секунд.
+       Существующий stockStates не сбрасывается,
+       поэтому повторных уведомлений нет.
+    */
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        startApp
+    setInterval(
+        async () => {
+
+            await loadProducts();
+
+        },
+        7000
     );
 
-} else {
 
-    startApp();
+    /*
+       Категории обновляем реже.
+    */
+
+    setInterval(
+        async () => {
+
+            await loadCategories();
+
+        },
+        15000
+    );
 }
 
 
-/* =========================================================
-   AUTO REFRESH
-   ========================================================= */
-
-setInterval(
-    async () => {
-
-        if (
-            multiSelectMode
-        ) return;
-
-
-        await loadProducts();
-
-    },
-    7000
-);
-
-
-setInterval(
-    async () => {
-
-        if (
-            multiSelectMode
-        ) return;
-
-
-        await loadCategories();
-
-    },
-    15000
-);
+startApp();
 
 </script>
-
 
 </body>
 </html>
