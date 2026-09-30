@@ -17,6 +17,1411 @@
         href="style.css"
     >
 
+    <style>
+
+        /* =====================================================
+           GRAND X — METAL / NEON COMPACT UI
+           ===================================================== */
+
+        :root {
+            --black: #050607;
+            --black-2: #090b0d;
+            --black-3: #101316;
+
+            --metal-dark: #1b1e21;
+            --metal: #777d83;
+            --metal-light: #c9cdd1;
+            --silver: #e4e7e9;
+
+            --red: #e51f3f;
+            --red-soft: #bd1733;
+            --red-neon: #ff2447;
+
+            --border: rgba(255, 36, 71, .62);
+            --border-soft: rgba(255, 36, 71, .30);
+
+            --text: #f2f3f4;
+            --muted: #8e949a;
+
+            --radius: 14px;
+
+            --shadow-red:
+                0 0 8px rgba(255, 36, 71, .18),
+                0 0 22px rgba(255, 36, 71, .08);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(255, 255, 255, .055),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    145deg,
+                    #030405 0%,
+                    #080a0c 45%,
+                    #040506 100%
+                );
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 0%,
+                    rgba(255,255,255,.025) 46%,
+                    transparent 52%
+                );
+
+            opacity: .45;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+           ===================================================== */
+
+        .container {
+            width: min(1320px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 26px 0 60px;
+        }
+
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        .header {
+            position: relative;
+
+            padding: 22px 24px;
+            margin-bottom: 20px;
+
+            border: 2px solid var(--border);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #15181b,
+                    #080a0c 55%,
+                    #111417
+                );
+
+            box-shadow: var(--shadow-red);
+
+            overflow: hidden;
+        }
+
+
+        .header::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -35%;
+
+            width: 28%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.16),
+                    transparent
+                );
+
+            transform: skewX(-18deg);
+
+            opacity: 0;
+        }
+
+
+        body.scrolling-down .header::after {
+            animation: metalSweep .75s ease;
+        }
+
+
+        @keyframes metalSweep {
+
+            0% {
+                left: -35%;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: .9;
+            }
+
+            100% {
+                left: 125%;
+                opacity: 0;
+            }
+        }
+
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+
+        .logo-mark {
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            border: 2px solid var(--red-neon);
+
+            color: white;
+
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #c8cdd1,
+                    #555b60 45%,
+                    #151719 70%,
+                    #8c9297
+                );
+
+            text-shadow:
+                0 1px 1px #000;
+
+            box-shadow:
+                0 0 9px rgba(255,36,71,.32);
+        }
+
+
+        .logo-text h1 {
+            margin: 0;
+
+            font-size: 27px;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+
+        .logo-text p {
+            margin: 4px 0 0;
+
+            color: var(--metal-light);
+
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           STATS
+           ===================================================== */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .stat-card {
+            position: relative;
+
+            min-height: 94px;
+
+            padding: 15px 17px;
+
+            border: 2px solid var(--border-soft);
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171a1d,
+                    #090b0d
+                );
+
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.06),
+                0 0 14px rgba(255,36,71,.05);
+
+            overflow: hidden;
+        }
+
+
+        .stat-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red-neon),
+                    transparent
+                );
+
+            opacity: .75;
+        }
+
+
+        .stat-title {
+            color: var(--metal-light);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .stat-value {
+            margin-top: 7px;
+
+            font-size: 28px;
+            font-weight: 900;
+
+            color: white;
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,.12);
+        }
+
+
+        .stat-card.low {
+            border-color: rgba(255, 155, 40, .42);
+        }
+
+
+        .stat-card.empty {
+            border-color: rgba(255, 36, 71, .55);
+        }
+
+
+        /* =====================================================
+           PANELS
+           ===================================================== */
+
+        .panel {
+            position: relative;
+
+            margin-bottom: 18px;
+
+            padding: 19px;
+
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121518,
+                    #080a0c 58%,
+                    #101316
+                );
+
+            box-shadow:
+                var(--shadow-red),
+                inset 0 1px 0 rgba(255,255,255,.045);
+
+            overflow: hidden;
+        }
+
+
+        .panel::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -40%;
+
+            width: 25%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.09),
+                    transparent
+                );
+
+            transform: skewX(-18deg);
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        body.scrolling-down .panel::after {
+            animation: panelShine .8s ease;
+        }
+
+
+        @keyframes panelShine {
+
+            0% {
+                left: -40%;
+                opacity: 0;
+            }
+
+            18% {
+                opacity: .7;
+            }
+
+            100% {
+                left: 125%;
+                opacity: 0;
+            }
+        }
+
+
+        .panel > * {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .panel-title {
+            margin: 0 0 15px;
+
+            color: var(--silver);
+
+            font-size: 14px;
+            font-weight: 900;
+
+            letter-spacing: 1.8px;
+        }
+
+
+        /* =====================================================
+           CATEGORY
+           ===================================================== */
+
+        .category-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 16px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .category-create {
+            display: flex;
+            gap: 8px;
+        }
+
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .category-item {
+            display: flex;
+            align-items: stretch;
+        }
+
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        button:not(.notification-bell) {
+            border: 1px solid rgba(255,255,255,.14);
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #292d31,
+                    #111417
+                );
+
+            color: #e9ebed;
+
+            padding: 8px 12px;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: .4px;
+
+            transition:
+                transform .12s ease,
+                border-color .15s ease,
+                box-shadow .15s ease,
+                background .15s ease;
+        }
+
+
+        button:not(.notification-bell):hover {
+            border-color: var(--red-neon);
+
+            box-shadow:
+                0 0 8px rgba(255,36,71,.25);
+        }
+
+
+        button:not(.notification-bell):active {
+            transform: translateY(1px) scale(.985);
+        }
+
+
+        .category-button {
+            border-color: rgba(255,36,71,.42) !important;
+
+            min-height: 34px;
+
+            padding: 7px 14px !important;
+        }
+
+
+        .category-button.active {
+            color: white !important;
+
+            border-color: var(--red-neon) !important;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #651528,
+                    #1c0b10
+                ) !important;
+
+            box-shadow:
+                0 0 10px rgba(255,36,71,.26);
+        }
+
+
+        .category-delete {
+            min-width: 31px;
+
+            padding: 5px !important;
+
+            border-radius: 0 8px 8px 0 !important;
+
+            color: #ff7185 !important;
+
+            border-left: 0 !important;
+        }
+
+
+        /* =====================================================
+           INPUTS
+           ===================================================== */
+
+        input,
+        select {
+            width: 100%;
+
+            min-height: 38px;
+
+            padding: 9px 11px;
+
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 8px;
+
+            outline: none;
+
+            color: #f1f2f3;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #15181b,
+                    #080a0c
+                );
+
+            transition:
+                border-color .15s ease,
+                box-shadow .15s ease;
+        }
+
+
+        input:focus,
+        select:focus {
+            border-color: var(--red-neon);
+
+            box-shadow:
+                0 0 0 2px rgba(255,36,71,.10),
+                0 0 12px rgba(255,36,71,.12);
+        }
+
+
+        input::placeholder {
+            color: #686e74;
+        }
+
+
+        .form-grid {
+            display: grid;
+            gap: 13px;
+        }
+
+
+        .form-group {
+            display: grid;
+            gap: 6px;
+        }
+
+
+        .form-group label {
+            color: #aeb3b8;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+
+        .btn-red {
+            border-color: var(--red-neon) !important;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #9e1732,
+                    #470d19
+                ) !important;
+
+            box-shadow:
+                0 0 10px rgba(255,36,71,.18);
+        }
+
+
+        .btn-red:hover {
+            box-shadow:
+                0 0 14px rgba(255,36,71,.35) !important;
+        }
+
+
+        .btn-danger {
+            border-color: rgba(255,36,71,.55) !important;
+
+            color: #ff6b7e !important;
+        }
+
+
+        /* =====================================================
+           SEARCH
+           ===================================================== */
+
+        .search-row {
+            margin-bottom: 12px;
+        }
+
+
+        /* =====================================================
+           TABLE
+           ===================================================== */
+
+        .table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+
+            border: 2px solid rgba(255,36,71,.46);
+
+            border-radius: 12px;
+
+            background: #060708;
+
+            box-shadow:
+                inset 0 0 18px rgba(0,0,0,.7);
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: separate;
+            border-spacing: 0;
+
+            table-layout: fixed;
+
+            min-width: 760px;
+        }
+
+
+        thead th {
+            padding: 10px 9px;
+
+            color: #cbd0d4;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #1d2125,
+                    #0e1012
+                );
+
+            border-bottom: 2px solid var(--red-soft);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-align: left;
+        }
+
+
+        tbody td {
+            padding: 8px 9px;
+
+            height: 54px;
+
+            border-bottom: 1px solid rgba(255,255,255,.055);
+
+            color: #e8eaec;
+
+            font-size: 11px;
+
+            vertical-align: middle;
+        }
+
+
+        tbody tr {
+            background:
+                linear-gradient(
+                    90deg,
+                    #0c0f11,
+                    #101316,
+                    #0b0d0f
+                );
+
+            transition:
+                background .15s ease,
+                box-shadow .15s ease;
+        }
+
+
+        tbody tr:hover {
+            background:
+                linear-gradient(
+                    90deg,
+                    #151012,
+                    #171114,
+                    #101012
+                );
+
+            box-shadow:
+                inset 3px 0 0 var(--red);
+        }
+
+
+        tbody tr.selected {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(116,15,33,.42),
+                    rgba(42,10,17,.42)
+                );
+
+            box-shadow:
+                inset 3px 0 0 var(--red-neon),
+                0 0 12px rgba(255,36,71,.08);
+        }
+
+
+        .product-name {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            min-width: 0;
+        }
+
+
+        .product-name strong {
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            font-size: 11px;
+        }
+
+
+        .selection-mark {
+            display: none;
+
+            flex: 0 0 auto;
+
+            width: 18px;
+            height: 18px;
+
+            place-items: center;
+
+            border: 1px solid var(--red-neon);
+            border-radius: 50%;
+
+            color: white;
+
+            background: #641326;
+
+            font-size: 10px;
+        }
+
+
+        tr.selected .selection-mark {
+            display: grid;
+        }
+
+
+        .product-image {
+            width: 30px;
+            height: 30px;
+
+            object-fit: cover;
+
+            border-radius: 6px;
+
+            border: 1px solid rgba(255,255,255,.2);
+        }
+
+
+        .category-badge {
+            display: inline-block;
+
+            max-width: 100%;
+
+            padding: 4px 7px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            border: 1px solid rgba(255,36,71,.3);
+            border-radius: 6px;
+
+            color: #cbd0d4;
+
+            background: rgba(255,255,255,.025);
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+
+        .quantity-box {
+            display: flex;
+            align-items: center;
+
+            width: 110px;
+
+            border: 1px solid rgba(255,36,71,.35);
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            background: #080a0c;
+        }
+
+
+        .quantity-box button {
+            width: 30px;
+            min-width: 30px;
+
+            padding: 5px !important;
+
+            border: 0 !important;
+            border-radius: 0 !important;
+
+            background: #15181b !important;
+
+            color: white;
+        }
+
+
+        .quantity-box input {
+            min-height: 30px;
+
+            padding: 4px;
+
+            border: 0;
+            border-left: 1px solid rgba(255,255,255,.08);
+            border-right: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 0;
+
+            text-align: center;
+
+            font-size: 11px;
+        }
+
+
+        .low-limit-input {
+            width: 72px;
+
+            min-height: 31px;
+
+            padding: 5px 7px;
+
+            font-size: 11px;
+        }
+
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 7px;
+
+            border-radius: 6px;
+
+            font-size: 8px;
+            font-weight: 900;
+
+            letter-spacing: .6px;
+
+            white-space: nowrap;
+        }
+
+
+        .status-ok {
+            color: #bfc5ca;
+
+            border: 1px solid rgba(180,190,198,.24);
+
+            background: rgba(255,255,255,.035);
+        }
+
+
+        .status-low {
+            color: #ffba55;
+
+            border: 1px solid rgba(255,186,85,.28);
+
+            background: rgba(255,186,85,.05);
+        }
+
+
+        .status-empty {
+            color: #ff5e77;
+
+            border: 1px solid rgba(255,36,71,.45);
+
+            background: rgba(255,36,71,.07);
+        }
+
+
+        /* =====================================================
+           ACTIONS
+           ===================================================== */
+
+        [data-edit],
+        [data-delete] {
+            min-height: 30px !important;
+
+            padding: 6px 8px !important;
+
+            font-size: 8px !important;
+        }
+
+
+        /* =====================================================
+           BULK
+           ===================================================== */
+
+        .bulk-actions {
+            display: none;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 12px;
+
+            padding: 10px;
+
+            border: 1px solid rgba(255,36,71,.42);
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171012,
+                    #0c0b0c
+                );
+        }
+
+
+        .bulk-actions.show {
+            display: flex;
+        }
+
+
+        .bulk-count {
+            color: #ff6579;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .7px;
+        }
+
+
+        .bulk-actions select {
+            width: 220px;
+            min-height: 34px;
+        }
+
+
+        /* =====================================================
+           EMPTY
+           ===================================================== */
+
+        .empty-state {
+            padding: 28px 10px;
+
+            text-align: center;
+
+            color: #6e747a;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           MODAL
+           ===================================================== */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,.78);
+
+            backdrop-filter: blur(7px);
+        }
+
+
+        .modal.show {
+            display: flex;
+        }
+
+
+        .modal-card {
+            position: relative;
+
+            width: min(520px, 100%);
+
+            padding: 21px;
+
+            border: 2px solid var(--red-neon);
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1b1e21,
+                    #090b0d 60%,
+                    #15181a
+                );
+
+            box-shadow:
+                0 0 18px rgba(255,36,71,.22),
+                0 20px 70px rgba(0,0,0,.7);
+        }
+
+
+        .modal-card h2 {
+            margin: 0 0 18px;
+
+            font-size: 15px;
+
+            letter-spacing: 1.4px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+
+        /* =====================================================
+           NOTIFICATION BELL
+           ===================================================== */
+
+        .notification {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            z-index: 2000;
+        }
+
+
+        .notification-bell {
+            position: relative;
+
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            padding: 0 !important;
+
+            border: 2px solid rgba(255,36,71,.75) !important;
+            border-radius: 50% !important;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #c4c8cb,
+                    #565b60 48%,
+                    #141618
+                ) !important;
+
+            box-shadow:
+                0 0 10px rgba(255,36,71,.22);
+
+            transition:
+                transform .15s ease,
+                box-shadow .15s ease;
+        }
+
+
+        .notification-bell:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 15px rgba(255,36,71,.38);
+        }
+
+
+        .bell-icon {
+            font-size: 18px;
+
+            filter:
+                grayscale(.3)
+                drop-shadow(0 1px 1px #000);
+        }
+
+
+        .notification-badge {
+            position: absolute;
+
+            right: -3px;
+            top: -3px;
+
+            min-width: 17px;
+            height: 17px;
+
+            padding: 2px 4px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #ff7184;
+            border-radius: 50%;
+
+            color: white;
+
+            background: #a81530;
+
+            font-size: 8px;
+            font-weight: 900;
+        }
+
+
+        .notification-badge.show {
+            display: flex;
+        }
+
+
+        .notification-popup {
+            position: absolute;
+
+            right: 0;
+            bottom: 57px;
+
+            width: 290px;
+
+            display: none;
+
+            border: 2px solid rgba(255,36,71,.72);
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #181b1e,
+                    #090b0d
+                );
+
+            box-shadow:
+                0 0 18px rgba(255,36,71,.18),
+                0 15px 40px rgba(0,0,0,.6);
+
+            overflow: hidden;
+        }
+
+
+        .notification.open
+        .notification-popup {
+            display: block;
+
+            animation:
+                notificationIn .18s ease;
+        }
+
+
+        @keyframes notificationIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(7px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+
+        .notification-popup-head {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 11px;
+
+            border-bottom: 1px solid rgba(255,36,71,.35);
+
+            color: #e7e9eb;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+        .notification-popup-icon {
+            font-size: 13px;
+        }
+
+
+        .notification-close {
+            margin-left: auto;
+
+            width: 25px;
+            height: 25px;
+
+            padding: 0 !important;
+
+            border-radius: 50% !important;
+
+            font-size: 17px !important;
+
+            color: #aeb3b8 !important;
+        }
+
+
+        .notification-body {
+            padding: 12px;
+
+            color: #c7cbd0;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .container {
+                width: min(
+                    100% - 18px,
+                    700px
+                );
+
+                padding-top: 10px;
+            }
+
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
+            }
+
+
+            .category-top {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+
+            .category-create {
+                width: 100%;
+            }
+
+
+            .category-create input {
+                min-width: 0;
+            }
+
+
+            .panel {
+                padding: 14px;
+            }
+
+
+            .logo-text h1 {
+                font-size: 22px;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            .stats {
+                gap: 8px;
+            }
+
+
+            .stat-card {
+                min-height: 78px;
+
+                padding: 11px;
+            }
+
+
+            .stat-value {
+                font-size: 22px;
+            }
+
+
+            .notification {
+                right: 13px;
+                bottom: 13px;
+            }
+
+
+            .notification-popup {
+                right: 0;
+
+                width:
+                    min(
+                        290px,
+                        calc(100vw - 26px)
+                    );
+            }
+        }
+
+    </style>
+
 </head>
 
 
@@ -205,7 +1610,7 @@
                     display:grid;
                     grid-template-columns:
                         repeat(3, minmax(0,1fr));
-                    gap:12px;
+                    gap:10px;
                 "
             >
 
@@ -289,7 +1694,7 @@
                 align-items:center;
                 justify-content:space-between;
                 gap:15px;
-                margin-bottom:15px;
+                margin-bottom:13px;
             "
         >
 
@@ -297,15 +1702,15 @@
                 class="panel-title"
                 style="margin:0"
             >
+
                 <span id="selectedCategoryTitle">
                     BARCHASI
                 </span>
+
             </h2>
 
         </div>
 
-
-        <!-- SEARCH -->
 
         <div class="search-row">
 
@@ -318,15 +1723,11 @@
         </div>
 
 
-        <!-- BULK ACTIONS -->
-
         <div
             id="bulkActions"
             class="bulk-actions"
         ></div>
 
-
-        <!-- TABLE -->
 
         <div class="table-wrapper">
 
@@ -336,11 +1737,11 @@
 
                     <tr>
 
-                        <th style="width:26%">
+                        <th style="width:24%">
                             MAHSULOT
                         </th>
 
-                        <th style="width:15%">
+                        <th style="width:14%">
                             KATEGORIYA
                         </th>
 
@@ -348,7 +1749,7 @@
                             MIQDOR
                         </th>
 
-                        <th style="width:13%">
+                        <th style="width:12%">
                             MINIMAL
                         </th>
 
@@ -356,7 +1757,7 @@
                             HOLAT
                         </th>
 
-                        <th style="width:16%">
+                        <th style="width:20%">
                             AMALLAR
                         </th>
 
@@ -365,9 +1766,7 @@
                 </thead>
 
 
-                <tbody id="productsTable">
-
-                </tbody>
+                <tbody id="productsTable"></tbody>
 
             </table>
 
@@ -376,9 +1775,9 @@
 
         <div
             style="
-                margin-top:15px;
-                color:#858a91;
-                font-size:12px;
+                margin-top:12px;
+                color:#70767c;
+                font-size:10px;
             "
         >
             Mahsulotni 2 soniya bosib turing —
@@ -499,25 +1898,67 @@
 
 
 <!-- =========================================================
-     NOTIFICATION
+     SMALL NOTIFICATION BELL
      ========================================================= -->
 
 <div
     id="notification"
     class="notification"
+    aria-live="polite"
 >
 
-    <div
-        id="notificationTitle"
-        class="notification-title"
+    <button
+        type="button"
+        id="notificationBell"
+        class="notification-bell"
+        aria-label="Bildirishnomalar"
+        title="Bildirishnomalar"
     >
-        Bildirishnoma
-    </div>
 
-    <div
-        id="notificationBody"
-        class="notification-body"
-    ></div>
+        <span class="bell-icon">
+            🔔
+        </span>
+
+        <span
+            id="notificationBadge"
+            class="notification-badge"
+        >
+            0
+        </span>
+
+    </button>
+
+
+    <div class="notification-popup">
+
+        <div class="notification-popup-head">
+
+            <span class="notification-popup-icon">
+                🔔
+            </span>
+
+            <span id="notificationTitle">
+                BILDIRISHNOMALAR
+            </span>
+
+            <button
+                type="button"
+                id="notificationClose"
+                class="notification-close"
+                aria-label="Yopish"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="notificationBody"
+            class="notification-body"
+        ></div>
+
+    </div>
 
 </div>
 
@@ -558,8 +1999,7 @@ let categories = [];
 let selectedCategory = "all";
 let searchText = "";
 
-let selectedProductIds =
-    new Set();
+let selectedProductIds = new Set();
 
 let multiSelectMode = false;
 
@@ -570,6 +2010,331 @@ let pointerStartX = 0;
 let pointerStartY = 0;
 
 let longPressTriggered = false;
+
+
+/* =========================================================
+   SOUND ENGINE
+   ========================================================= */
+
+let audioContext = null;
+
+
+function getAudioContext() {
+
+    if (!audioContext) {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) {
+            return null;
+        }
+
+        audioContext =
+            new AudioContext();
+    }
+
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext.resume()
+            .catch(() => {});
+    }
+
+
+    return audioContext;
+}
+
+
+function playTone(
+    frequency,
+    duration,
+    type = "triangle",
+    volume = 0.035,
+    endFrequency = null
+) {
+
+    const ctx =
+        getAudioContext();
+
+    if (!ctx) return;
+
+
+    const oscillator =
+        ctx.createOscillator();
+
+    const gain =
+        ctx.createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency.setValueAtTime(
+        frequency,
+        ctx.currentTime
+    );
+
+
+    if (endFrequency !== null) {
+
+        oscillator.frequency.linearRampToValueAtTime(
+            endFrequency,
+            ctx.currentTime + duration
+        );
+    }
+
+
+    gain.gain.setValueAtTime(
+        0.0001,
+        ctx.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        volume,
+        ctx.currentTime + 0.004
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        ctx.currentTime + duration
+    );
+
+
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+
+
+    oscillator.start();
+
+    oscillator.stop(
+        ctx.currentTime + duration + .01
+    );
+}
+
+
+function playUISound(type = "click") {
+
+    if (type === "click") {
+
+        playTone(
+            145,
+            .045,
+            "square",
+            .025,
+            105
+        );
+
+        return;
+    }
+
+
+    if (type === "add") {
+
+        playTone(
+            420,
+            .09,
+            "triangle",
+            .035,
+            540
+        );
+
+        setTimeout(() => {
+
+            playTone(
+                650,
+                .12,
+                "triangle",
+                .025,
+                720
+            );
+
+        }, 55);
+
+        return;
+    }
+
+
+    if (type === "delete") {
+
+        playTone(
+            260,
+            .075,
+            "sawtooth",
+            .025,
+            125
+        );
+
+        setTimeout(() => {
+
+            playTone(
+                95,
+                .055,
+                "square",
+                .018,
+                70
+            );
+
+        }, 55);
+
+        return;
+    }
+
+
+    if (type === "error") {
+
+        playTone(
+            180,
+            .10,
+            "square",
+            .022,
+            120
+        );
+
+        setTimeout(() => {
+
+            playTone(
+                120,
+                .12,
+                "square",
+                .018,
+                90
+            );
+
+        }, 85);
+
+        return;
+    }
+
+
+    if (type === "success") {
+
+        playTone(
+            480,
+            .08,
+            "triangle",
+            .025,
+            600
+        );
+
+        setTimeout(() => {
+
+            playTone(
+                680,
+                .11,
+                "triangle",
+                .022,
+                760
+            );
+
+        }, 55);
+    }
+}
+
+
+/* =========================================================
+   BUTTON CLICK SOUND
+   ========================================================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const button =
+            event.target.closest(
+                "button"
+            );
+
+
+        if (!button) return;
+
+
+        if (
+            button.dataset.noSound ===
+            "true"
+        ) {
+            return;
+        }
+
+
+        playUISound(
+            "click"
+        );
+
+    },
+    true
+);
+
+
+/* =========================================================
+   SCROLL SHINE
+   ========================================================= */
+
+let lastScrollY =
+    window.scrollY;
+
+let scrollTimer =
+    null;
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        const current =
+            window.scrollY;
+
+
+        if (
+            current >
+            lastScrollY + 2
+        ) {
+
+            document.body.classList.add(
+                "scrolling-down"
+            );
+
+        } else if (
+            current <
+            lastScrollY - 2
+        ) {
+
+            document.body.classList.remove(
+                "scrolling-down"
+            );
+        }
+
+
+        clearTimeout(
+            scrollTimer
+        );
+
+
+        scrollTimer =
+            setTimeout(() => {
+
+                document.body.classList.remove(
+                    "scrolling-down"
+                );
+
+            }, 500);
+
+
+        lastScrollY =
+            current;
+
+    },
+    {
+        passive: true
+    }
+);
 
 
 /* =========================================================
@@ -589,6 +2354,7 @@ function categoryLabel(value) {
     const v =
         normalizeCategory(value);
 
+
     const map = {
 
         rezinka: "REZINKALAR",
@@ -605,13 +2371,18 @@ function categoryLabel(value) {
 
         petla: "PETLA",
         petlalar: "PETLA"
+
     };
+
 
     return (
         map[v] ||
-        String(value || "KATEGORIYASIZ")
-            .trim()
-            .toUpperCase()
+        String(
+            value ||
+            "KATEGORIYASIZ"
+        )
+        .trim()
+        .toUpperCase()
     );
 }
 
@@ -619,11 +2390,26 @@ function categoryLabel(value) {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 }
 
 
@@ -633,7 +2419,14 @@ function escapeHTML(value) {
 
 let notificationTimer = null;
 
-function notify(message, type = "info") {
+let notificationCount = 0;
+
+
+function notify(
+    message,
+    type = "info",
+    sound = null
+) {
 
     const box =
         document.getElementById(
@@ -650,12 +2443,37 @@ function notify(message, type = "info") {
             "notificationBody"
         );
 
+    const badge =
+        document.getElementById(
+            "notificationBadge"
+        );
 
-    if (!box || !title || !body) {
+
+    if (
+        !box ||
+        !title ||
+        !body
+    ) {
 
         alert(message);
 
         return;
+    }
+
+
+    if (sound) {
+
+        playUISound(
+            sound
+        );
+
+    } else if (
+        type === "error"
+    ) {
+
+        playUISound(
+            "error"
+        );
     }
 
 
@@ -671,15 +2489,35 @@ function notify(message, type = "info") {
         message;
 
 
-    box.style.borderColor =
+    box.style.setProperty(
+        "--notification-color",
         type === "error"
-            ? "#e00000"
+            ? "#e51f3f"
             : type === "success"
                 ? "#28d17c"
-                : "#777";
+                : "#9ca2a7"
+    );
 
 
-    box.classList.add("show");
+    notificationCount++;
+
+
+    if (badge) {
+
+        badge.textContent =
+            notificationCount > 99
+                ? "99+"
+                : notificationCount;
+
+        badge.classList.add(
+            "show"
+        );
+    }
+
+
+    box.classList.add(
+        "open"
+    );
 
 
     clearTimeout(
@@ -690,10 +2528,75 @@ function notify(message, type = "info") {
     notificationTimer =
         setTimeout(() => {
 
-            box.classList.remove("show");
+            box.classList.remove(
+                "open"
+            );
 
         }, 3500);
 }
+
+
+/* =========================================================
+   NOTIFICATION BUTTON
+   ========================================================= */
+
+document.getElementById(
+    "notificationBell"
+).addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        const box =
+            document.getElementById(
+                "notification"
+            );
+
+
+        box.classList.toggle(
+            "open"
+        );
+
+
+        notificationCount = 0;
+
+
+        const badge =
+            document.getElementById(
+                "notificationBadge"
+            );
+
+
+        if (badge) {
+
+            badge.textContent =
+                "0";
+
+            badge.classList.remove(
+                "show"
+            );
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "notificationClose"
+).addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        document.getElementById(
+            "notification"
+        ).classList.remove(
+            "open"
+        );
+    }
+);
 
 
 /* =========================================================
@@ -751,11 +2654,13 @@ async function loadCategories() {
         )
     ) {
 
-        selectedCategory = "all";
+        selectedCategory =
+            "all";
     }
 
 
     renderCategories();
+
     renderCategorySelects();
 }
 
@@ -772,7 +2677,8 @@ function renderCategories() {
         );
 
 
-    box.innerHTML = "";
+    box.innerHTML =
+        "";
 
 
     const all =
@@ -819,7 +2725,9 @@ function renderCategories() {
     };
 
 
-    box.appendChild(all);
+    box.appendChild(
+        all
+    );
 
 
     categories.forEach(
@@ -864,13 +2772,9 @@ function renderCategories() {
             button.onclick =
                 async () => {
 
-                    /*
-                     * Agar tanlash rejimi bo'lsa:
-                     * kategoriya tugmasi barcha
-                     * tanlangan mahsulotlarni ko'chiradi.
-                     */
-
-                    if (multiSelectMode) {
+                    if (
+                        multiSelectMode
+                    ) {
 
                         await moveSelected(
                             category.name
@@ -953,6 +2857,7 @@ function renderCategorySelects() {
         document.getElementById(
             "editProductCategory"
         )
+
     ];
 
 
@@ -1101,7 +3006,8 @@ async function addCategory() {
 
     notify(
         "Kategoriya qo'shildi.",
-        "success"
+        "success",
+        "add"
     );
 }
 
@@ -1120,14 +3026,10 @@ async function deleteCategory(
             `"${categoryLabel(name)}" kategoriyasi o'chirilsinmi?\n\nMahsulotlar "Kategoriyasiz" bo'ladi.`
         )
     ) {
+
         return;
     }
 
-
-    /*
-      Shu kategoriyadagi mahsulotlarni
-      ID orqali topamiz.
-    */
 
     const ids =
         products
@@ -1146,11 +3048,9 @@ async function deleteCategory(
             );
 
 
-    /*
-      Mahsulotlarni kategoriyasiz qilamiz.
-    */
-
-    if (ids.length > 0) {
+    if (
+        ids.length > 0
+    ) {
 
         const {
             error
@@ -1181,10 +3081,6 @@ async function deleteCategory(
         }
     }
 
-
-    /*
-      Kategoriyani o'chirish.
-    */
 
     const {
         error
@@ -1237,7 +3133,8 @@ async function deleteCategory(
 
     selectedProductIds.clear();
 
-    multiSelectMode = false;
+    multiSelectMode =
+        false;
 
 
     if (
@@ -1267,7 +3164,8 @@ async function deleteCategory(
 
     notify(
         "Kategoriya o'chirildi.",
-        "success"
+        "success",
+        "delete"
     );
 }
 
@@ -1313,6 +3211,7 @@ async function loadProducts() {
     products =
         (data || []).map(
             product => ({
+
                 ...product,
 
                 quantity:
@@ -1324,6 +3223,7 @@ async function loadProducts() {
                     Number(
                         product.low_limit
                     ) || 5
+
             })
         );
 
@@ -1413,6 +3313,7 @@ function renderProducts() {
                         )
                         .toLowerCase()
                         .includes(q)
+
                     );
                 }
             );
@@ -1496,7 +3397,9 @@ function renderProducts() {
                 "status status-ok";
 
 
-            if (quantity <= 0) {
+            if (
+                quantity <= 0
+            ) {
 
                 status =
                     "TUGAGAN";
@@ -1629,7 +3532,7 @@ function renderProducts() {
                     <div
                         style="
                             display:flex;
-                            gap:7px;
+                            gap:5px;
                             flex-wrap:wrap;
                         "
                     >
@@ -1653,12 +3556,9 @@ function renderProducts() {
                     </div>
 
                 </td>
+
                 `;
 
-
-            /*
-              Quantity
-            */
 
             row.querySelector(
                 "[data-minus]"
@@ -1711,10 +3611,6 @@ function renderProducts() {
                     event.stopPropagation();
 
 
-            /*
-              Low limit
-            */
-
             const lowInput =
                 row.querySelector(
                     ".low-limit-input"
@@ -1738,10 +3634,6 @@ function renderProducts() {
                     event.stopPropagation();
 
 
-            /*
-              Edit
-            */
-
             row.querySelector(
                 "[data-edit]"
             ).onclick =
@@ -1755,10 +3647,6 @@ function renderProducts() {
                 };
 
 
-            /*
-              Delete
-            */
-
             row.querySelector(
                 "[data-delete]"
             ).onclick =
@@ -1771,10 +3659,6 @@ function renderProducts() {
                     );
                 };
 
-
-            /*
-              2 SECOND LONG PRESS
-            */
 
             attachSelectionEvents(
                 row,
@@ -1791,7 +3675,7 @@ function renderProducts() {
 
 
 /* =========================================================
-   LONG PRESS / MULTI SELECT
+   LONG PRESS
    ========================================================= */
 
 function attachSelectionEvents(
@@ -1804,15 +3688,9 @@ function attachSelectionEvents(
         event => {
 
             if (
-                event.target.closest(
-                    "button"
-                ) ||
-                event.target.closest(
-                    "input"
-                ) ||
-                event.target.closest(
-                    "select"
-                )
+                event.target.closest("button") ||
+                event.target.closest("input") ||
+                event.target.closest("select")
             ) {
 
                 return;
@@ -1822,14 +3700,11 @@ function attachSelectionEvents(
             pointerStartX =
                 event.clientX;
 
-
             pointerStartY =
                 event.clientY;
 
-
             longPressProductId =
                 productId;
-
 
             longPressTriggered =
                 false;
@@ -1840,12 +3715,9 @@ function attachSelectionEvents(
             );
 
 
-            /*
-              Selection mode'da oddiy click
-              bilan tanlash.
-            */
-
-            if (multiSelectMode) {
+            if (
+                multiSelectMode
+            ) {
 
                 longPressTimer =
                     setTimeout(
@@ -1862,11 +3734,6 @@ function attachSelectionEvents(
             }
 
 
-            /*
-              Oddiy rejim:
-              2 soniya.
-            */
-
             longPressTimer =
                 setTimeout(
                     () => {
@@ -1874,21 +3741,18 @@ function attachSelectionEvents(
                         longPressTriggered =
                             true;
 
-
                         multiSelectMode =
                             true;
 
-
                         selectedProductIds.clear();
-
 
                         selectedProductIds.add(
                             productId
                         );
 
-
                         renderProducts();
 
+                        updateBulkActions();
 
                         notify(
                             "Tanlash rejimi yoqildi. Boshqa mahsulotlarni bosing.",
@@ -1946,7 +3810,7 @@ function attachSelectionEvents(
 
     row.addEventListener(
         "pointerup",
-        event => {
+        () => {
 
             clearTimeout(
                 longPressTimer
@@ -1967,31 +3831,20 @@ function attachSelectionEvents(
             if (!id) return;
 
 
-            /*
-              Agar selection mode bo'lsa,
-              oddiy bosish = tanlash/olib tashlash.
-            */
-
             if (
                 multiSelectMode &&
                 !longPressTriggered
             ) {
 
                 if (
-                    selectedProductIds.has(
-                        id
-                    )
+                    selectedProductIds.has(id)
                 ) {
 
-                    selectedProductIds.delete(
-                        id
-                    );
+                    selectedProductIds.delete(id);
 
                 } else {
 
-                    selectedProductIds.add(
-                        id
-                    );
+                    selectedProductIds.add(id);
                 }
 
 
@@ -2341,6 +4194,7 @@ async function moveSelected(
 
     notify(
         `${ids.length} ta mahsulot "${categoryLabel(categoryName)}" kategoriyasiga o'tkazildi.`,
+        "success",
         "success"
     );
 }
@@ -2398,7 +4252,8 @@ async function setQuantity(
         )
     ) {
 
-        quantity = 0;
+        quantity =
+            0;
     }
 
 
@@ -2471,7 +4326,8 @@ async function setLowLimit(
         !Number.isFinite(low)
     ) {
 
-        low = 5;
+        low =
+            5;
     }
 
 
@@ -2597,7 +4453,8 @@ async function deleteProduct(
 
     notify(
         "Mahsulot o'chirildi.",
-        "success"
+        "success",
+        "delete"
     );
 }
 
@@ -2646,18 +4503,24 @@ async function addProduct() {
 
 
     if (
-        !Number.isFinite(quantity)
+        !Number.isFinite(
+            quantity
+        )
     ) {
 
-        quantity = 0;
+        quantity =
+            0;
     }
 
 
     if (
-        !Number.isFinite(low)
+        !Number.isFinite(
+            low
+        )
     ) {
 
-        low = 5;
+        low =
+            5;
     }
 
 
@@ -2674,19 +4537,25 @@ async function addProduct() {
     } = await db
         .from("products")
         .insert({
+
             name,
+
             quantity:
                 Math.max(
                     0,
                     quantity
                 ),
+
             low_limit:
                 Math.max(
                     0,
                     low
                 ),
+
             category,
+
             image: null
+
         })
         .select()
         .single();
@@ -2740,7 +4609,8 @@ async function addProduct() {
 
     notify(
         "Mahsulot qo'shildi.",
-        "success"
+        "success",
+        "add"
     );
 }
 
@@ -2872,11 +4742,16 @@ async function saveEdit() {
     } = await db
         .from("products")
         .update({
+
             name,
+
             quantity,
+
             low_limit:
                 low,
+
             category
+
         })
         .eq(
             "id",
@@ -2921,6 +4796,7 @@ async function saveEdit() {
 
     notify(
         "Mahsulot o'zgartirildi.",
+        "success",
         "success"
     );
 }
@@ -3141,7 +5017,7 @@ async function startApp() {
         updateBulkActions();
 
         console.log(
-            "GRAND X METAL EDITION READY"
+            "GRAND X METAL NEON EDITION READY"
         );
 
     } catch (error) {
@@ -3209,6 +5085,7 @@ setInterval(
 );
 
 </script>
+
 
 </body>
 </html>
