@@ -1341,4 +1341,260 @@ tbody tr {
     tbody tr:hover {
         transform: none;
     }
+}:root {
+    --black: #050505;
+    --black-table: #090909;
+    --black-soft: #111214;
+
+    --metal-dark: #24272a;
+    --metal: #555a5f;
+    --metal-light: #aeb4b9;
+    --metal-white: #e8ecef;
+
+    --red: #ff1010;
+    --red-neon: #ff2020;
+    --red-dark: #7d0000;
+
+    --text: #f2f2f2;
+    --muted: #92979c;
+}
+
+/* ОСНОВНОЙ ФОН */
+
+body {
+    margin: 0;
+    color: var(--text);
+    font-family: Inter, Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(160, 165, 170, 0.08),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #030303,
+            #101214 45%,
+            #050505
+        );
+
+    overflow-x: hidden;
+}
+
+/* ПАНЕЛИ */
+
+.panel,
+.stat-card {
+    position: relative;
+
+    border: 1px solid rgba(175, 181, 186, 0.35);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b0c0d,
+            #292d30 48%,
+            #111315 52%,
+            #070707
+        );
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(235, 238, 240, 0.12);
+}
+
+/* КРАСНАЯ НЕОНОВАЯ ОКАНТОВКА */
+
+.category-button.active,
+#addCategoryButton,
+#addProductButton,
+#saveEditButton,
+#bulkActions {
+    border-color: var(--red-neon);
+
+    box-shadow:
+        0 0 7px rgba(255, 0, 0, 0.45),
+        0 0 18px rgba(255, 0, 0, 0.12),
+        inset 0 0 8px rgba(255, 0, 0, 0.06);
+}
+
+/* ТАБЛИЦА */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 7px;
+}
+
+thead th {
+    color: var(--metal-white);
+
+    font-size: 11px;
+    letter-spacing: 0.7px;
+
+    border-bottom: 1px solid rgba(255, 20, 20, 0.65);
+}
+
+/* ЧЁРНЫЕ СТРОКИ */
+
+tbody tr {
+    background:
+        linear-gradient(
+            110deg,
+            #050505,
+            #0b0c0d,
+            #080808
+        );
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.65);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+tbody td {
+    padding: 12px 11px;
+
+    border-top: 1px solid rgba(120, 125, 130, 0.35);
+    border-bottom: 1px solid rgba(120, 125, 130, 0.2);
+}
+
+tbody td:first-child {
+    border-left: 1px solid rgba(255, 20, 20, 0.45);
+    border-radius: 10px 0 0 10px;
+}
+
+tbody td:last-child {
+    border-right: 1px solid rgba(255, 20, 20, 0.45);
+    border-radius: 0 10px 10px 0;
+}
+
+/* ПОДСВЕТКА СТРОКИ */
+
+tbody tr:hover {
+    box-shadow:
+        0 0 9px rgba(255, 0, 0, 0.15),
+        0 6px 18px rgba(0, 0, 0, 0.7);
+}
+
+/* МЕТАЛЛИЧЕСКИЙ БЕЛЫЙ БЛИК */
+
+.panel::after,
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(235, 240, 243, 0.55),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+/* КНОПКИ */
+
+button {
+    color: #f4f4f4;
+
+    border: 1px solid rgba(180, 185, 190, 0.45);
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101112,
+            #383d41,
+            #17191b
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 4px 10px rgba(0,0,0,0.5);
+
+    transition:
+        0.15s ease;
+}
+
+button:hover {
+    border-color: rgba(255, 30, 30, 0.8);
+
+    box-shadow:
+        0 0 9px rgba(255, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+button:active {
+    transform: translateY(1px);
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,0.8);
+}
+
+/* КРАСНЫЕ КНОПКИ */
+
+#addCategoryButton,
+#addProductButton,
+#saveEditButton {
+    background:
+        linear-gradient(
+            145deg,
+            #4d0000,
+            #c50000,
+            #650000
+        );
+
+    border-color: #ff2020;
+}
+
+/* INPUT */
+
+input,
+select {
+    color: #eeeeee;
+
+    background:
+        linear-gradient(
+            145deg,
+            #060606,
+            #202326,
+            #090909
+        );
+
+    border: 1px solid rgba(175,180,185,0.45);
+    border-radius: 9px;
+}
+
+input:focus,
+select:focus {
+    border-color: #ff2020;
+
+    box-shadow:
+        0 0 8px rgba(255,0,0,0.2);
+}
+
+/* МОБИЛКА */
+
+@media (max-width: 700px) {
+    table {
+        min-width: 760px;
+    }
+
+    tbody td {
+        padding: 10px 9px;
+    }
 }
